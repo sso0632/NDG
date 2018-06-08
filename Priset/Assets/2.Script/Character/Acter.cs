@@ -58,5 +58,8 @@ public class Acter : MonoBehaviour {
         ActerAni.SetTrigger("attack");
     }
 
-
+    void NavMove(Vector3 TargetPos)     //대상으로 이동
+    {
+        navMesh.SetDestination(TargetPos);
+    }
 }
