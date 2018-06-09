@@ -26,13 +26,10 @@ public class Cloud : MonoBehaviour {
             {
                 Vector2 cameraMax = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
                 transform.position = new Vector2(cameraMax.x, Random.Range(cameraMax.y * 0.5f, cameraMax.y));
-
-
                 moveForce = Random.Range(2, 8);
             }
 
-            
-            transform.position += Vector3.left * Time.deltaTime * moveForce;
+                transform.position += Vector3.left * Time.deltaTime * moveForce;
 
         }
 
