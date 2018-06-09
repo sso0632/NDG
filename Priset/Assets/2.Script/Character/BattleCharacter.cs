@@ -26,7 +26,7 @@ public class BattleCharacter : Character {
 
     void indexValueSet()
     {
-        GmaeManager_s.Current.Data.CharacterStatSet(this);
+        GameManager.instance.Data.CharacterStatSet(this);
     }
 
     public CharacterAttackType Attacktype
