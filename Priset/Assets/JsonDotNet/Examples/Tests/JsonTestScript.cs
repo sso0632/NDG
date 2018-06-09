@@ -17,7 +17,7 @@ public class JsonTestScript
     {
         _text = text;
     }
-
+    //¼Û¼ºÀ± ¹Ùº¸
     /// <summary>
     /// Simple Vector3 Serialization
     /// </summary>
