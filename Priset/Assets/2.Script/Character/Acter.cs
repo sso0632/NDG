@@ -23,6 +23,11 @@ public class Acter : MonoBehaviour {
         Debug.Log("actor");
     }
 
+    public void RegistCharacter(Character _Character)
+    {
+        haveCharacter = _Character;
+    }
+
     protected void Awake()
     {
         init();
