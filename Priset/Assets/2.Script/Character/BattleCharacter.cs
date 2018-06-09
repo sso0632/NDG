@@ -14,25 +14,50 @@ public class BattleCharacter : Character {
     protected CharacterAttackType attacktype;   //공격 유형 
     protected DeadorLive lift;        //죽음 여부
 
-    protected float HMSpeed
+    public BattleCharacter()         //배틀 캐릭터 생성
+    {
+
+    }
+    public BattleCharacter(int _index)         //배틀 캐릭터 생성
+    {
+        index = _index;
+        indexValueSet();
+    }
+
+    void indexValueSet()
+    {
+        GmaeManager_s.Current.Data.CharacterStatSet(this);
+    }
+
+    public CharacterAttackType Attacktype
+    {
+        set { attacktype = value; }
+        get { return attacktype; }
+    }
+    public float HMSpeed
     {
         set { HomeMoveSpeed = value; }
         get { return HomeMoveSpeed; }
     }
-    protected float WMSpeed
+    public float WMSpeed
     {
         set { WarMoveSpeed = value; }
         get { return WarMoveSpeed; }
     }
-    protected float ASpeed
-    {
-        set { AttackSpeed = value; }
-        get { return AttackSpeed; }
-    }
-    protected int MHeath
+    public int MHeath
     {
         set { MaxHeath = value; }
         get { return MaxHeath; }
+    }
+    public int Attack
+    {
+        set { AttackPoint = value; }
+        get { return AttackPoint; }
+    }
+    public float ASpeed
+    {
+        set { AttackSpeed = value; }
+        get { return AttackSpeed; }
     }
 
     protected void HeathFull()      //체력을 최대로 채워주는 함수
