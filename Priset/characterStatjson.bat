@@ -1,1 +1,0 @@
-WSCRIPT.EXE Excel2Json.js CharacterStat.xlsx Assets\Resources\Json
