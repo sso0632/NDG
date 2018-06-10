@@ -7,10 +7,15 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    public GameObject CharacterField; // 용병 생성 리스트 필드 
+
+
+    public Sprite[] CharacterImage;
+
     public EventSystem currentEvents;
     public GameObject CaveSupervisePanel;
     public GameObject FriendlyManagerPanel;
-   
+
     private void Awake()
     {
         if (instance == null)
@@ -19,8 +24,9 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
 
         Initialized();
+
+
     }
-    
     
     private void Initialized()
     {

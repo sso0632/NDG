@@ -11,7 +11,6 @@ public class UICave : MonoBehaviour
     Text superviseText;
     int sizeForce;
 
-
     private void Awake()
     {
          caveButton = GetComponent<Button>();
@@ -40,4 +39,5 @@ public class UICave : MonoBehaviour
     {
         UIManager.instance.CaveSupervise();
     }
+
 }

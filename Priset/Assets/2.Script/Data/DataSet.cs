@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
-
+using UnityEngine.UI;
 public class DataSet : MonoBehaviour
 {
     Dictionary<string, List<BattleCharacter>> CharacterStatData;
@@ -10,6 +10,7 @@ public class DataSet : MonoBehaviour
     private void Awake()
     {
         CharacterStatLoad();
+        CharacterSpriteLoad();
     }
 
     void DebugList()
@@ -20,6 +21,20 @@ public class DataSet : MonoBehaviour
         }
     }
     
+    void CharacterSpriteLoad()
+    {       
+        int count = (int)(Resources.LoadAll("CharacterImage").Length * 0.5f);
+        string tempSpriteIndex = null;
+        UIManager.instance.CharacterImage = new Sprite[count];
+        for(int i =0; i<count; ++i)
+        {
+            tempSpriteIndex = i.ToString();
+            UIManager.instance.CharacterImage[i] = (Sprite)Resources.Load("CharacterImage/" + tempSpriteIndex, typeof(Sprite));
+        }
+    }
+
+
+
     void CharacterStatLoad()
     {
         TextAsset Characterstatjson = (TextAsset)Resources.Load("Json/CharacterStat", typeof(TextAsset));
