@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Sang;
 
 public class UIFriendlyField : MonoBehaviour
 {
@@ -10,8 +10,11 @@ public class UIFriendlyField : MonoBehaviour
     Button employButton;
     Text contentText;
 
-
     int m_characterIndex;
+
+    BattleCharacter haveCharacter;          //생성할 캐릭터
+
+    tdelgate<BattleCharacter> CreateFunction;   //생성함수 
 
     public int CharacterIndex
     {
@@ -37,8 +40,22 @@ public class UIFriendlyField : MonoBehaviour
         contentText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
     }
     public void FieldSet()
+    { 
+        CreateFunction = GameManager.instance.CreateCharacter.FieldCraete;
+    }
+    private void OnEnable()
     {
 
     }
 
+   public void characterSet(BattleCharacter character)      //어디선가 에서 받아와야함
+    {
+        haveCharacter = character;
+    }
+
+    public void Create()            //섭외 버튼에 들어가는 기눙
+    {
+        CreateFunction(haveCharacter);
+    }
 }
+
