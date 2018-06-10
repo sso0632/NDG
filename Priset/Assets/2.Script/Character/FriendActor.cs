@@ -5,20 +5,22 @@ using Sang;
 
 public class FriendActor : Acter {
 
-    bool CheckLeftAndRigth;     //왼쪽 오른쪽 체크 
-    voiddelgate HomeMoveFuction; //집에서 이동
-    HomeActNum homeactkind;     //집에서 행동 
+    protected bool CheckLeftAndRigth;     //왼쪽 오른쪽 체크 
+    protected voiddelgate HomeMoveFuction; //집에서 이동
+    protected HomeActNum homeactkind;     //집에서 행동 
 
     Quaternion LeftDirect = new Quaternion(0, 180, 0, 0);
 
-   override protected void Start()
+   
+    override protected void Start()
     {
         StartCoroutine("decisionHomeAct");
     }
 
-    private void Update()
+    protected void Update()
     {
-        HomeAct();
+        if(GameManager.instance.NowScene==Scene.Home)
+            HomeAct();
     }
 
     IEnumerator decisionHomeAct()

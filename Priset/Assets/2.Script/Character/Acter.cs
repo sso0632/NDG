@@ -17,10 +17,13 @@ public class Acter : MonoBehaviour {
         ActerAni = this.GetComponent<Animator>();
         ActorTransform = this.GetComponent<Transform>();
     }
+    protected void Awake()
+    {
+        init();
+    }
 
     virtual protected void Start()
     {
-        Debug.Log("actor");
     }
 
     public void RegistCharacter(Character _Character)
@@ -28,10 +31,6 @@ public class Acter : MonoBehaviour {
         haveCharacter = _Character;
     }
 
-    protected void Awake()
-    {
-        init();
-    }
 
     protected void AniWork()      //애니 관리
     {
