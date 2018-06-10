@@ -38,10 +38,12 @@ public class UIFriendlyField : MonoBehaviour
         characterImage = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
         employButton = transform.GetChild(0).GetChild(1).GetComponent<Button>();
         contentText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
+
+        CreateFunction = GameManager.instance.CreateCharacter.FieldCraete;
     }
     public void FieldSet()
     { 
-        CreateFunction = GameManager.instance.CreateCharacter.FieldCraete;
+ 
     }
     private void OnEnable()
     {
