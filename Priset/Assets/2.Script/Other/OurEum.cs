@@ -7,6 +7,7 @@ namespace Sang
     public enum HomeActNum {RightWalk,LeftWalk, Idle}
     public enum DeadorLive { LIVE, DEAD }
     public delegate void voiddelgate();
+    
     public delegate void tdelgate<T>(T value);
     
 }

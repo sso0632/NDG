@@ -6,10 +6,9 @@ public class GameManager : MonoBehaviour {
     
     public static GameManager instance;
     public DataSet Data;
-
+    public CharacterCreate CreateCharacter;
     private void Awake()
     {
-
         if (instance == null)
             instance = this;
         else
