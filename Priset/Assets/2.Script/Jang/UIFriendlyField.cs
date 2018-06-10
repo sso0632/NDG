@@ -41,6 +41,7 @@ public class UIFriendlyField : MonoBehaviour
 
         CreateFunction = GameManager.instance.CreateCharacter.FieldCraete;
     }
+
     public void FieldSet()
     { 
  

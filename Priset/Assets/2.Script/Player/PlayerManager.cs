@@ -19,11 +19,12 @@ public class PlayerManager : MonoBehaviour {
         Party.PartySet();
         ChagePriest(0);
     }
-    void ChagePriest(int index)
+    public void ChagePriest(int index)
     {
         //1. 현재 프리스트 액터 초기화후 
         if(NowPriest!=null)
         {
+
             NowPriest.gameObject.SetActive(false);
             //현재 프리스트의 값을 초기화
             SetPriestActor(havePriestCharacter[index]);
@@ -36,8 +37,12 @@ public class PlayerManager : MonoBehaviour {
     }
     void SetPriestActor(PriestActor actor)
     {
+        actor.gameObject.SetActive(true);
+
+        if (NowPriest != null)
+            actor.Pos = NowPriest.Pos;
+
         NowPriest = actor;
-        NowPriest.gameObject.SetActive(true);
     }
 }
 
