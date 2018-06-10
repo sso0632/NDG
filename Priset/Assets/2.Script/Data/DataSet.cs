@@ -33,8 +33,6 @@ public class DataSet : MonoBehaviour
         }
     }
 
-
-
     void CharacterStatLoad()
     {
         TextAsset Characterstatjson = (TextAsset)Resources.Load("Json/CharacterStat", typeof(TextAsset));
@@ -43,9 +41,10 @@ public class DataSet : MonoBehaviour
 
     public void CharacterStatSet(BattleCharacter target)
     {
-        target.Attack= CharacterStatData["characterstat"][target.Index-1].Attack;
-        target.MHeath = CharacterStatData["characterstat"][target.Index - 1].MHeath;
-        target.ASpeed = CharacterStatData["characterstat"][target.Index - 1].ASpeed;
-        target.Attacktype = CharacterStatData["characterstat"][target.Index - 1].Attacktype;
+        target.Attack= CharacterStatData["characterstat"][target.Index].Attack;
+        target.MHeath = CharacterStatData["characterstat"][target.Index].MHeath;
+        target.ASpeed = CharacterStatData["characterstat"][target.Index].ASpeed;
+        target.Attacktype = CharacterStatData["characterstat"][target.Index].Attacktype;
+
     }
 }

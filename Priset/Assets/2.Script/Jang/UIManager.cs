@@ -7,9 +7,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    public UIEmployPanel EmployPanel;
     public GameObject CharacterField; // 용병 생성 리스트 필드 
-
-
     public Sprite[] CharacterImage;
 
     public EventSystem currentEvents;
@@ -25,13 +24,13 @@ public class UIManager : MonoBehaviour
 
         Initialized();
 
-
     }
     
     private void Initialized()
     {
         CaveSupervisePanel.SetActive(false);
         FriendlyManagerPanel.SetActive(false);
+        EmployPanel.gameObject.SetActive(false);
     }
     public void CaveSupervise()
     {
@@ -43,4 +42,5 @@ public class UIManager : MonoBehaviour
         CaveSupervisePanel.SetActive(false);
         FriendlyManagerPanel.SetActive(true);
     }
+    
 }

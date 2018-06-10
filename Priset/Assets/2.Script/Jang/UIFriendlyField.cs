@@ -13,8 +13,7 @@ public class UIFriendlyField : MonoBehaviour
     int m_characterIndex;
 
     BattleCharacter haveCharacter;          //생성할 캐릭터
-
-    tdelgate<BattleCharacter> CreateFunction;   //생성함수 
+    GameObject employSuccessObj;
 
     public int CharacterIndex
     {
@@ -38,24 +37,31 @@ public class UIFriendlyField : MonoBehaviour
         characterImage = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
         employButton = transform.GetChild(0).GetChild(1).GetComponent<Button>();
         contentText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
-    }
-    public void FieldSet()
-    { 
-        CreateFunction = GameManager.instance.CreateCharacter.FieldCraete;
-    }
-    private void OnEnable()
-    {
+
+        employSuccessObj = transform.GetChild(1).gameObject;
+        employButton.onClick.AddListener(Create);
 
     }
 
-   public void characterSet(BattleCharacter character)      //어디선가 에서 받아와야함
+    public void FieldSet(int index)
     {
-        haveCharacter = character;
+        m_characterIndex = index;
+        characterImage.sprite = UIManager.instance.CharacterImage[index];
     }
-
-    public void Create()            //섭외 버튼에 들어가는 기눙
+    public void CharacterSet(BattleCharacter character)      //어디선가 에서 받아와야함
     {
-        CreateFunction(haveCharacter);
+        haveCharacter = character;  
+    }
+    public void SuccessEmploy()
+    {
+        employSuccessObj.SetActive(true);
+        haveCharacter = null;
+    }
+    private void Create()            //섭외 버튼에 들어가는 기눙
+    {
+        UIManager.instance.EmployPanel.gameObject.SetActive(true);
+        UIManager.instance.EmployPanel.EmployFrieldyField(this);
+        UIManager.instance.EmployPanel.ContentSet(haveCharacter);
     }
 }
 
