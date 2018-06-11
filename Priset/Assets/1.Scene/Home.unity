@@ -2102,6 +2102,7 @@ MonoBehaviour:
   havePriestCharacter:
   - {fileID: 2139754410}
   - {fileID: 0}
+  SkillSpace: {fileID: 0}
 --- !u!1 &642859589
 GameObject:
   m_ObjectHideFlags: 0
@@ -9265,6 +9266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 2057858062}
   CreateCharacter: {fileID: 2057858060}
+  PM: {fileID: 636559042}
   NowScene: 0
 --- !u!114 &2057858064
 MonoBehaviour:
@@ -9518,6 +9520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e271c1fbf1ec3ba488a6e629e7fda678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  havePriest: {fileID: 0}
 --- !u!114 &2139754411
 MonoBehaviour:
   m_ObjectHideFlags: 0

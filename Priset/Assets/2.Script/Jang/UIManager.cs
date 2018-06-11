@@ -28,7 +28,6 @@ public class UIManager : MonoBehaviour
         Initialized();
 
         FriendlyListPanel.Init();
-        
     }
     private void Initialized()
     {
