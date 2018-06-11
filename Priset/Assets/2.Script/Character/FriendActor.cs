@@ -56,7 +56,7 @@ public class FriendActor : Acter {
     }
     void HomeMove()     //집에서 이동
     {
-        ActorTransform.Translate(Vector3.right * TimeManager.Timesize);
+        ActorTransform.Translate(Vector3.right * Time.deltaTime);
     }
     void Left()
     {

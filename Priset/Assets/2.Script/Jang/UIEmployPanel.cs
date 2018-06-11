@@ -12,7 +12,6 @@ public class UIEmployPanel : MonoBehaviour {
 
     BattleCharacter employCharacter;
     tdelgate<BattleCharacter> CreateFunction;   //생성함수 
-
     UIFriendlyField currentFieldyField;
 
     
@@ -23,7 +22,6 @@ public class UIEmployPanel : MonoBehaviour {
         closeButton = transform.GetChild(2).GetComponent<Button>();
         ButtonDataInit();
     }
-    
     void ButtonDataInit()
     {
         employButton.onClick.AddListener(EmployPress);
@@ -52,10 +50,6 @@ public class UIEmployPanel : MonoBehaviour {
     {
         currentFieldyField = friendly;
     }
-
-
-
-
 
 
 }

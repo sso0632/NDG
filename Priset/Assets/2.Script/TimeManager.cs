@@ -4,17 +4,70 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    public static TimeManager instance;
 
-    public static float Timesize = 1f*Time.deltaTime;
+    bool isTime = true ;
+    bool isResetTime = false;
 
-    void Pause()
+    int m_friendlyResetminute;
+    float m_friendlyResetSecond;
+
+
+    public bool isResetFriendly
     {
-        Timesize = 0;
-
+        get { return isResetTime; }
+        set { isResetTime = value; }
     }
-    void Play()
+    
+
+    private void Awake()
     {
-        Timesize = 1f;
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
+    private void Start()
+    {
+        RestartFriendlyTimer();
+    }
+    public void RestartFriendlyTimer()
+    {
+        isResetTime = false;
+        isTime = true;
+        StartCoroutine(TimerSystem());
+    }
+  
+    IEnumerator TimerSystem()
+    {
+        m_friendlyResetminute = 0;
+        m_friendlyResetSecond = 10.0f;
+
+        while (isTime)
+        {
+            m_friendlyResetSecond -= Time.deltaTime;
+            UIManager.instance.FriendlyResetTextSet(m_friendlyResetminute, m_friendlyResetSecond);
+
+            if (m_friendlyResetSecond <= 0.0f)
+            {
+                --m_friendlyResetminute;
+                m_friendlyResetSecond = 60.0f;
+            }
+            if (m_friendlyResetminute < 0)
+                isTime = false;
+
+
+            yield return null;
+        }
+
+        m_friendlyResetminute = 0;
+        m_friendlyResetSecond = 0.0f;
+
+        UIManager.instance.FriendlyResetTextSet(m_friendlyResetminute, m_friendlyResetSecond);
+        UIManager.instance.FriendlyListPanel.RefreshOn();
+        isResetTime = true;
+
+        yield return null;
     }
 }
 

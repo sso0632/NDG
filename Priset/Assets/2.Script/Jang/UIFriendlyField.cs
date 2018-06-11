@@ -14,7 +14,7 @@ public class UIFriendlyField : MonoBehaviour
 
     BattleCharacter haveCharacter;          //생성할 캐릭터
     GameObject employSuccessObj;
-    tdelgate<BattleCharacter> CreateFunction;
+
 
     public int CharacterIndex
     {
@@ -43,12 +43,15 @@ public class UIFriendlyField : MonoBehaviour
         employButton.onClick.AddListener(Create);
 
     }
+    public void InitSet()
+    {
+        employSuccessObj.SetActive(false);
+    }
 
     public void FieldSet(int index)
     {
         m_characterIndex = index;
         characterImage.sprite = UIManager.instance.CharacterImage[index];
-        CreateFunction = GameManager.instance.CreateCharacter.FieldCraete;
     }
 
     public void CharacterSet(BattleCharacter character)      //어디선가 에서 받아와야함
@@ -60,6 +63,7 @@ public class UIFriendlyField : MonoBehaviour
         employSuccessObj.SetActive(true);
         haveCharacter = null;
     }
+
     private void Create()            //섭외 버튼에 들어가는 기눙
     {
         UIManager.instance.EmployPanel.gameObject.SetActive(true);

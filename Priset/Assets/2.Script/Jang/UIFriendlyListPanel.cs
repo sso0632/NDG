@@ -8,23 +8,36 @@ public class UIFriendlyListPanel : MonoBehaviour
     RectTransform contentRect;
     List<UIFriendlyField> currentFieldList;
 
+    Button refreshFriendlyBtn;
 
-    private void Awake()
-    {
-        currentFieldList = new List<UIFriendlyField>();
-        contentRect = transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
-    }
-    private void OnEnable()
+    
+    private void Start()
     {
         MakeCharacterField();
-        ListHeight();
         ResetDataField();
     }
-    public void ListHeight()
+    public void Init()
     {
-        contentRect.sizeDelta = new Vector2(0 , currentFieldList.Count * 100);
+        currentFieldList = new List<UIFriendlyField>();
+        contentRect = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>();
+        refreshFriendlyBtn = transform.GetChild(3).GetComponent<Button>();
+        refreshFriendlyBtn.onClick.AddListener(RefeshPress);
     }
-    public void ResetDataField()
+
+    public void RefreshOn()
+    {
+        refreshFriendlyBtn.interactable = true;
+    }
+
+    void RefeshPress()
+    {        
+        MakeCharacterField();
+        ResetDataField();
+        refreshFriendlyBtn.interactable = false;
+        TimeManager.instance.isResetFriendly = false;
+        TimeManager.instance.RestartFriendlyTimer();
+    }
+    void ResetDataField()
     {
         for(int i =0; i< currentFieldList.Count; ++i)
         {
@@ -33,11 +46,14 @@ public class UIFriendlyListPanel : MonoBehaviour
 
             BattleCharacter tempCharacter = new BattleCharacter(rand);
             currentFieldList[i].CharacterSet(tempCharacter);
+            currentFieldList[i].InitSet();
         }
+        contentRect.sizeDelta = new Vector2(0, currentFieldList.Count * 100);
+
     }
-    public void MakeCharacterField()
+    void MakeCharacterField()
     {
-        int genCount = Random.Range(1, 10);
+        int genCount = Random.Range(4, 10);
 
         if (currentFieldList.Count > genCount)
         {
