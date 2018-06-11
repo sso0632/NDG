@@ -14,7 +14,6 @@ public class UIFriendlyField : MonoBehaviour
 
     BattleCharacter haveCharacter;          //생성할 캐릭터
     GameObject employSuccessObj;
-    tdelgate<BattleCharacter> CreateFunction;
 
     public int CharacterIndex
     {
@@ -48,7 +47,6 @@ public class UIFriendlyField : MonoBehaviour
     {
         m_characterIndex = index;
         characterImage.sprite = UIManager.instance.CharacterImage[index];
-        CreateFunction = GameManager.instance.CreateCharacter.FieldCraete;
     }
 
     public void CharacterSet(BattleCharacter character)      //어디선가 에서 받아와야함

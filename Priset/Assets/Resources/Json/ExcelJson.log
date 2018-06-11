@@ -18,4 +18,6 @@ Found object mark: '#characterstat[{}]'
  Key: ASpeed at 3
 [CharacterStat.xlsx(Sheet1): ROW 1]
  Key: Attacktype at 4
+[CharacterStat.xlsx(Sheet1): ROW 1]
+ Key: Defence at 5
 Parsing Array Object Table...

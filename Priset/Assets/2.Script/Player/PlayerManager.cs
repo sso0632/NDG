@@ -5,10 +5,11 @@ using Sang;
 
 public class PlayerManager : MonoBehaviour {
     public PriestActor[] havePriestCharacter;           //가지고 있는 프리스트
+    public SkillManager SkillSpace;                    //스킬 공간
 
     List<BattleCharacter> EmployCharacter;      //섭외한 배틀 캐릭터
     PlayerParty Party;
-    PriestActor NowPriest;                      //현재 프리스트;  
+    PriestActor NowPriest;                      //현재 프리스트
 
     int Gold;                                   //플레이어 돈
 
@@ -24,7 +25,6 @@ public class PlayerManager : MonoBehaviour {
         //1. 현재 프리스트 액터 초기화후 
         if(NowPriest!=null)
         {
-
             NowPriest.gameObject.SetActive(false);
             //현재 프리스트의 값을 초기화
             SetPriestActor(havePriestCharacter[index]);
@@ -35,6 +35,14 @@ public class PlayerManager : MonoBehaviour {
         }
 
     }
+
+    public void ResistSkill()
+    {
+        NowPriest.havePriest.ResistSkill(SkillSpace.AttUpBuff);
+        NowPriest.havePriest.SkillActive(EmployCharacter[0]);
+    }
+    
+
     void SetPriestActor(PriestActor actor)
     {
         actor.gameObject.SetActive(true);
@@ -43,6 +51,11 @@ public class PlayerManager : MonoBehaviour {
             actor.Pos = NowPriest.Pos;
 
         NowPriest = actor;
+    }
+
+    public void Employ(BattleCharacter target)          //고용한 용병 삽입
+    {
+        EmployCharacter.Add(target);
     }
 }
 

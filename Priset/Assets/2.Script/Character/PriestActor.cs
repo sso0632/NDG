@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PriestActor : FriendActor {
 
-    Priest havePriest;
+    public Priest havePriest;
 
     Transform thisTransform;    
 
@@ -24,6 +24,7 @@ public class PriestActor : FriendActor {
         base.Update();
     }
 
+   
     public Vector3 Pos
     {
         get{
