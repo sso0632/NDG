@@ -8,7 +8,8 @@ public class BattleCharacter : Character {
     protected float HomeMoveSpeed;        //집 캐릭터 이동 속도
     protected float WarMoveSpeed;        //전쟁 캐릭터 이동 속도
     protected float AttackSpeed;      //공격 속도
-    protected int AttackPoint;        //공격력 
+    protected int AttackPoint;        //공격력
+    protected int DefPoint;           //방어력 
     protected int MaxHeath;           //최대 체력
     protected int Heath;              //체력
     protected CharacterAttackType attacktype;   //공격 유형 
@@ -18,6 +19,7 @@ public class BattleCharacter : Character {
     {
 
     }
+
     public BattleCharacter(int _index)         //배틀 캐릭터 생성
     {
         index = _index;
@@ -59,7 +61,17 @@ public class BattleCharacter : Character {
         set { AttackSpeed = value; }
         get { return AttackSpeed; }
     }
+    public int Defence
+    {
+        set { DefPoint = value; }
+        get { return DefPoint; }
+    }
 
+    public int HP
+    {
+        set { Heath = value; }
+        get { return Heath; }
+    }
     protected void HeathFull()      //체력을 최대로 채워주는 함수
     {
         Heath = MaxHeath;

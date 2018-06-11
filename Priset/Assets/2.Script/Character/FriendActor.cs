@@ -19,7 +19,7 @@ public class FriendActor : Acter {
 
     protected void Update()
     {
-        if(GameManager.instance.NowScene==Scene.Home)
+        if (GameManager.instance.NowScene==Scene.Home)
             HomeAct();
     }
 

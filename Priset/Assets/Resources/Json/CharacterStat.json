@@ -4,109 +4,127 @@
 			"MHeath": 10,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 0
+			"Attacktype": 0,
+			"Defence": 0
 		},
 		{
 			"MHeath": 10,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 0
+			"Attacktype": 0,
+			"Defence": 0
 		},
 		{
 			"MHeath": 10,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 0
+			"Attacktype": 0,
+			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 1
+			"Attacktype": 1,
+			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 1
+			"Attacktype": 1,
+			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 1
+			"Attacktype": 1,
+			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 1
+			"Attacktype": 1,
+			"Defence": 0
 		},
 		{
 			"MHeath": 10,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 0
+			"Attacktype": 0,
+			"Defence": 0
 		},
 		{
 			"MHeath": 10,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 0
+			"Attacktype": 0,
+			"Defence": 0
 		},
 		{
 			"MHeath": 10,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 0
+			"Attacktype": 0,
+			"Defence": 0
 		},
 		{
 			"MHeath": 10,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 0
+			"Attacktype": 0,
+			"Defence": 0
 		},
 		{
 			"MHeath": 10,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 0
+			"Attacktype": 0,
+			"Defence": 0
 		},
 		{
 			"MHeath": 10,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 0
+			"Attacktype": 0,
+			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 1
+			"Attacktype": 1,
+			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 1
+			"Attacktype": 1,
+			"Defence": 0
 		},
 		{
 			"MHeath": 10,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 0
+			"Attacktype": 0,
+			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 1
+			"Attacktype": 1,
+			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
 			"ASpeed": 10,
-			"Attacktype": 1
+			"Attacktype": 1,
+			"Defence": 0
 		}
 	]
 }

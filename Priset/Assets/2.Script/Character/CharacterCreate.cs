@@ -57,6 +57,8 @@ public class CharacterCreate : MonoBehaviour {
         targetActer = targetObject.GetComponent<FriendActor>();
         targetActer.RegistCharacter(CCharacter);
 
+
         Craete(targetObject, pos, Parent);
+        GameManager.instance.PM.Employ(CCharacter);
     }
 }

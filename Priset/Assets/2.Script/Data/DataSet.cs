@@ -45,6 +45,6 @@ public class DataSet : MonoBehaviour
         target.MHeath = CharacterStatData["characterstat"][target.Index].MHeath;
         target.ASpeed = CharacterStatData["characterstat"][target.Index].ASpeed;
         target.Attacktype = CharacterStatData["characterstat"][target.Index].Attacktype;
-
+        target.Defence = CharacterStatData["characterstat"][target.Index].Defence;
     }
 }

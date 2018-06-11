@@ -15,7 +15,6 @@ public class UIFriendlyField : MonoBehaviour
     BattleCharacter haveCharacter;          //생성할 캐릭터
     GameObject employSuccessObj;
 
-
     public int CharacterIndex
     {
         get
