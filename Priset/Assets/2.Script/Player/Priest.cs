@@ -13,17 +13,11 @@ public class Priest : MonoBehaviour
     int PriestPower;    //현재 신성력==엠피
     public int MoveSpeed;      //프리스트 이동 속도
 
+    Skill[] SkillSlot;
 
-    tdelgate<BattleCharacter> SkillSlot;
-
-
-    public void ResistSkill(tdelgate<BattleCharacter> skill)
+    
+    private void Awake()
     {
-        SkillSlot = skill;
-    }
-
-    public void SkillActive(BattleCharacter target)
-    {
-        SkillSlot(target);
+        SkillSlot = new Skill[2];
     }
 }

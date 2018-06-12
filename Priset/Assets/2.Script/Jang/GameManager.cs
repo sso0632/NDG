@@ -9,9 +9,19 @@ public class GameManager : MonoBehaviour {
     public CharacterCreate CreateCharacter;
     public PlayerManager PM;    
     public Scene NowScene;
-      
+
+    public bool FirstStart=true;
+
     private void Awake()
     {
+        //게임의 데이터 불러오고
+
+        if(FirstStart==true)
+        { 
+            //맨처음 시작 했을 때
+            FirstStart = false;
+        }
+
         if (instance == null)
             instance = this;
         else
