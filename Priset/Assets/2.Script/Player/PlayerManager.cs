@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour {
     public PriestActor[] havePriestCharacter;           //가지고 있는 프리스트
     public SkillManager SkillSpace;                    //스킬 공간
 
-    List<BattleCharacter> EmployCharacter;      //섭외한 배틀 캐릭터
+    public List<BattleCharacter> EmployCharacter;      //섭외한 배틀 캐릭터
     PlayerParty Party;
     PriestActor NowPriest;                      //현재 프리스트
 
@@ -36,13 +36,13 @@ public class PlayerManager : MonoBehaviour {
 
     }
 
+
     public void ResistSkill()
     {
         NowPriest.havePriest.ResistSkill(SkillSpace.AttUpBuff);
         NowPriest.havePriest.SkillActive(EmployCharacter[0]);
     }
     
-
     void SetPriestActor(PriestActor actor)
     {
         actor.gameObject.SetActive(true);

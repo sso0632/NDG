@@ -9,7 +9,10 @@ public class UIManager : MonoBehaviour
     
     public UIEmployPanel EmployPanel;
     public UIFriendlyListPanel FriendlyListPanel;
+
     public GameObject CharacterField; // 용병 생성 리스트 필드 
+    public GameObject CompleteCharacteField;
+
     public Sprite[] CharacterImage;
 
     public EventSystem currentEvents;
