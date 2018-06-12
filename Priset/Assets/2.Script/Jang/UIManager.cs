@@ -9,12 +9,16 @@ public class UIManager : MonoBehaviour
     
     public UIEmployPanel EmployPanel;
     public UIFriendlyListPanel FriendlyListPanel;
+    public UIPriestChageView PriestPanel;
+
     public GameObject CharacterField; // 용병 생성 리스트 필드 
     public Sprite[] CharacterImage;
 
     public EventSystem currentEvents;
+
     public GameObject CaveSupervisePanel;
     public GameObject FriendlyManagerPanel;
+    public GameObject PriestManagerPanel;
 
     public Text FriendlyResetTimerText;
 
@@ -34,9 +38,12 @@ public class UIManager : MonoBehaviour
         CaveSupervisePanel.SetActive(false);
         FriendlyManagerPanel.SetActive(false);
         EmployPanel.gameObject.SetActive(false);
+        PriestManagerPanel.SetActive(false);
+        PriestPanel.Init();
     }
     public void CaveSupervise()
     {
+        PriestManagerPanel.SetActive(false);
         FriendlyManagerPanel.SetActive(false);
         CaveSupervisePanel.SetActive(true);        
     }
@@ -44,6 +51,13 @@ public class UIManager : MonoBehaviour
     {
         CaveSupervisePanel.SetActive(false);
         FriendlyManagerPanel.SetActive(true);
+        PriestManagerPanel.SetActive(false);
+    }
+    public void PriestSupervise()
+    {
+        PriestManagerPanel.SetActive(true);
+        CaveSupervisePanel.SetActive(false);
+        FriendlyManagerPanel.SetActive(false);
     }
     public void FriendlyResetTextSet(int min, float second)
     {

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+public class UIPriestSupervise : MonoBehaviour {
 
-public class UIFriendSupervise : MonoBehaviour
-{
     Button superviseButton;
 
     private void Awake()
@@ -15,6 +14,6 @@ public class UIFriendSupervise : MonoBehaviour
 
     void SupervisePress()
     {
-        UIManager.instance.FriendlySupervise();
+        UIManager.instance.PriestSupervise();
     }
 }

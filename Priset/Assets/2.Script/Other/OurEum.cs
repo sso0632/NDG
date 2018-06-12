@@ -8,6 +8,7 @@ namespace Sang
     public enum DeadorLive { LIVE, DEAD }
     public enum PartyPos { UP, RIGHT, DOWN, LEFT}
     public enum Scene {Home, War};
+
     public delegate void voiddelgate();
     
     public delegate void tdelgate<T>(T value);

@@ -7,41 +7,41 @@ public class PlayerManager : MonoBehaviour {
     public PriestActor[] havePriestCharacter;           //가지고 있는 프리스트
     public SkillManager SkillSpace;                    //스킬 공간
 
+    PriestActor NowPriest;                              //현재 프리스트
     List<BattleCharacter> EmployCharacter;      //섭외한 배틀 캐릭터
     PlayerParty Party;
-    PriestActor NowPriest;                      //현재 프리스트
 
     int Gold;                                   //플레이어 돈
 
     private void Awake()
     {
         EmployCharacter = new List<BattleCharacter>();
+
         Party = new PlayerParty();
         Party.PartySet();
         ChagePriest(0);
     }
+    private void Update()
+    {
+        CharacterUnlockNeed();
+    }
     public void ChagePriest(int index)
     {
         //1. 현재 프리스트 액터 초기화후 
-        if(NowPriest!=null)
+        if (NowPriest != null)
         {
-            NowPriest.gameObject.SetActive(false);
-            //현재 프리스트의 값을 초기화
-            SetPriestActor(havePriestCharacter[index]);
+            if(NowPriest!= havePriestCharacter[index])
+            { 
+                NowPriest.gameObject.SetActive(false);
+                //현재 프리스트의 값을 초기화
+                SetPriestActor(havePriestCharacter[index]);
+            }
         }
         else
         {
             SetPriestActor(havePriestCharacter[index]);
         }
-
     }
-
-    public void ResistSkill()
-    {
-        NowPriest.havePriest.ResistSkill(SkillSpace.AttUpBuff);
-        NowPriest.havePriest.SkillActive(EmployCharacter[0]);
-    }
-    
 
     void SetPriestActor(PriestActor actor)
     {
@@ -56,6 +56,14 @@ public class PlayerManager : MonoBehaviour {
     public void Employ(BattleCharacter target)          //고용한 용병 삽입
     {
         EmployCharacter.Add(target);
+    }
+
+    void CharacterUnlockNeed()                          //캐릭터 언락
+    {
+        if (GameManager.instance.FirstStart==false)
+        {
+            UIManager.instance.PriestPanel.CharacterUnlock(0);
+        }
     }
 }
 
