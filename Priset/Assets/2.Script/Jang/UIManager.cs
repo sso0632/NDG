@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     public GameObject CaveSupervisePanel;
     public GameObject FriendlyManagerPanel;
     public GameObject PriestManagerPanel;
+    public GameObject HighPriestManagerPanel;
 
     public Text FriendlyResetTimerText;
 
@@ -42,25 +43,36 @@ public class UIManager : MonoBehaviour
         FriendlyManagerPanel.SetActive(false);
         EmployPanel.gameObject.SetActive(false);
         PriestManagerPanel.SetActive(false);
+        HighPriestManagerPanel.SetActive(false);
         PriestPanel.Init();
     }
     public void CaveSupervise()
     {
         PriestManagerPanel.SetActive(false);
         FriendlyManagerPanel.SetActive(false);
-        CaveSupervisePanel.SetActive(true);        
+        CaveSupervisePanel.SetActive(true);
+        HighPriestManagerPanel.SetActive(false);
     }
     public void FriendlySupervise()
     {
         CaveSupervisePanel.SetActive(false);
         FriendlyManagerPanel.SetActive(true);
         PriestManagerPanel.SetActive(false);
+        HighPriestManagerPanel.SetActive(false);
     }
     public void PriestSupervise()
     {
         PriestManagerPanel.SetActive(true);
         CaveSupervisePanel.SetActive(false);
         FriendlyManagerPanel.SetActive(false);
+        HighPriestManagerPanel.SetActive(false);
+    }
+    public void HighPriestSupervise()
+    {
+        PriestManagerPanel.SetActive(false);
+        CaveSupervisePanel.SetActive(false);
+        FriendlyManagerPanel.SetActive(false);
+        HighPriestManagerPanel.SetActive(true);
     }
     public void FriendlyResetTextSet(int min, float second)
     {
