@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-
 public class UICave : MonoBehaviour
 {
-    Button caveButton;
+
     Text superviseText;
     int sizeForce;
 
     private void Awake()
     {
-         caveButton = GetComponent<Button>();
-        caveButton.onClick.AddListener(CavePress);
         superviseText = GetComponentInChildren<Text>();
     }
     private void OnEnable()
@@ -35,9 +31,4 @@ public class UICave : MonoBehaviour
             yield return null;
         }
     }
-    private void CavePress()
-    {
-        UIManager.instance.CaveSupervise();
-    }
-
 }

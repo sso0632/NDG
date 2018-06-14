@@ -4,23 +4,36 @@ using UnityEngine;
 using Sang;
 public class SkillManager : MonoBehaviour
 {
-    Skill DefUp;
-    Skill AttUp;
-    Skill Healing;
+    List<Skill> SkillBox;
+
 
     private void Awake()
     {
-        //DefUp = new Skill(1, 10f);
-        //AttUp = new Skill(1, 10f);
-        //Healing = new Skill(1, 0f);
+        SkillBox = new List<Skill>();
+        SkillAdd();
+    }
+    public int SkillCount()
+    {
+        return SkillBox.Count;
+    }
+    public Skill SkillGet(int index)
+    {
+        return SkillBox[index];
+    }
+    void SkillAdd()
+    {
+        //액셀로 만든 스킬을 리스트에 넣는다
+        Skill skill1 = new Skill(0, 1, 0f);
+        SkillBox.Add(skill1);
     }
 }
 
-class Skill
+public class Skill
 {
     float SkilActiveTime;         //스킬 지속 시간
     float Skillvalue;                 //스킬 량
     int SkillIndex;                     //스킬 인덱스 번호
+    string Content;                 //스킬 설정
 
     public float VALUE
     {
@@ -36,6 +49,11 @@ class Skill
     {
         set { SkillIndex = value; }
         get { return SkillIndex; }
+    }
+    public string CONTENT
+    {
+        set { Content = value; }
+        get { return Content; }
     }
 
     public Skill (int index, float value, float Time)
