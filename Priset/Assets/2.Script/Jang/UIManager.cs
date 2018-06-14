@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     
     public UIEmployPanel EmployPanel;
     public UIFriendlyListPanel FriendlyListPanel;
+    public UICompleteListPanel CompleteListPanel;
     public UIPriestChageView PriestPanel;
 
     public GameObject CharacterField; // 용병 생성 리스트 필드 

@@ -9,15 +9,27 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
     Image currentSelectObj;
 
     BattleCharacter currentBattleCharacter;
+    bool isPress;
 
     Button nextBtn;
     Button previousBtn;
 
-    bool isPress;
+    
+    
     bool isRetain;
+
+    public  bool Press
+    {
+        get { return isPress; }
+        set { isPress = value; }
+    }
+
     public int viewIndex = 0;
 
-
+    public  BattleCharacter GetBattleCharacter
+    {
+        get { return currentBattleCharacter; }
+    }
     private void Awake()
     {
         currentSelectObj = transform.GetChild(1).GetChild(0).GetComponent<Image>();
@@ -31,27 +43,41 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
 
         gameObject.SetActive(false);
         currentSelectObj.gameObject.SetActive(false);
+        currentFriendlyImage.gameObject.SetActive(false);
     }
     private void OnEnable()
     {
-        MakeCompleteFriendlyField();
-    }   
-    void MakeCompleteFriendlyField()
+        FriendlyFieldSet();
+        Check();
+    }
+
+    void FriendlyFieldSet()
     {
         if (GameManager.instance.PM.EmployCharacter.Count <= 0)
+        {
+            NoneFriendlyField();
             return;
-
+        }
+          
+        
         currentBattleCharacter = GameManager.instance.PM.EmployCharacter[viewIndex];
 
         int index = currentBattleCharacter.Index;
+
+        if (!currentFriendlyImage.gameObject.activeSelf)
+            currentFriendlyImage.gameObject.SetActive(true);
 
         currentFriendlyImage.sprite = UIManager.instance.CharacterImage[index];
     }
     void NextPress()
     {
-        currentSelectObj.gameObject.SetActive(false);
+        if (GameManager.instance.PM.EmployCharacter.Count <= 0)
+        {
+            NoneFriendlyField();
+            return;
+        };
 
-        isPress = false;
+        currentSelectObj.gameObject.SetActive(false);
         isRetain = false;
 
         ++viewIndex;
@@ -59,34 +85,53 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
         if (viewIndex > GameManager.instance.PM.EmployCharacter.Count - 1)
             viewIndex = 0;
 
-        MakeCompleteFriendlyField();
+        FriendlyFieldSet();
+    }
+    void Check()
+    {
+        if(GameManager.instance.PM.EmployCharacter.Count > 0)
+        {
+            nextBtn.interactable = true;
+            previousBtn.interactable = true;
+            FriendlyFieldSet();
+        }
+        else 
+        {
+            nextBtn.interactable = false;
+            previousBtn.interactable = false;
+        }
     }
     void PreviousPress()
     {
+        if (GameManager.instance.PM.EmployCharacter.Count <= 0)
+        {
+            NoneFriendlyField();
+            return;
+        }
+            
         currentSelectObj.gameObject.SetActive(false);
-
-        isPress = false;
         isRetain = false;
+
         --viewIndex;
 
         if (viewIndex < 0)
             viewIndex = GameManager.instance.PM.EmployCharacter.Count - 1;
 
-        MakeCompleteFriendlyField();
+        FriendlyFieldSet();
     }
-    public void OnPointerClick(PointerEventData point)
+    void NoneFriendlyField()
     {
-        if (currentBattleCharacter == null)
-            return;
-        isRetain = true;
-        if (!isPress)
-            StartCoroutine(PressFriendlyRoom());
+        isRetain = false;
+        currentFriendlyImage.gameObject.SetActive(false);
+        nextBtn.interactable = false;
+        previousBtn.interactable = false;
     }
     IEnumerator PressFriendlyRoom()
     {
+        isPress = true;
         currentSelectObj.gameObject.SetActive(true);
         float alphaValue = 0.0f;
-        float force = 1;
+        float force = 0.8f;
 
         while (isRetain)
         {
@@ -96,11 +141,45 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
                 force = Time.deltaTime;
 
             alphaValue += force;
-
-            currentSelectObj.color = new Color(0.2f, 0, 0, alphaValue);
+            currentSelectObj.color = new Color(0, 0.7f, 0.45f, alphaValue);
             yield return null;
         }
-    }
 
+        currentSelectObj.gameObject.SetActive(false);
+        isPress = false;
+    }
+    
+    public void SuccessRoomPress()
+    {
+        if (GameManager.instance.PM.EmployCharacter.Count <= 0)
+        {
+            NoneFriendlyField();
+            return;
+        }
+        
+        GameManager.instance.PM.EmployCharacter.Remove(currentBattleCharacter);
+        currentBattleCharacter = null;
+        nextBtn.interactable = true;
+        previousBtn.interactable = true;
+
+        isRetain = false;
+        
+        ++viewIndex;
+        currentSelectObj.gameObject.SetActive(false);
+
+        if (viewIndex > GameManager.instance.PM.EmployCharacter.Count - 1)
+            viewIndex = 0;
+        
+        FriendlyFieldSet();
+    }
+    public void OnPointerClick(PointerEventData point)
+    {
+        if (currentBattleCharacter == null)
+            return;
+
+        isRetain = true;
+        if (!isPress)
+            StartCoroutine(PressFriendlyRoom());
+    }
 
 }

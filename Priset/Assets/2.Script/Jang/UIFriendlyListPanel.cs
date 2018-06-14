@@ -28,7 +28,6 @@ public class UIFriendlyListPanel : MonoBehaviour
     {
         refreshFriendlyBtn.interactable = true;
     }
-
     void RefeshPress()
     {        
         MakeCharacterField();

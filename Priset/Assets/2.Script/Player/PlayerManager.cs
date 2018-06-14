@@ -12,6 +12,12 @@ public class PlayerManager : MonoBehaviour {
     PlayerParty Party;
 
     int Gold;                                   //플레이어 돈
+    
+    public PlayerParty GetPlayerParty
+    {
+        get { return Party; }
+    }
+
 
     private void Awake()
     {
@@ -67,7 +73,7 @@ public class PlayerManager : MonoBehaviour {
     }
 }
 
-class PlayerParty
+public class PlayerParty
 {
     BattleCharacter[] characterParty;
 
@@ -76,20 +82,20 @@ class PlayerParty
         characterParty = new BattleCharacter[4];
     }
 
-    public void SetUp(BattleCharacter character)
+    public void SetLeftUp(BattleCharacter character)
     {
-        characterParty[(int)PartyPos.UP]= character;
+        characterParty[(int)PartyPos.LEFT_UP]= character;
     }
-    public void SetRight(BattleCharacter character)
+    public void SetRightUp(BattleCharacter character)
     {
-        characterParty[(int)PartyPos.RIGHT] = character;
+        characterParty[(int)PartyPos.RIGHT_UP] = character;
     }
-    public void SetDown(BattleCharacter character)
+    public void SetLeftDown(BattleCharacter character)
     {
-        characterParty[(int)PartyPos.DOWN] = character;
+        characterParty[(int)PartyPos.LEFT_DOWN] = character;
     }
-    public void SetLeft(BattleCharacter character)
+    public void SetRightDown(BattleCharacter character)
     {
-        characterParty[(int)PartyPos.LEFT] = character;
+        characterParty[(int)PartyPos.RIGHT_DOWN] = character;
     }
 }
