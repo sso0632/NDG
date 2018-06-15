@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sang;
 
 public class UISkillField : MonoBehaviour {
+
     UISkillIcon haveIcon;
     Text SkillContent;
     Skill haveSkill;
-        
+    voiddelgate ButtonAcitve;
+
     private void Awake()
     {
         haveIcon = this.transform.GetChild(0).GetComponent<UISkillIcon>();
-        haveIcon.Init();
         SkillContent = this.transform.GetChild(1).GetComponent<Text>();
+        haveIcon.Init();
     }
 
     public void SetSkill(Skill targetSkill)
@@ -20,10 +23,19 @@ public class UISkillField : MonoBehaviour {
         haveSkill = targetSkill;
         SkillFieldSet();
     }
+    public void SetButtonAcitve(voiddelgate fuction)
+    {
+        ButtonAcitve = fuction;
+    }
+    public void SetButton()     //스킬 셋팅 버튼 
+    {
+        GameManager.instance.PM.SkillSet(haveSkill);
+        ButtonAcitve();
+    }
 
     void SkillFieldSet()
     {
-        haveIcon.SkillSet(haveSkill.SKILLINDEX);
-        SkillContent.text = haveSkill.CONTENT;
+        haveIcon.SkillSet(haveSkill.SkillIndex);
+        SkillContent.text = haveSkill.SkillContent;
     }
 }

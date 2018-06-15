@@ -6,12 +6,12 @@ public class SkillManager : MonoBehaviour
 {
     List<Skill> SkillBox;
 
-
-    private void Awake()
+    public void Init()
     {
-        SkillBox = new List<Skill>();
-        SkillAdd();
+        SkillBox = GameManager.instance.Data.SkillSet();
+        SkillFuctionSet();
     }
+
     public int SkillCount()
     {
         return SkillBox.Count;
@@ -20,54 +20,124 @@ public class SkillManager : MonoBehaviour
     {
         return SkillBox[index];
     }
-    void SkillAdd()
+
+    void SkillFuctionSet()
     {
-        //액셀로 만든 스킬을 리스트에 넣는다
-        Skill skill1 = new Skill(0, 1, 0f);
-        SkillBox.Add(skill1);
+        for(int i=0; i< SkillBox.Count; ++i)
+        {
+            switch (SkillBox[i].SkillIndex)
+            {
+                case 0:
+                    SkillBox[i].SKillSet();
+                    break;
+                case 1:
+                    SkillBox[i].SKillSet(Attup);
+                    break;
+            }
+        }
+    }
+
+
+    void Attup(Skill self, BattleCharacter target)
+    {
+        StartCoroutine(self.AttUpBuffTimer(target));
+    }
+    void Defup(Skill self, BattleCharacter target)
+    {
+        StartCoroutine(self.AttUpBuffTimer(target));
     }
 }
 
 public class Skill
 {
-    float SkilActiveTime;         //스킬 지속 시간
+    string name;                      //스킬 이름
+    float SkilActiveTime;             //스킬 지속 시간
     float Skillvalue;                 //스킬 량
-    int SkillIndex;                     //스킬 인덱스 번호
-    string Content;                 //스킬 설정
+    int Index;                   //스킬 인덱스 번호
+    string Content;                   //스킬 설정
+    bool SelfSkillCheck;                   //프리스트 대상
 
-    public float VALUE
+    SkillDelgate<BattleCharacter> TimerActive=null;
+    tdelgate<BattleCharacter> SkillActive = null;
+    tdelgate<Priest> SkillPriestActive = null;
+
+
+    public float SkillValue
     {
         set { Skillvalue = value; }
         get { return Skillvalue; }
     }
-    public float TIME
+    public float SkillTime
     {
         set { SkilActiveTime = value; }
         get { return SkilActiveTime; }
     }
-    public int SKILLINDEX
+    public int SkillIndex
     {
-        set { SkillIndex = value; }
-        get { return SkillIndex; }
+        set { Index = value; }
+        get { return Index; }
     }
-    public string CONTENT
+    public string SkillContent
     {
         set { Content = value; }
         get { return Content; }
     }
-
-    public Skill (int index, float value, float Time)
+    public string SkillName
     {
+        set { name = value; }
+        get { return name; }
+    }
+    public bool SelfSkill
+    {
+        set { SelfSkillCheck = value; }
+        get { return SelfSkillCheck; }
+    }
+
+    public Skill (int index, string _name, string _content, float value, float Time, bool _check)
+    {
+        name = _name;
+        Content = _content;
         SkillIndex = index;
         Skillvalue = value;
         SkilActiveTime = Time;
+        SelfSkillCheck = _check;
     }
 
-    public IEnumerator DefUpBuff(BattleCharacter target)
+    public void SKillSet()
     {
-        target.Defence += (int)Skillvalue;
-        yield return new WaitForSeconds(SkilActiveTime);
-        target.Defence -= (int)Skillvalue;
+        if(Index==0)
+            SkillActive = Heailng;
+    }
+
+    public void SKillSet(SkillDelgate<BattleCharacter> skillFuction)
+    {
+        TimerActive = skillFuction;
+    }
+    public void SKillSet(tdelgate<BattleCharacter> skillFuction)
+    {
+        SkillActive = skillFuction;
+    }
+    public void SKillSet(tdelgate<Priest> skillFuction)
+    {
+        SkillPriestActive = skillFuction;
+    }
+
+    public void SetActive(BattleCharacter target)
+    {
+        if(SkillActive!=null)
+            SkillActive(target);
+        if(TimerActive!=null)
+            TimerActive(this, target);
+    }
+    public void SetActive(Priest target)
+    {
+        if(SkillPriestActive!=null)
+            SkillPriestActive(target);
+    }
+
+    void Heailng(BattleCharacter target)
+    {
+        target.HP += (int)SkillValue;
     }
 
     public IEnumerator AttUpBuffTimer(BattleCharacter target)
@@ -76,17 +146,16 @@ public class Skill
         yield return new WaitForSeconds(SkilActiveTime);
         target.Attack -= (int)Skillvalue;
     }
-
-    public void Heailng(BattleCharacter target)
+    public IEnumerator DefUpBuff(BattleCharacter target)
     {
-        target.HP += (int)Skillvalue;
+        target.Defence += (int)Skillvalue;
+        yield return new WaitForSeconds(SkilActiveTime);
+        target.Defence -= (int)Skillvalue;
     }
-
     public IEnumerator PriestSpeedUpTimer(Priest self)
     {
         self.MoveSpeed += (int)Skillvalue;
         yield return new WaitForSeconds(SkilActiveTime);
         self.MoveSpeed -= (int)Skillvalue;
     }
-
 }

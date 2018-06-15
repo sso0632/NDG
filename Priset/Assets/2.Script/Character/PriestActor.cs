@@ -5,8 +5,7 @@ using UnityEngine;
 public class PriestActor : FriendActor {
 
     public Priest havePriest;
-
-    Transform thisTransform;    
+    Transform thisTransform;
 
     private void Awake()
     {
@@ -23,7 +22,6 @@ public class PriestActor : FriendActor {
     {
         base.Update();
     }
-    
     public Vector3 Pos
     {
         get{
@@ -32,5 +30,10 @@ public class PriestActor : FriendActor {
         set{
             thisTransform.localPosition = value;
         }
+    }
+
+    public void AcitveSkill(int index)
+    {
+
     }
 }
