@@ -1,0 +1,18 @@
+{
+	"Skill": [
+		{
+			"SkillName": "힐링",
+			"SkillValue": 1,
+			"SkillTime": 0,
+			"SkillContent": "파티원 한명을 치료 합니다 ",
+			"SkillIndex": 0
+		},
+		{
+			"SkillName": "공격업",
+			"SkillValue": 1,
+			"SkillTime": 10,
+			"SkillContent": "파티원 한명의 공격 포인트를 상승 시킵니다",
+			"SkillIndex": 1
+		}
+	]
+}

@@ -5,11 +5,9 @@ using Sang;
 
 public class PlayerManager : MonoBehaviour {
     public PriestActor[] havePriestCharacter;           //가지고 있는 프리스트
-    public SkillManager SkillSpace;                    //스킬 공간
-
     public List<BattleCharacter> EmployCharacter;      //섭외한 배틀 캐릭터
     PriestActor NowPriest;                              //현재 프리스트
-    PlayerParty Party;
+    public PlayerParty Party;
 
     int Gold;                                   //플레이어 돈
     
@@ -17,7 +15,6 @@ public class PlayerManager : MonoBehaviour {
     {
         get { return Party; }
     }
-
 
     private void Awake()
     {
@@ -63,7 +60,15 @@ public class PlayerManager : MonoBehaviour {
     {
         EmployCharacter.Add(target);
     }
-
+    public void SkillSet(Skill targetSkill)
+    {
+        NowPriest.havePriest.SetSkill(targetSkill);
+    }
+    public Skill[] NowPriestSkillGet()
+    {
+        return NowPriest.havePriest.GetSkill();
+    }
+   
     void CharacterUnlockNeed()                          //캐릭터 언락
     {
         if (GameManager.instance.FirstStart==false)
@@ -76,6 +81,11 @@ public class PlayerManager : MonoBehaviour {
 public class PlayerParty
 {
     BattleCharacter[] characterParty;
+
+    public BattleCharacter GetPartyMember(int index)
+    {
+        return characterParty[index];
+    }
 
     public void PartySet()
     {

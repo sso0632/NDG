@@ -12,6 +12,7 @@ namespace Sang
     public delegate void voiddelgate();
     
     public delegate void tdelgate<T>(T value);
+    public delegate void SkillDelgate<T>(Skill self, T value);
 }
 
 

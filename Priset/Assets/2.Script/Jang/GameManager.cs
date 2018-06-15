@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     public CharacterCreate CreateCharacter;
     public PlayerManager PM;    
     public Scene NowScene;
-
+    public SkillManager SkillSpace;                    //스킬 공간
     public bool FirstStart=true;
 
     private void Awake()
@@ -27,15 +27,17 @@ public class GameManager : MonoBehaviour {
         else
             Destroy(gameObject);
 
-        ComponentSet();
         init();
     }
     void init()
     {
+        DataSet();
+        SkillSpace.Init();
         NowScene = Scene.Home;
     }
-    void ComponentSet()
+    void DataSet()
     {
         Data = this.GetComponent<DataSet>();
+        Data.Init();
     }
 }

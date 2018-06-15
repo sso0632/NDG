@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class DataSet : MonoBehaviour
 {
     Dictionary<string, List<BattleCharacter>> CharacterStatData;
+    Dictionary<string, List<Skill>> SkillData;
 
-    private void Awake()
+    public void Init()
     {
         CharacterStatLoad();
         CharacterSpriteLoad();
+        SkillDataLoad();
     }
 
     void DebugList()
@@ -38,7 +40,11 @@ public class DataSet : MonoBehaviour
         TextAsset Characterstatjson = (TextAsset)Resources.Load("Json/CharacterStat", typeof(TextAsset));
         CharacterStatData = JsonConvert.DeserializeObject<Dictionary<string, List<BattleCharacter>>>(Characterstatjson.text);
     }
-
+    void SkillDataLoad()
+    {
+        TextAsset Skilljson = (TextAsset)Resources.Load("Json/Skill", typeof(TextAsset));
+        SkillData = JsonConvert.DeserializeObject<Dictionary<string, List<Skill>>>(Skilljson.text);
+    }
     public void CharacterStatSet(BattleCharacter target)
     {
         target.Attack= CharacterStatData["characterstat"][target.Index].Attack;
@@ -46,5 +52,10 @@ public class DataSet : MonoBehaviour
         target.ASpeed = CharacterStatData["characterstat"][target.Index].ASpeed;
         target.Attacktype = CharacterStatData["characterstat"][target.Index].Attacktype;
         target.Defence = CharacterStatData["characterstat"][target.Index].Defence;
+    }
+
+    public List<Skill> SkillSet()
+    {
+        return SkillData["Skill"];
     }
 }

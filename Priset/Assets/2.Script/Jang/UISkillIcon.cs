@@ -10,6 +10,7 @@ public class UISkillIcon : MonoBehaviour {
     public void Init()
     {
         SkillIcon= this.transform.GetChild(0).GetComponent<Image>();
+        ImageNone();
     }
 
     public void SkillSet(int skillindex)
@@ -20,9 +21,13 @@ public class UISkillIcon : MonoBehaviour {
     {
         SkillIcon.sprite = LoadImage(skillindex);
     }
-
+    void ImageNone()
+    {
+        SkillIcon.color = new Color(1, 1, 1, 0);
+    }
     Sprite LoadImage(int skillindex)
     {
+        SkillIcon.color = new Color(1, 1, 1, 1);
         string Path = null;
         switch(skillindex)
         {
@@ -30,8 +35,12 @@ public class UISkillIcon : MonoBehaviour {
                 Path = "SkillImage/healing";
                 return Resources.Load<Sprite>(Path);
                 break;
+            case 1:
+                Path = "SkillImage/AttUp";
+                return Resources.Load<Sprite>(Path);
+                break;
         }
-       
+        ImageNone();
         return null;
     }
 }
