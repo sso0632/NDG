@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+
 public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
 {
     Image currentFriendlyImage;
@@ -13,9 +15,9 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
 
     Button nextBtn;
     Button previousBtn;
+    Button dungeonBtn;
 
-    
-    
+
     bool isRetain;
 
     public  bool Press
@@ -37,9 +39,11 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
 
         nextBtn = transform.GetChild(2).GetComponent<Button>();
         previousBtn = transform.GetChild(3).GetComponent<Button>();
+        dungeonBtn = transform.GetChild(transform.childCount - 1).GetComponent<Button>();
 
         nextBtn.onClick.AddListener(NextPress);
         previousBtn.onClick.AddListener(PreviousPress);
+        dungeonBtn.onClick.AddListener(DungeonPress);
 
         gameObject.SetActive(false);
         currentSelectObj.gameObject.SetActive(false);
@@ -50,7 +54,12 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
         FriendlyFieldSet();
         Check();
     }
+    void DungeonPress()
+    {
+        GameManager.instance.NowScene = Sang.Scene.War;
 
+        SceneManager.LoadScene(1);
+    }
     void FriendlyFieldSet()
     {
         if (GameManager.instance.PM.EmployCharacter.Count <= 0)

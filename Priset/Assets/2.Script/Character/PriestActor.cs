@@ -23,8 +23,7 @@ public class PriestActor : FriendActor {
     {
         base.Update();
     }
-
-   
+    
     public Vector3 Pos
     {
         get{

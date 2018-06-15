@@ -19,7 +19,7 @@ public class BattleCharacter : Character {
     {
 
     }
-
+    
     public BattleCharacter(int _index)         //배틀 캐릭터 생성
     {
         index = _index;

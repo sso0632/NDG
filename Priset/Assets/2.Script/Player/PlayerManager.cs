@@ -17,8 +17,6 @@ public class PlayerManager : MonoBehaviour {
     {
         get { return Party; }
     }
-
-
     private void Awake()
     {
         EmployCharacter = new List<BattleCharacter>();
@@ -26,6 +24,7 @@ public class PlayerManager : MonoBehaviour {
         Party = new PlayerParty();
         Party.PartySet();
         ChagePriest(0);
+        DontDestroyOnLoad(gameObject);
     }
     private void Update()
     {
@@ -81,7 +80,6 @@ public class PlayerParty
     {
         characterParty = new BattleCharacter[4];
     }
-
     public void SetLeftUp(BattleCharacter character)
     {
         characterParty[(int)PartyPos.LEFT_UP]= character;

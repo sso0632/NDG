@@ -24,13 +24,13 @@ public class Acter : MonoBehaviour {
 
     virtual protected void Start()
     {
+
     }
 
     public void RegistCharacter(Character _Character)
     {
         haveCharacter = _Character;
     }
-
 
     protected void AniWork()      //애니 관리
     {

@@ -16,8 +16,6 @@ public class UICompleteRoom : MonoBehaviour , IPointerClickHandler
         roomCharacter = transform.GetChild(0).GetComponent<Image>();
         roomCharacter.gameObject.SetActive(false);
     }
-
-
     public void OnPointerClick(PointerEventData point)
     {
         if (!UIManager.instance.CompleteListPanel.Press)

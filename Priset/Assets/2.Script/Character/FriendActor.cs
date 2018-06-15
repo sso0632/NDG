@@ -19,8 +19,11 @@ public class FriendActor : Acter {
 
     protected void Update()
     {
-        if (GameManager.instance.NowScene==Scene.Home)
+        if (GameManager.instance.NowScene == Scene.Home)
             HomeAct();
+        else if (GameManager.instance.NowScene == Scene.War)
+            WarAct();
+
     }
 
     IEnumerator decisionHomeAct()
@@ -48,7 +51,10 @@ public class FriendActor : Acter {
         yield return new WaitForSeconds(2f);
         StartCoroutine("decisionHomeAct");
     }
-
+    void WarAct()
+    {
+        transform.position += JoyStick.MoveDir * Time.deltaTime;
+    }
     void HomeAct()
     {
         AniWork();
