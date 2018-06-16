@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
+
 
 public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
 {
@@ -16,7 +16,6 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
     Button nextBtn;
     Button previousBtn;
     Button dungeonBtn;
-
 
     bool isRetain;
 
@@ -56,9 +55,7 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
     }
     void DungeonPress()
     {
-        GameManager.instance.NowScene = Sang.Scene.War;
-
-        SceneManager.LoadScene(1);
+        GameManager.instance.GoWarScene();
     }
     void FriendlyFieldSet()
     {
@@ -68,7 +65,6 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
             return;
         }
           
-        
         currentBattleCharacter = GameManager.instance.PM.EmployCharacter[viewIndex];
 
         int index = currentBattleCharacter.Index;

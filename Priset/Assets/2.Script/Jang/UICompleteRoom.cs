@@ -30,6 +30,7 @@ public class UICompleteRoom : MonoBehaviour , IPointerClickHandler
         SetRoom(UIManager.instance.CompleteListPanel.GetBattleCharacter);
         UIManager.instance.CompleteListPanel.SuccessRoomPress();
     }
+
     void SetRoom(BattleCharacter character)
     {
         switch(roomIndex)
@@ -48,9 +49,4 @@ public class UICompleteRoom : MonoBehaviour , IPointerClickHandler
                 break;
         }
     }
-
-
-    
-
-	
 }

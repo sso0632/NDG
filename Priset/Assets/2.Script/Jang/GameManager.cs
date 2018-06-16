@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Sang;
 public class GameManager : MonoBehaviour {
     
@@ -8,9 +9,9 @@ public class GameManager : MonoBehaviour {
     public DataSet Data;
     public CharacterCreate CreateCharacter;
     public PlayerManager PM;    
-    public Scene NowScene;
+    public SceneNum NowScene;
     public SkillManager SkillSpace;                    //스킬 공간
-    public bool FirstStart=true;
+    public bool FirstStart=true;                       
 
     private void Awake()
     {
@@ -33,11 +34,18 @@ public class GameManager : MonoBehaviour {
     {
         DataSet();
         SkillSpace.Init();
-        NowScene = Scene.Home;
+        NowScene = SceneNum.Home;
     }
     void DataSet()
     {
         Data = this.GetComponent<DataSet>();
         Data.Init();
+    }
+
+    public void GoWarScene()
+    {
+        NowScene = SceneNum.War;
+        CreateCharacter.PartyCreate();
+        SceneManager.LoadScene(1);
     }
 }
