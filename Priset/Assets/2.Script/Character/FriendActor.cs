@@ -23,9 +23,11 @@ public class FriendActor : Acter {
             HomeAct();
         else if (GameManager.instance.NowScene == Scene.War)
             WarAct();
-
     }
-
+    public void StopDecision()
+    {
+        StopCoroutine("decisionHomeAct");
+    }
     IEnumerator decisionHomeAct()
     {
         homeactkind = (HomeActNum)Random.Range(0, 3);

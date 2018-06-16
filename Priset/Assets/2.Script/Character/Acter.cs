@@ -40,6 +40,7 @@ public class Acter : MonoBehaviour {
         }
     }
 
+
     protected void IdleAni()
     {
         AniFuction = null;

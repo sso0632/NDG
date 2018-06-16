@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     private void LateUpdate()
     {
         followVector = followTarget.position;
-        followVector.z = -10;
+        followVector.y = 10;
 
 
         //transform.position = followVector;

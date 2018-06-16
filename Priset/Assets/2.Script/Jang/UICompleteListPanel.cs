@@ -17,7 +17,6 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
     Button previousBtn;
     Button dungeonBtn;
 
-
     bool isRetain;
 
     public  bool Press
@@ -57,8 +56,15 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
     void DungeonPress()
     {
         GameManager.instance.NowScene = Sang.Scene.War;
-
         SceneManager.LoadScene(1);
+
+        int length = GameManager.instance.PM.havePriestCharacter.Length;
+        for (int i =0; i < length; ++i)
+        {
+            PriestActor tempActor;
+            tempActor = GameManager.instance.PM.havePriestCharacter[i];
+            tempActor.StopDecision();
+        }
     }
     void FriendlyFieldSet()
     {

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+
 public class JoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler
 {
     public static Vector3 MoveDir;
+ 
     public RectTransform JoyBack;
 
-    
+
     public void OnDrag(PointerEventData eventData)
     {
         if (TwoBetweenDis() == true)
@@ -18,8 +20,10 @@ public class JoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler
         if (TwoBetweenDis() == false)
         {
             Vector2 currentPos = (eventData.position - (Vector2)JoyBack.position).normalized;
+
             MoveDir.x = currentPos.x;
-            MoveDir.y = currentPos.y;
+            MoveDir.z = currentPos.y;
+
             transform.position = (Vector2)JoyBack.position + (currentPos * 50);
         }
     }
