@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CharacterCreate : MonoBehaviour {
 
-    Transform Parent;
+    Transform FieldParent;
     List<BattleCharacter> CreateAbleFriend;
 
     int AbleFriendCount=10;
 
     private void Awake()
     {
-        Parent = GameObject.Find("Friend").transform;
+        FieldParent = GameObject.Find("Friend").transform;
         CreateAbleFriend = new List<BattleCharacter>();
     }
 
@@ -38,17 +38,10 @@ public class CharacterCreate : MonoBehaviour {
         }
     }
 
-    public void Craete(GameObject Actor, Vector3 Pos, Transform parent)
-    {
-        Instantiate(Actor, Pos, Quaternion.identity, parent);
-    }
-
-    public void FieldCraete(BattleCharacter CCharacter)
+    public void Craete(Vector3 Pos, Transform parent, BattleCharacter CCharacter)
     {
         GameObject targetObject;
         Acter targetActer;
-
-        Vector3 pos = new Vector3(0, -1, 0);
 
         string CharacterPath = string.Format("PrePab/FriendPrepab/Friend{0}", CCharacter.Index);
 
@@ -57,8 +50,40 @@ public class CharacterCreate : MonoBehaviour {
         targetActer = targetObject.GetComponent<FriendActor>();
         targetActer.RegistCharacter(CCharacter);
 
-
-        Craete(targetObject, pos, Parent);
+        Instantiate(targetActer, Pos, Quaternion.identity, parent);
         GameManager.instance.PM.Employ(CCharacter);
+    }
+    public void Craete(Vector3 Pos, Transform parent, Quaternion Direct, BattleCharacter CCharacter)
+    {
+        GameObject targetObject;
+        Acter targetActer;
+
+        string CharacterPath = string.Format("PrePab/FriendPrepab/Friend{0}", CCharacter.Index);
+
+        targetObject = (GameObject)Resources.Load(CharacterPath);
+
+        targetActer = targetObject.GetComponent<FriendActor>();
+        targetActer.RegistCharacter(CCharacter);
+
+        Instantiate(targetActer, Pos, Direct, parent);
+        GameManager.instance.PM.Employ(CCharacter);
+    }
+
+    public void FieldCraete(BattleCharacter CCharacter)
+    {
+        Vector3 pos = new Vector3(0, -1, 0);
+        Craete(pos, FieldParent, CCharacter);
+        GameManager.instance.PM.Employ(CCharacter);
+    }
+
+    public void PartyCreate()
+    {
+        PlayerParty temp = GameManager.instance.PM.GetPlayerParty;
+
+        for (int i = 0; i < temp.PartyCount(); ++i)
+        {
+            if(temp.GetPartyMember(i) != null)
+                Craete(temp.GetPos(i),GameManager.instance.PM.GetPartyParent().transform, temp.GetDirect(), FriendCreate(temp.GetPartyMember(i).Index));
+        }
     }
 }

@@ -37,7 +37,7 @@ public class Priest : MonoBehaviour
     public void SkillActive(int targetnum)
     {
         if (nowSkill.SelfSkill == false)
-            nowSkill.SetActive(pm.Party.GetPartyMember(targetnum));
+            nowSkill.SetActive(pm.GetPlayerParty.GetPartyMember(targetnum));
         else
             nowSkill.SetActive(this);
     }

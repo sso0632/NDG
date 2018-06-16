@@ -19,9 +19,9 @@ public class FriendActor : Acter {
 
     protected void Update()
     {
-        if (GameManager.instance.NowScene == Scene.Home)
+        if (GameManager.instance.NowScene == SceneNum.Home)
             HomeAct();
-        else if (GameManager.instance.NowScene == Scene.War)
+        else if (GameManager.instance.NowScene == SceneNum.War)
             WarAct();
     }
     public void StopDecision()

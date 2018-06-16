@@ -7,8 +7,8 @@ public class PlayerManager : MonoBehaviour {
     public PriestActor[] havePriestCharacter;           //가지고 있는 프리스트
     public List<BattleCharacter> EmployCharacter;      //섭외한 배틀 캐릭터
     PriestActor NowPriest;                              //현재 프리스트
-    public PlayerParty Party;
-
+    PlayerParty Party;
+    GameObject PartyParent;                         //파티 부모
     int Gold;                                   //플레이어 돈
     
     public PlayerParty GetPlayerParty
@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour {
     private void Awake()
     {
         EmployCharacter = new List<BattleCharacter>();
-
+        PartyParent =transform.GetChild(0).gameObject;
         Party = new PlayerParty();
         Party.PartySet();
         ChagePriest(0);
@@ -29,6 +29,8 @@ public class PlayerManager : MonoBehaviour {
     {
         CharacterUnlockNeed();
     }
+
+
     public void ChagePriest(int index)
     {
         //1. 현재 프리스트 액터 초기화후 
@@ -61,6 +63,7 @@ public class PlayerManager : MonoBehaviour {
     {
         EmployCharacter.Add(target);
     }
+
     public void SkillSet(Skill targetSkill)
     {
         NowPriest.havePriest.SetSkill(targetSkill);
@@ -77,17 +80,37 @@ public class PlayerManager : MonoBehaviour {
             UIManager.instance.PriestPanel.CharacterUnlock(0);
         }
     }
+
+    public GameObject GetPartyParent()
+    {
+        return PartyParent;
+    }
 }
 
 public class PlayerParty
 {
+
     BattleCharacter[] characterParty;
+    Acter[] FriendActer;
+    Vector3[] Pos= {new Vector3(-1, 1, 1), new Vector3(1,1,1), new Vector3(-1,1,-1), new Vector3(1, 1,-1)};
+    Quaternion Direct = new Quaternion(90, 0, 0, 0);
 
     public BattleCharacter GetPartyMember(int index)
     {
         return characterParty[index];
     }
-
+    public int PartyCount()
+    {
+        return characterParty.Length;
+    }
+    public Vector3 GetPos(int index)
+    {
+        return Pos[index];
+    }
+    public Quaternion GetDirect()
+    {
+        return Direct;
+    }
     public void PartySet()
     {
         characterParty = new BattleCharacter[4];
