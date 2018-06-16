@@ -14,7 +14,10 @@ public class FriendActor : Acter {
    
     override protected void Start()
     {
-        StartCoroutine("decisionHomeAct");
+        if (GameManager.instance.NowScene != SceneNum.War)
+        {
+            StartCoroutine("decisionHomeAct");
+        }
     }
 
     protected void Update()
@@ -30,6 +33,7 @@ public class FriendActor : Acter {
     }
     IEnumerator decisionHomeAct()
     {
+        Debug.Log("!!");
         homeactkind = (HomeActNum)Random.Range(0, 3);
 
         switch (homeactkind)
@@ -51,7 +55,10 @@ public class FriendActor : Acter {
         }
 
         yield return new WaitForSeconds(2f);
-        StartCoroutine("decisionHomeAct");
+        if (GameManager.instance.NowScene != SceneNum.War)
+        {
+            StartCoroutine("decisionHomeAct");
+        }
     }
     void WarAct()
     {
@@ -68,7 +75,7 @@ public class FriendActor : Acter {
     }
     void Left()
     {
-        ActorTransform.rotation = LeftDirect;
+       ActorTransform.rotation = LeftDirect;
     }
     void right()
     {

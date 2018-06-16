@@ -93,7 +93,7 @@ public class PlayerParty
     BattleCharacter[] characterParty;
     Acter[] FriendActer;
     Vector3[] Pos= {new Vector3(-1, 1, 1), new Vector3(1,1,1), new Vector3(-1,1,-1), new Vector3(1, 1,-1)};
-    Quaternion Direct = new Quaternion(90, 0, 0, 0);
+    Quaternion Direct = new Quaternion(90f, 0, 0, 0);
 
     public BattleCharacter GetPartyMember(int index)
     {
