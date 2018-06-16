@@ -38,7 +38,7 @@ public class CharacterCreate : MonoBehaviour {
         }
     }
 
-    public void Craete(Vector3 Pos, Transform parent, BattleCharacter CCharacter)
+    public GameObject Craete(Vector3 Pos, Transform parent, BattleCharacter CCharacter)
     {
         GameObject targetObject;
         Acter targetActer;
@@ -47,13 +47,12 @@ public class CharacterCreate : MonoBehaviour {
 
         targetObject = (GameObject)Resources.Load(CharacterPath);
 
-        targetActer = targetObject.GetComponent<FriendActor>();
+        targetActer = targetObject.transform.GetChild(0).GetComponent<FriendActor>();
         targetActer.RegistCharacter(CCharacter);
 
-        Instantiate(targetActer, Pos, Quaternion.identity, parent);
-        GameManager.instance.PM.Employ(CCharacter);
+        return Instantiate(targetObject, Pos, Quaternion.identity, parent);
     }
-    public void Craete(Vector3 Pos, Transform parent, Quaternion Direct, BattleCharacter CCharacter)
+    public GameObject Craete(Vector3 Pos, Transform parent, Quaternion Direct, BattleCharacter CCharacter)
     {
         GameObject targetObject;
         Acter targetActer;
@@ -62,16 +61,15 @@ public class CharacterCreate : MonoBehaviour {
 
         targetObject = (GameObject)Resources.Load(CharacterPath);
 
-        targetActer = targetObject.GetComponent<FriendActor>();
+        targetActer = targetObject.transform.GetChild(0).GetComponent<FriendActor>();
         targetActer.RegistCharacter(CCharacter);
 
-        Instantiate(targetActer, Pos, Direct, parent);
-        GameManager.instance.PM.Employ(CCharacter);
+        return Instantiate(targetObject, Pos, Direct, parent);
     }
 
     public void FieldCraete(BattleCharacter CCharacter)
     {
-        Vector3 pos = new Vector3(0, -1, 0);
+        Vector3 pos = new Vector3(0, 0, 0);
         Craete(pos, FieldParent, CCharacter);
         GameManager.instance.PM.Employ(CCharacter);
     }
@@ -79,11 +77,19 @@ public class CharacterCreate : MonoBehaviour {
     public void PartyCreate()
     {
         PlayerParty temp = GameManager.instance.PM.GetPlayerParty;
+        Transform  Chlid;
+        FriendActor Actor;
 
         for (int i = 0; i < temp.PartyCount(); ++i)
         {
             if(temp.GetPartyMember(i) != null)
-                Craete(temp.GetPos(i),GameManager.instance.PM.GetPartyParent().transform, temp.GetDirect(), FriendCreate(temp.GetPartyMember(i).Index));
+            {
+                Chlid = Craete(temp.GetPos(i), GameManager.instance.PM.GetPartyParent().transform, FriendCreate(temp.GetPartyMember(i).Index)).transform.GetChild(0);
+                Actor = Chlid.GetComponent<FriendActor>();
+                Actor.SetLeader(GameManager.instance.PM.GetNowPriest().havePriest);
+                Chlid.localPosition = Vector3.zero;
+                Chlid.localRotation = Quaternion.Euler(90f, 0, 0);
+            }
         }
     }
 }

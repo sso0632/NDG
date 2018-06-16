@@ -11,11 +11,18 @@ public class Acter : MonoBehaviour {
     protected NavMeshAgent navMesh;
     protected Transform ActorTransform;
     protected voiddelgate AniFuction;     //애니 저장
+    protected Transform navMeshObject;         
 
     protected void init()
     {
         ActerAni = this.GetComponent<Animator>();
         ActorTransform = this.GetComponent<Transform>();
+        navMesh = this.transform.parent.GetComponent<NavMeshAgent>();
+        navMeshObject = this.transform.parent;
+        if (GameManager.instance.NowScene!=SceneNum.War)
+        {
+            navMesh.enabled=false;
+        }
     }
     protected void Awake()
     {

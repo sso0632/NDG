@@ -8,10 +8,15 @@ public class FriendActor : Acter {
     protected bool CheckLeftAndRigth;     //왼쪽 오른쪽 체크 
     protected voiddelgate HomeMoveFuction; //집에서 이동
     protected HomeActNum homeactkind;     //집에서 행동 
+    
 
+    Priest Leader;                      //사제 
     Quaternion LeftDirect = new Quaternion(0, 180, 0, 0);
-
-   
+    Vector3 warLeftDirect = new Vector3(-1, 1, 1);
+    private void Awake() 
+    {
+        base.Awake();
+    }
     override protected void Start()
     {
         if (GameManager.instance.NowScene != SceneNum.War)
@@ -33,7 +38,6 @@ public class FriendActor : Acter {
     }
     IEnumerator decisionHomeAct()
     {
-        Debug.Log("!!");
         homeactkind = (HomeActNum)Random.Range(0, 3);
 
         switch (homeactkind)
@@ -60,9 +64,21 @@ public class FriendActor : Acter {
             StartCoroutine("decisionHomeAct");
         }
     }
-    void WarAct()
+    protected virtual void WarAct()
     {
-        transform.position += JoyStick.MoveDir * Time.deltaTime;
+        //공격 중이 아닐때 만
+        if (Leader != null)
+        {
+            if (JoyStick.MoveDir.x < 0)
+                Left();
+            else if (JoyStick.MoveDir.x > 0)
+                right();
+            if (JoyStick.MoveDir!=Vector3.zero)
+                MoveAni();
+            else
+                IdleAni();
+            navMeshObject.position += (JoyStick.MoveDir * Leader.MoveSpeed) * Time.deltaTime;
+        }
     }
     void HomeAct()
     {
@@ -73,17 +89,36 @@ public class FriendActor : Acter {
     {
         ActorTransform.Translate(Vector3.right * Time.deltaTime);
     }
-    void Left()
+    protected void Left()
     {
-       ActorTransform.rotation = LeftDirect;
+
+        if (GameManager.instance.NowScene != SceneNum.War)
+            ActorTransform.rotation = LeftDirect;
+        else if (GameManager.instance.NowScene != SceneNum.Home)
+        {
+            warLeftDirect.x = -1;
+            ActorTransform.localScale = warLeftDirect;
+        }
     }
-    void right()
+    protected void right()
     {
-        ActorTransform.rotation = Quaternion.identity;
+        if (GameManager.instance.NowScene != SceneNum.War)
+            ActorTransform.rotation = Quaternion.identity;
+        else if (GameManager.instance.NowScene != SceneNum.Home)
+        {
+            warLeftDirect.x = 1;
+            ActorTransform.localScale = warLeftDirect;
+        }
+
     }
     void HomeMoveFuctionWork()      //집에서 이동 작동
     {
         if (HomeMoveFuction != null)
             HomeMoveFuction();
+    }
+
+    public void SetLeader(Priest _leader)
+    {
+        Leader = _leader;
     }
 }
