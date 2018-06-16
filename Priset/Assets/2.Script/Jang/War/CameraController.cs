@@ -15,6 +15,9 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (followTarget == null)
+            return;
+
         followVector = followTarget.position;
         followVector.y = 10;
 
