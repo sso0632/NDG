@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour {
     PlayerParty Party;
     GameObject PartyParent;                         //파티 부모
     int Gold;                                   //플레이어 돈
-    
+
     public PlayerParty GetPlayerParty
     {
         get { return Party; }
@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour {
     private void Awake()
     {
         EmployCharacter = new List<BattleCharacter>();
-        PartyParent =transform.GetChild(0).gameObject;
+        PartyParent = transform.GetChild(0).gameObject;
         Party = new PlayerParty();
         Party.PartySet();
         ChagePriest(0);
@@ -28,6 +28,11 @@ public class PlayerManager : MonoBehaviour {
     private void Update()
     {
         CharacterUnlockNeed();
+    }
+
+    public PriestActor GetNowPriest()
+    {
+        return NowPriest;
     }
 
 

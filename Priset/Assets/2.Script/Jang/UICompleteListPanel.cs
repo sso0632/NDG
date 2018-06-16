@@ -55,13 +55,10 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
     }
     void DungeonPress()
     {
-        int length = GameManager.instance.PM.havePriestCharacter.Length;
-        for (int i =0; i < length; ++i)
-        {
-            PriestActor tempActor;
-            tempActor = GameManager.instance.PM.havePriestCharacter[i];
-            tempActor.StopDecision();
-        }
+        PriestActor tempActor;
+        tempActor = GameManager.instance.PM.GetNowPriest();
+        tempActor.StopDecision();
+        tempActor.PriestWarSceneStart();
         GameManager.instance.GoWarScene();
     }
     void FriendlyFieldSet()
