@@ -20,12 +20,18 @@ public class MonsterActor : Acter
     {
         set { partyCommander = value; }   
     }
+
     new void Awake()
     {
         base.Awake();
     }
     
-
-
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            TargetSet(other.GetComponent<Acter>());
+        }
+    }
 
 }

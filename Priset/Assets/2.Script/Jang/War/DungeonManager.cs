@@ -116,6 +116,7 @@ public class DungeonManager : MonoBehaviour
         int rand = Random.Range(0, monsterDropList.Length);
         while(monsterDropList[rand].GetDropExist)
         {
+            Debug.Log("___Rand"+ rand +"______" + monsterDropList[rand].GetDropExist);
             rand = Random.Range(0, monsterDropList.Length);
             yield return null;
         }
