@@ -30,7 +30,8 @@ public class MonsterDropPoint : MonoBehaviour
             return;
 
         isDropOn = true;
-        currentLocateParty.MakeParty();
+        //currentLocateParty.MakeParty();
+
     }
     public void MonsterPartyDestory()
     {

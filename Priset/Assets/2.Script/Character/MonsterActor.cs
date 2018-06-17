@@ -5,9 +5,8 @@ using UnityEngine.AI;
 public class MonsterActor : Acter
 {
     public int MonsterIndex;
-
-    
     Monster monsterData;
+
     private MonsterParty partyCommander = null;
 
     public MonsterParty GetPartyCommader
@@ -19,8 +18,6 @@ public class MonsterActor : Acter
         set { partyCommander = value; }   
     }
 
-
-
     new void Awake()
     {
         base.Awake();
@@ -28,5 +25,12 @@ public class MonsterActor : Acter
         navMesh.enabled = false;
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            TargetSet(other.GetComponent<Acter>());
+        }
+    }
 
 }

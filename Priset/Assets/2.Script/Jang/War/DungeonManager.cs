@@ -53,7 +53,7 @@ public class DungeonManager : MonoBehaviour
             monsterList[i] = new List<GameObject>();
             for(int j = 0; j < 5; ++j)
             {
-                Debug.Log(MonsterPrefabs[i]);
+                //Debug.Log(MonsterPrefabs[i]);
                 GameObject obj = Instantiate(MonsterPrefabs[i]);
                 obj.name = MonsterPrefabs[i].name;
                 obj.gameObject.SetActive(false);
@@ -118,7 +118,7 @@ public class DungeonManager : MonoBehaviour
         int rand = Random.Range(0, monsterDropList.Length);
         while(monsterDropList[rand].GetDropExist)
         {
-            Debug.Log("___Rand"+ rand +"______" + monsterDropList[rand].GetDropExist);
+            //Debug.Log("___Rand"+ rand +"______" + monsterDropList[rand].GetDropExist);
             rand = Random.Range(0, monsterDropList.Length);
             yield return null;
         }

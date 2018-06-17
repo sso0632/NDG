@@ -77,7 +77,7 @@ public class BattleCharacter : Character {
         Heath = MaxHeath;
     }
 
-    protected void HeathDamage(int Damage)      //데미지 입는 함수
+    public void HeathDamage(int Damage)      //데미지 입는 함수
     {
         Heath -= Damage;
     }

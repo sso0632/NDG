@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4329220571412798}
   - component: {fileID: 212023270066038794}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: OffItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4574561851077970}
   - component: {fileID: 212094347610602072}
   - component: {fileID: 61565693427491518}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MainItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: 4006874462736202}
   - component: {fileID: 95348330818079992}
   - component: {fileID: 114715435768195854}
+  - component: {fileID: 135661658684177210}
+  - component: {fileID: 54175232964113246}
   m_Layer: 8
   m_Name: Friend9
   m_TagString: Player
@@ -151,7 +153,7 @@ GameObject:
   - component: {fileID: 4845286516901124}
   - component: {fileID: 23652235424791870}
   - component: {fileID: 195505501905912320}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Friend9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,6 +529,21 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!54 &54175232964113246
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1445628104602638}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!61 &61565693427491518
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -580,6 +597,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e70e576d3a29ab428ca2f493934a8c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &135661658684177210
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1445628104602638}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195505501905912320
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -592,8 +621,8 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

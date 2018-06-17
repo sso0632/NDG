@@ -6,12 +6,14 @@ using Sang;
 
 public class Acter : MonoBehaviour {
 
-    protected Character haveCharacter;
+    protected BattleCharacter haveCharacter;
     protected Animator ActerAni;
     protected NavMeshAgent navMesh;
     protected Transform ActorTransform;
     protected voiddelgate AniFuction;     //애니 저장
-    protected Transform navMeshObject;         
+    protected Transform navMeshObject;
+
+    protected Acter Target;               //공격 대상
 
     protected void init()
     {
@@ -34,7 +36,7 @@ public class Acter : MonoBehaviour {
 
     }
 
-    public void RegistCharacter(Character _Character)
+    public void RegistCharacter(BattleCharacter _Character)
     {
         haveCharacter = _Character;
     }
@@ -46,7 +48,6 @@ public class Acter : MonoBehaviour {
             AniFuction();
         }
     }
-
 
     protected void IdleAni()
     {
@@ -73,5 +74,26 @@ public class Acter : MonoBehaviour {
     void NavMove(Vector3 TargetPos)     //대상으로 이동
     {
         navMesh.SetDestination(TargetPos);
+    }
+
+    protected void TargetSet(Acter _target)
+    {
+        Target = _target;
+        Attackwork();
+    }
+     void Attackwork()
+    {
+        NavMove(Target.ActorTransform.position);
+
+        if (navMesh.stoppingDistance >= Vector3.Distance(ActorTransform.position, Target.ActorTransform.position))
+        {
+            Attack();
+        }
+    }
+
+    void Attack()
+    {
+        AttackAni();
+        //Target.haveCharacter.HeathDamage(haveCharacter.Attack);
     }
 }

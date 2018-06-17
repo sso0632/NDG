@@ -13,6 +13,7 @@ public class FriendActor : Acter {
     Priest Leader;                      //사제 
     Quaternion LeftDirect = new Quaternion(0, 180, 0, 0);
     Vector3 warLeftDirect = new Vector3(-1, 1, 1);
+
     private void Awake() 
     {
         base.Awake();
@@ -120,5 +121,14 @@ public class FriendActor : Acter {
     public void SetLeader(Priest _leader)
     {
         Leader = _leader;
+        navMesh.enabled = true;
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Monster"))
+        {
+            TargetSet(other.GetComponent<Acter>());
+        }
     }
 }
