@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    Transform followTarget;
 
+    Transform followTarget;
     Vector3 followVector;
+
+
     private void Start()
     {
         followTarget = GameObject.FindGameObjectWithTag("Player").transform;

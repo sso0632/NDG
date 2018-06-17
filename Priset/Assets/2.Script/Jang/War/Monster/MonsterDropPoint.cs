@@ -7,13 +7,14 @@ public class MonsterDropPoint : MonoBehaviour
     public MonsterParty currentLocateParty;
     bool isDropOn;
 
-
     private void Awake()
     {
-        isDropOn = false;
         currentLocateParty = GetComponent<MonsterParty>();
+        isDropOn = false;
     }
-
+    public void Init()
+    {
+    }
     public bool GetDropExist
     {
         get { return isDropOn; }

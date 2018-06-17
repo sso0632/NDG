@@ -19,10 +19,11 @@ public class Acter : MonoBehaviour {
         ActorTransform = this.GetComponent<Transform>();
         navMesh = this.transform.parent.GetComponent<NavMeshAgent>();
         navMeshObject = this.transform.parent;
-        if (GameManager.instance.NowScene!=SceneNum.War)
-        {
-            navMesh.enabled=false;
-        }
+
+        //if (GameManager.instance.NowScene != SceneNum.War)
+        //{
+        //    navMesh.enabled = false;
+        //}
     }
     protected void Awake()
     {
@@ -31,7 +32,7 @@ public class Acter : MonoBehaviour {
 
     virtual protected void Start()
     {
-
+       
     }
 
     public void RegistCharacter(Character _Character)
@@ -46,6 +47,7 @@ public class Acter : MonoBehaviour {
             AniFuction();
         }
     }
+    
 
 
     protected void IdleAni()

@@ -12,13 +12,10 @@ public enum MONSTER_TYPE
 }
 public class DungeonManager : MonoBehaviour
 {
-    
     public static DungeonManager instance;
     public static int CurrentMonsterPartyCount;
 
-
     public Transform MonsterDropPoint;
-
     public GameObject[] MonsterPrefabs;
 
     MonsterDropPoint[] monsterDropList;    
@@ -39,12 +36,14 @@ public class DungeonManager : MonoBehaviour
         MakeMonsterList();
         GetDropPoint();
     }
-    private void OnEnable()
+    private void Start()
     {
+        CurrentMonsterPartyCount = 0;
         StartCoroutine(MonsterDropSystem());
     }
+
     void MakeMonsterList()
-    {
+    {        
         int monsterMax = MonsterPrefabs.Length;
         monsterList = new List<GameObject>[monsterMax];
 
@@ -53,7 +52,6 @@ public class DungeonManager : MonoBehaviour
             monsterList[i] = new List<GameObject>();
             for(int j = 0; j < 5; ++j)
             {
-                Debug.Log(MonsterPrefabs[i]);
                 GameObject obj = Instantiate(MonsterPrefabs[i]);
                 obj.name = MonsterPrefabs[i].name;
                 obj.gameObject.SetActive(false);
@@ -118,7 +116,6 @@ public class DungeonManager : MonoBehaviour
         int rand = Random.Range(0, monsterDropList.Length);
         while(monsterDropList[rand].GetDropExist)
         {
-            Debug.Log("___Rand"+ rand +"______" + monsterDropList[rand].GetDropExist);
             rand = Random.Range(0, monsterDropList.Length);
             yield return null;
         }

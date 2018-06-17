@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterParty : MonoBehaviour
 { 
     List<MonsterActor> monsterList;
-
+    
     public void MakeParty()
     {
         monsterList = new List<MonsterActor>();
@@ -38,7 +38,10 @@ public class MonsterParty : MonoBehaviour
         monsterList.Clear();
     }
 
+    public void PartyInMonsterCall()
+    {
 
+    }
 
 
 }
