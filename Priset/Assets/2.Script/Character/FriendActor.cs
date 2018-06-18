@@ -34,7 +34,6 @@ public class FriendActor : Acter {
 
     protected void Update()
     {
-
         if (GameManager.instance.NowScene == SceneNum.Home)
             HomeAct();
         else if (GameManager.instance.NowScene == SceneNum.War)
@@ -77,11 +76,11 @@ public class FriendActor : Acter {
         //공격 중이 아닐때 만
         if (Party != null)
         {
-            if (JoyStick.MoveDir.x < 0)
-                Left();
-            else if (JoyStick.MoveDir.x > 0)
+            if (ActorTransform.position.x < navMesh.destination.x)
                 right();
-            if (JoyStick.MoveDir!=Vector3.zero)
+            if (ActorTransform.position.x > navMesh.destination.x)
+                Left();
+            if (navMesh.remainingDistance > navMesh.stoppingDistance)
                 MoveAni();
             else
                 IdleAni();
