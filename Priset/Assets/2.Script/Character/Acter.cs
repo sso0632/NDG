@@ -15,13 +15,16 @@ public class Acter : MonoBehaviour {
 
     protected Acter Target;               //공격 대상
 
+    protected bool attackEnable;
+
+
     protected void init()
     {
         ActerAni = this.GetComponent<Animator>();
         ActorTransform = this.GetComponent<Transform>();
         navMesh = this.transform.parent.GetComponent<NavMeshAgent>();
         navMeshObject = this.transform.parent;
-
+        attackEnable = true;
         //if (GameManager.instance.NowScene != SceneNum.War)
         //{
         //    navMesh.enabled = false;
@@ -50,6 +53,7 @@ public class Acter : MonoBehaviour {
         }
     }
     
+    
 
     protected void IdleAni()
     {
@@ -73,7 +77,7 @@ public class Acter : MonoBehaviour {
         ActerAni.SetTrigger("attack");
     }
 
-    void NavMove(Vector3 TargetPos)     //대상으로 이동
+    protected void NavMove(Vector3 TargetPos)     //대상으로 이동
     {
         navMesh.SetDestination(TargetPos);
     }
@@ -81,21 +85,37 @@ public class Acter : MonoBehaviour {
     protected void TargetSet(Acter _target)
     {
         Target = _target;
-        Attackwork();
     }
-     void Attackwork()
+    protected void Attackwork()
     {
         NavMove(Target.ActorTransform.position);
-
-        if (navMesh.stoppingDistance >= Vector3.Distance(ActorTransform.position, Target.ActorTransform.position))
+        if (attackEnable == true)
         {
-            Attack();
+            if (navMesh.stoppingDistance >= Vector3.Distance(ActorTransform.position, Target.ActorTransform.position))
+            {
+                Attack();
+            }
+        }
+        else if(attackEnable == false)
+            AttackEnd();
+    }
+
+    protected void Attack()
+    {
+        if (!ActerAni.GetCurrentAnimatorStateInfo(0).IsName("Humanoid_Strike"))
+        {
+            AttackAni();
+            attackEnable = false;
         }
     }
 
-    void Attack()
+    protected virtual void AttackEnd()
     {
-        AttackAni();
-        //Target.haveCharacter.HeathDamage(haveCharacter.Attack);
+        if( ActerAni.GetCurrentAnimatorStateInfo(0).IsName("Humanoid_Strike") &&
+        ActerAni.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f)
+        {
+            attackEnable = true;
+            //Target.haveCharacter.HeathDamage(haveCharacter.Attack);
+        }
     }
 }

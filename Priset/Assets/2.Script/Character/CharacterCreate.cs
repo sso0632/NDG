@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Sang;
 public class CharacterCreate : MonoBehaviour {
 
     Transform FieldParent;
@@ -86,7 +86,9 @@ public class CharacterCreate : MonoBehaviour {
             {
                 Chlid = Craete(temp.GetPos(i), GameManager.instance.PM.GetPartyParent().transform, FriendCreate(temp.GetPartyMember(i).Index)).transform.GetChild(0);
                 Actor = Chlid.GetComponent<FriendActor>();
-                Actor.SetLeader(GameManager.instance.PM.GetNowPriest().havePriest);
+                Actor.SetParty(GameManager.instance.PM.GetPlayerParty);
+                Actor.RegistCharacter(temp.GetPartyMember(i));
+                Actor.SetFormationPos((PartyPos)i);
                 Chlid.localPosition = Vector3.zero;
                 Chlid.localRotation = Quaternion.Euler(90f, 0, 0);
             }

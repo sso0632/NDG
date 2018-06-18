@@ -18,7 +18,7 @@ public class MonsterActor : Acter
     }
     public MonsterParty SetPartyCommader
     {
-        set { partyCommander = value; }   
+        set { partyCommander = value; }
     }
 
     new void Awake()
@@ -30,8 +30,7 @@ public class MonsterActor : Acter
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            TargetSet(other.GetComponent<Acter>());
+            //TargetSet(other.GetComponent<Acter>());
         }
     }
-
 }

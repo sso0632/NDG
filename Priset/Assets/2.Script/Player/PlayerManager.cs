@@ -90,16 +90,32 @@ public class PlayerManager : MonoBehaviour {
     {
         return PartyParent;
     }
+
+    public void GoWarScene()
+    {
+        Party.LeaderSet(NowPriest.havePriest, NowPriest.transform);
+    }
 }
 
 public class PlayerParty
 {
 
-    BattleCharacter[] characterParty;
-    Acter[] FriendActer;
-    Vector3[] Pos= {new Vector3(-1, 1, 1), new Vector3(1,1,1), new Vector3(-1,1,-1), new Vector3(1, 1,-1)};
-    Quaternion Direct = new Quaternion(90f, 0, 0, 0);
+    BattleCharacter[] characterParty;       //파티에 속에있는 캐릭터 데이터
+    Acter[] FriendActer;                    //파티에 속에있는 캐릭터 액터
+    public Vector3[] Pos= {new Vector3(-1, 0, 1), new Vector3(1,0,1), new Vector3(-1,0,-1), new Vector3(1, 0,-1)};      //포메이션 값
+    Transform LeaderTransform;              //리더의 transform
+    Priest Leader;                          //사제의 데이터 정도
+    Quaternion Direct = new Quaternion(90f, 0, 0, 0);       //warscene 상의 각도
 
+    public void LeaderSet(Priest _Leader, Transform _LeaderTransform)
+    {
+        Leader = _Leader;
+        LeaderTransform = _LeaderTransform;
+    }
+    public float LeaderSpeed()
+    {
+        return Leader.MoveSpeed;
+    }
     public BattleCharacter GetPartyMember(int index)
     {
         return characterParty[index];
@@ -110,7 +126,7 @@ public class PlayerParty
     }
     public Vector3 GetPos(int index)
     {
-        return Pos[index];
+      return Pos[index] + LeaderTransform.position;
     }
     public Quaternion GetDirect()
     {

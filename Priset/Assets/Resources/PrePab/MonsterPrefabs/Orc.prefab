@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4206019657113654}
   - component: {fileID: 212193282503199200}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Helm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4870772346036024}
   - component: {fileID: 212069695307391216}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: HurtFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4011402894141758}
   - component: {fileID: 212157854046202084}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4487013518631402}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: EffectPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,9 +100,11 @@ GameObject:
   - component: {fileID: 4125616903571758}
   - component: {fileID: 95005420500064816}
   - component: {fileID: 114580319735404830}
-  m_Layer: 8
+  - component: {fileID: 135825999576512876}
+  - component: {fileID: 54835426743447550}
+  m_Layer: 9
   m_Name: Orc
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4743786413918992}
   - component: {fileID: 212601042644593202}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +133,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4615653491705256}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WallCheckBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4108759580493498}
   - component: {fileID: 212432002789869002}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MainHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4204497005507648}
   - component: {fileID: 212925307830559300}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4162398275736310}
   - component: {fileID: 212203567059356982}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: OffFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +196,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4434296831487994}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4249877553307742}
   - component: {fileID: 212465662735336014}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4698455533510944}
   - component: {fileID: 212975076442111662}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MainFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4308602792938052}
   - component: {fileID: 212414059990055210}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: OffHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +259,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4402996098163248}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LaunchPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +291,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4088912052336314}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WallCheckFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +306,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4226352974297398}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +323,7 @@ GameObject:
   - component: {fileID: 4734077746994734}
   - component: {fileID: 198062749479787528}
   - component: {fileID: 199442697310497776}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Bubbles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,13 +338,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4553001138649750}
-  - component: {fileID: 33841171140606972}
-  - component: {fileID: 65735257051031212}
-  - component: {fileID: 23991408021359992}
   - component: {fileID: 195477274301833798}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Orc
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -640,47 +639,21 @@ Transform:
   m_Father: {fileID: 4204497005507648}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23991408021359992
-MeshRenderer:
+--- !u!54 &54835426743447550
+Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1997611627241026}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &33841171140606972
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1997611627241026}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_GameObject: {fileID: 1291179270648840}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!61 &61800186007365512
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -706,18 +679,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.125, y: 0.875}
   m_EdgeRadius: 0
---- !u!65 &65735257051031212
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1997611627241026}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95005420500064816
 Animator:
   serializedVersion: 3
@@ -727,7 +688,7 @@ Animator:
   m_GameObject: {fileID: 1291179270648840}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3a249921b70c4cf499b81659812641ba, type: 2}
+  m_Controller: {fileID: 9100000, guid: 35fd6e06a4adce1478ee52e1b92d1bda, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -747,6 +708,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterIndex: 0
+--- !u!135 &135825999576512876
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1291179270648840}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195477274301833798
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -759,8 +732,8 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
