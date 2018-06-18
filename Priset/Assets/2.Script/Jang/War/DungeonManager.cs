@@ -101,11 +101,11 @@ public class DungeonManager : MonoBehaviour
     {
         while(gameObject.activeSelf)
         {
-            if (CurrentMonsterPartyCount <= monsterDropList.Length - 10)
+            if (CurrentMonsterPartyCount <= monsterDropList.Length - 44)
             {
                 yield return StartCoroutine(MakeMonster());
             }
-            else if(CurrentMonsterPartyCount > monsterDropList.Length -10)
+            else if(CurrentMonsterPartyCount > monsterDropList.Length - 44)
             {
                 yield return new WaitForEndOfFrame();
             }
@@ -121,16 +121,10 @@ public class DungeonManager : MonoBehaviour
         int rand = Random.Range(0, monsterDropList.Length);
         while(monsterDropList[rand].GetDropExist)
         {
-            Debug.Log("___Rand"+ rand +"______" + monsterDropList[rand].GetDropExist);
+            //Debug.Log("___Rand"+ rand +"______" + monsterDropList[rand].GetDropExist);
             rand = Random.Range(0, monsterDropList.Length);
             yield return null;
         }
         monsterDropList[rand].MonsterPartyMake();
     }
-
-
-    
-
-
-
 }

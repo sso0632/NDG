@@ -8,11 +8,17 @@ public class FriendActor : Acter {
     protected bool CheckLeftAndRigth;     //왼쪽 오른쪽 체크 
     protected voiddelgate HomeMoveFuction; //집에서 이동
     protected HomeActNum homeactkind;     //집에서 행동 
-    
 
-    Priest Leader;                      //사제 
+    PlayerParty Party;                  //속해있는 파티
     Quaternion LeftDirect = new Quaternion(0, 180, 0, 0);
     Vector3 warLeftDirect = new Vector3(-1, 1, 1);
+    PartyPos formationNum;
+
+    float MonsterFollowSpeed=8f;
+    float MonsterStopDistance=2.5f;
+
+    int AttackCount=0;                    //공격한 횟수 
+    bool AttackendBack=false;                   //공격 완료 돌아가기
 
     private void Awake() 
     {
@@ -28,6 +34,7 @@ public class FriendActor : Acter {
 
     protected void Update()
     {
+
         if (GameManager.instance.NowScene == SceneNum.Home)
             HomeAct();
         else if (GameManager.instance.NowScene == SceneNum.War)
@@ -68,7 +75,7 @@ public class FriendActor : Acter {
     protected virtual void WarAct()
     {
         //공격 중이 아닐때 만
-        if (Leader != null)
+        if (Party != null)
         {
             if (JoyStick.MoveDir.x < 0)
                 Left();
@@ -78,8 +85,45 @@ public class FriendActor : Acter {
                 MoveAni();
             else
                 IdleAni();
-            navMeshObject.position += (JoyStick.MoveDir * Leader.MoveSpeed) * Time.deltaTime;
+
+            if (Target == null)
+                FollowLeader();
+            else if (Target != null)
+                Attackact();
         }
+    }
+
+    void Attackact()
+    {
+        navMesh.speed = MonsterFollowSpeed;
+
+        if(!AttackendBack)
+        {
+            navMesh.stoppingDistance = MonsterStopDistance;
+            Attackwork();
+        }
+        else
+        {
+            NavMove(Party.GetPos((int)formationNum));
+            navMesh.stoppingDistance = 0;
+            if (checkBack())
+            {
+                AttackendBack = false;
+                Target = null;
+            }
+        }
+    }
+    void FollowLeader()
+    {
+        navMesh.stoppingDistance = 0;
+        navMesh.speed = Party.LeaderSpeed()+3;
+        NavMove(Party.GetPos((int)formationNum));
+    }
+
+    void HomeMoveFuctionWork()      //집에서 이동 작동
+    {
+        if (HomeMoveFuction != null)
+            HomeMoveFuction();
     }
     void HomeAct()
     {
@@ -90,9 +134,8 @@ public class FriendActor : Acter {
     {
         ActorTransform.Translate(Vector3.right * Time.deltaTime);
     }
-    protected void Left()
+    protected void Left()   
     {
-
         if (GameManager.instance.NowScene != SceneNum.War)
             ActorTransform.rotation = LeftDirect;
         else if (GameManager.instance.NowScene != SceneNum.Home)
@@ -112,15 +155,14 @@ public class FriendActor : Acter {
             ActorTransform.localScale = warLeftDirect;
         }
     }
-    void HomeMoveFuctionWork()      //집에서 이동 작동
-    {
-        if (HomeMoveFuction != null)
-            HomeMoveFuction();
-    }
 
-    public void SetLeader(Priest _leader)
+    public void SetFormationPos(PartyPos _formationNum) //나의 포메이션 위치
     {
-        Leader = _leader;
+        formationNum = _formationNum;
+    }
+    public void SetParty(PlayerParty _Party)           //리더 설정
+    {
+        Party = _Party;
         navMesh.enabled = true;
     }
 
@@ -128,7 +170,41 @@ public class FriendActor : Acter {
     {
         if (other.gameObject.CompareTag("Monster"))
         {
-            TargetSet(other.GetComponent<Acter>());
+            if(Target==null)
+            {
+                TargetSet(other.GetComponent<Acter>());
+            }
         }
     }
+
+    protected override void AttackEnd()
+    {
+
+        if (ActerAni.GetCurrentAnimatorStateInfo(0).IsName("Humanoid_Strike") &&
+        ActerAni.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f)
+        {
+            attackEnable = true;
+            AttackCount++;
+            Debug.Log(haveCharacter.ASpeed + " " + AttackCount);
+            if (haveCharacter.ASpeed <= AttackCount)
+            {
+                AttackCount = 0;
+                AttackendBack = true;
+            }
+            //Target.haveCharacter.HeathDamage(haveCharacter.Attack);
+        }
+    }
+
+    bool checkBack()
+    {
+        if ((int)Vector3.Distance(Party.GetPos((int)formationNum), ActorTransform.position) == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+        
 }

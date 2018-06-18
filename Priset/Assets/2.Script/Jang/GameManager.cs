@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour {
 
     public void GoWarScene()
     {
+        PM.GoWarScene();
         CreateCharacter.PartyCreate();
         NowScene = SceneNum.War;
         SceneManager.LoadScene(1);

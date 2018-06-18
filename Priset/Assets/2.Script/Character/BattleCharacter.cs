@@ -7,7 +7,7 @@ public class BattleCharacter : Character {
 
     protected float HomeMoveSpeed;        //집 캐릭터 이동 속도
     protected float WarMoveSpeed;        //전쟁 캐릭터 이동 속도
-    protected float AttackSpeed;      //공격 속도
+    protected float AttackSpeed;      //공격 
     protected int AttackPoint;        //공격력
     protected int DefPoint;           //방어력 
     protected int MaxHeath;           //최대 체력
