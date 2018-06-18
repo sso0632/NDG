@@ -15,7 +15,7 @@ public class FriendActor : Acter {
     PartyPos formationNum;
 
     float MonsterFollowSpeed=8f;
-    float MonsterStopDistance=2.5f;
+    float MonsterStopDistance=2f;
 
     int AttackCount=0;                    //공격한 횟수 
     bool AttackendBack=false;                   //공격 완료 돌아가기

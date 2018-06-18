@@ -1688,6 +1688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31cac5266c0f4944f9e850b375c481bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FriendlyRoomManager: {fileID: 0}
 --- !u!1 &613122205
 GameObject:
   m_ObjectHideFlags: 0
@@ -3188,7 +3189,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1560573085583402, guid: a15038bf7e54311469723298bbf3ace1, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 195213816720345324, guid: a15038bf7e54311469723298bbf3ace1,
         type: 2}
