@@ -105,12 +105,12 @@ public class FriendActor : Acter {
     {
         if (GameManager.instance.NowScene != SceneNum.War)
             ActorTransform.rotation = Quaternion.identity;
+
         else if (GameManager.instance.NowScene != SceneNum.Home)
         {
             warLeftDirect.x = 1;
             ActorTransform.localScale = warLeftDirect;
         }
-
     }
     void HomeMoveFuctionWork()      //집에서 이동 작동
     {

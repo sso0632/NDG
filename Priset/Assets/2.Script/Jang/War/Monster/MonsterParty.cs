@@ -3,45 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterParty : MonoBehaviour
-{ 
+{
+    public static int PartyCount;
+    public delegate void PartyPurposeChange(Acter actor);
+    public static event PartyPurposeChange PurposeEvent;
+
     List<MonsterActor> monsterList;
-    
+
+
+    private void Awake()
+    {
+        PartyCount = 0;
+    }
     public void MakeParty()
     {
+        ++PartyCount;
         monsterList = new List<MonsterActor>();
+
+        GameObject newPartyObj = new GameObject(PartyCount.ToString());
+        newPartyObj.transform.SetParent(DungeonManager.instance.MonsterPartyManager);
+
 
         for (int i = 0; i < 4; ++i)
         {
             int index = Random.Range(0, DungeonManager.instance.GetMonsterTypeMax);
             GameObject obj = DungeonManager.instance.PopMonster((MONSTER_TYPE)index);
             MonsterActor monster = obj.GetComponentInChildren<MonsterActor>();
-            obj.transform.SetParent(transform);
+
+            obj.transform.SetParent(newPartyObj.transform);
             monster.SetPartyCommader = this;
             monster.MonsterIndex = index;
             monsterList.Add(monster);
         }
 
-        monsterList[0].transform.position =
+        monsterList[0].transform.parent.position =
             new Vector3(transform.position.x - 0.25f, 1, transform.position.z + 0.25f);
 
-        monsterList[1].transform.position =
+        monsterList[1].transform.parent.position =
             new Vector3(transform.position.x + 0.25f, 1, transform.position.z + 0.25f);
 
-        monsterList[2].transform.position =
+        monsterList[2].transform.parent.position =
            new Vector3(transform.position.x - 0.25f, 1, transform.position.z - 0.25f);
 
-        monsterList[3].transform.position =
+        monsterList[3].transform.parent.position =
             new Vector3(transform.position.x + 0.25f, 1, transform.position.z - 0.25f);
     }
+
     public void PartyDestory()
     {
         monsterList.Clear();
     }
-
-    public void PartyInMonsterCall()
+    public static void PartyTargetSet(Acter _target)
     {
-
+        PurposeEvent(_target);
     }
-
-
 }

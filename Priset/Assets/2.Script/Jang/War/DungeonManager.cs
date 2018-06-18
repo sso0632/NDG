@@ -15,7 +15,10 @@ public class DungeonManager : MonoBehaviour
     public static DungeonManager instance;
     public static int CurrentMonsterPartyCount;
 
+
+
     public Transform MonsterDropPoint;
+    public Transform MonsterPartyManager;
     public GameObject[] MonsterPrefabs;
 
     MonsterDropPoint[] monsterDropList;    
@@ -100,19 +103,21 @@ public class DungeonManager : MonoBehaviour
         {
             if (CurrentMonsterPartyCount <= monsterDropList.Length - 10)
             {
-                ++CurrentMonsterPartyCount;
                 yield return StartCoroutine(MakeMonster());
             }
             else if(CurrentMonsterPartyCount > monsterDropList.Length -10)
             {
                 yield return new WaitForEndOfFrame();
             }
+
             yield return null;
         }
     }
 
     IEnumerator MakeMonster()
     {
+        ++CurrentMonsterPartyCount;
+
         int rand = Random.Range(0, monsterDropList.Length);
         while(monsterDropList[rand].GetDropExist)
         {

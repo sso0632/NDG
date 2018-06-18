@@ -32,6 +32,7 @@ public class Acter : MonoBehaviour {
         init();
     }
 
+
     virtual protected void Start()
     {
        
@@ -49,8 +50,6 @@ public class Acter : MonoBehaviour {
             AniFuction();
         }
     }
-    
-
     protected void IdleAni()
     {
         AniFuction = null;
@@ -75,15 +74,21 @@ public class Acter : MonoBehaviour {
 
     void NavMove(Vector3 TargetPos)     //대상으로 이동
     {
+        if (!navMesh.enabled)
+            navMesh.enabled = true;
+
         navMesh.SetDestination(TargetPos);
     }
 
-    protected void TargetSet(Acter _target)
+    protected virtual void TargetSet(Acter _target)
     {
+        if (_target == Target)
+            return;
+                
         Target = _target;
         Attackwork();
     }
-     void Attackwork()
+    protected void Attackwork()
     {
         NavMove(Target.ActorTransform.position);
 
@@ -92,7 +97,6 @@ public class Acter : MonoBehaviour {
             Attack();
         }
     }
-
     void Attack()
     {
         AttackAni();

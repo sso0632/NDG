@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
+
+
 public class MonsterActor : Acter
 {
-    public delegate MonsterActor InDistanceCheck();
-    public static event InDistanceCheck InDistacneEvent;
-
     public int MonsterIndex;
-    Monster monsterData;
     
     private MonsterParty partyCommander = null;
 
@@ -20,18 +19,34 @@ public class MonsterActor : Acter
     {
         set { partyCommander = value; }   
     }
-
     new void Awake()
     {
         base.Awake();
+    }
+    private void OnEnable()
+    {
+        MonsterParty.PurposeEvent += TargetSet;
+    }
+    private void OnDisable()
+    {
+        MonsterParty.PurposeEvent -= TargetSet;
+    }
+
+    protected override void TargetSet(Acter _target)
+    {
+        if (_target == Target)
+            return;
+
+        Target = _target;
+        Attackwork();
     }
     
     void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
-            TargetSet(other.GetComponent<Acter>());
-        }
+        { 
+            MonsterParty.PartyTargetSet(other.GetComponent<Acter>());
+        }  
     }
 
 }
