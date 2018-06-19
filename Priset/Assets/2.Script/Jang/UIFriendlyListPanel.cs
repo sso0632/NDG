@@ -43,7 +43,7 @@ public class UIFriendlyListPanel : MonoBehaviour
             int rand = Random.Range(0, UIManager.instance.CharacterImage.Length);
             currentFieldList[i].FieldSet(rand);
 
-            BattleCharacter tempCharacter = new BattleCharacter(rand);
+            Friendly tempCharacter = new Friendly(rand);
             currentFieldList[i].CharacterSet(tempCharacter);
             currentFieldList[i].InitSet();
         }

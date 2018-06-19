@@ -14,8 +14,8 @@ public class FriendActor : Acter {
     Vector3 warLeftDirect = new Vector3(-1, 1, 1);
     PartyPos formationNum;
 
-    float MonsterFollowSpeed=8f;
-    float MonsterStopDistance=2f;
+    float MonsterFollowSpeed=6f;
+    float MonsterStopDistance=1f;
 
     int AttackCount=0;                    //공격한 횟수 
     bool AttackendBack=false;                   //공격 완료 돌아가기
@@ -37,8 +37,13 @@ public class FriendActor : Acter {
         if (GameManager.instance.NowScene == SceneNum.Home)
             HomeAct();
         else if (GameManager.instance.NowScene == SceneNum.War)
-            WarAct();
+            if(haveCharacter!=null)
+            { 
+                if (haveCharacter.Life == DeadorLive.LIVE)
+                    WarAct();
+            }
     }
+
     public void StopDecision()
     {
         StopCoroutine("decisionHomeAct");
@@ -124,7 +129,7 @@ public class FriendActor : Acter {
         if (HomeMoveFuction != null)
             HomeMoveFuction();
     }
-    void HomeAct()
+    protected void HomeAct()
     {
         AniWork();
         HomeMoveFuctionWork();
@@ -178,19 +183,24 @@ public class FriendActor : Acter {
 
     protected override void AttackEnd()
     {
-
         if (ActerAni.GetCurrentAnimatorStateInfo(0).IsName("Humanoid_Strike") &&
         ActerAni.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f)
         {
             attackEnable = true;
-            AttackCount++;
-            Debug.Log(haveCharacter.ASpeed + " " + AttackCount);
-            if (haveCharacter.ASpeed <= AttackCount)
+
+            //Debug.Log(haveCharacter.ASpeed + " " + AttackCount);
+            if (navMesh.remainingDistance <= navMesh.stoppingDistance)
             {
-                AttackCount = 0;
-                AttackendBack = true;
+                AttackCount++;
+                Target.HChacter.HeathDamage(haveCharacter.Attack);
+                Target.StartHitEffect(navMeshObject.position);
+
+                if (haveCharacter.ASpeed <= AttackCount)
+                {
+                    AttackCount = 0;
+                    AttackendBack = true;
+                }
             }
-            //Target.haveCharacter.HeathDamage(haveCharacter.Attack);
         }
     }
 

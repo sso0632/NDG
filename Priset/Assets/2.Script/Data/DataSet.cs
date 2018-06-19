@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DataSet : MonoBehaviour
 {
     Dictionary<string, List<BattleCharacter>> CharacterStatData;
+    Dictionary<string, List<BattleCharacter>> MonsterStatData;
     Dictionary<string, List<Skill>> SkillData;
 
     public void Init()
@@ -39,6 +40,9 @@ public class DataSet : MonoBehaviour
     {
         TextAsset Characterstatjson = (TextAsset)Resources.Load("Json/CharacterStat", typeof(TextAsset));
         CharacterStatData = JsonConvert.DeserializeObject<Dictionary<string, List<BattleCharacter>>>(Characterstatjson.text);
+
+        Characterstatjson = (TextAsset)Resources.Load("Json/MonsterStat", typeof(TextAsset));
+        MonsterStatData = JsonConvert.DeserializeObject<Dictionary<string, List<BattleCharacter>>>(Characterstatjson.text);
     }
     void SkillDataLoad()
     {
@@ -52,6 +56,14 @@ public class DataSet : MonoBehaviour
         target.ASpeed = CharacterStatData["characterstat"][target.Index].ASpeed;
         target.Attacktype = CharacterStatData["characterstat"][target.Index].Attacktype;
         target.Defence = CharacterStatData["characterstat"][target.Index].Defence;
+    }
+    public void MonsterStatSet(BattleCharacter target)
+    {
+        target.Attack = MonsterStatData["Monsterstat"][target.Index].Attack;
+        target.MHeath = MonsterStatData["Monsterstat"][target.Index].MHeath;
+        target.ASpeed = MonsterStatData["Monsterstat"][target.Index].ASpeed;
+        target.Attacktype = MonsterStatData["Monsterstat"][target.Index].Attacktype;
+        target.Defence = MonsterStatData["Monsterstat"][target.Index].Defence;
     }
 
     public List<Skill> SkillSet()

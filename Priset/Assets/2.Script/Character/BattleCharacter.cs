@@ -13,7 +13,7 @@ public class BattleCharacter : Character {
     protected int MaxHeath;           //최대 체력
     protected int Heath;              //체력
     protected CharacterAttackType attacktype;   //공격 유형 
-    protected DeadorLive lift;        //죽음 여부
+    protected DeadorLive life;        //죽음 여부
 
     public BattleCharacter()         //배틀 캐릭터 생성
     {
@@ -23,12 +23,12 @@ public class BattleCharacter : Character {
     public BattleCharacter(int _index)         //배틀 캐릭터 생성
     {
         index = _index;
-        indexValueSet();
+
     }
 
-    void indexValueSet()
+    protected virtual void indexValueSet()
     {
-        GameManager.instance.Data.CharacterStatSet(this);
+        //GameManager.instance.Data.CharacterStatSet(this);
     }
 
     public CharacterAttackType Attacktype
@@ -72,6 +72,12 @@ public class BattleCharacter : Character {
         set { Heath = value; }
         get { return Heath; }
     }
+
+    public DeadorLive Life
+    {
+        get { return life; }
+    }
+
     protected void HeathFull()      //체력을 최대로 채워주는 함수
     {
         Heath = MaxHeath;
@@ -80,16 +86,20 @@ public class BattleCharacter : Character {
     public void HeathDamage(int Damage)      //데미지 입는 함수
     {
         Heath -= Damage;
+        if(Heath<=0)
+        {
+            Die();
+        }
     }
 
     protected void Die()
     {
-        lift = DeadorLive.DEAD;
+        life = DeadorLive.DEAD;
     }
 
     protected void Live()
     {
-        lift = DeadorLive.LIVE;
+        life = DeadorLive.LIVE;
     }
     protected void Resurrection()           //부활
     {

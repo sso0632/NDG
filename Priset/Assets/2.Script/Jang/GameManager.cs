@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public DataSet Data;
     public CharacterCreate CreateCharacter;
-    public PlayerManager PM;    
+    public PlayerManager PM;
     public SceneNum NowScene;
     public SkillManager SkillSpace;                    //스킬 공간
     public bool FirstStart=true;                       

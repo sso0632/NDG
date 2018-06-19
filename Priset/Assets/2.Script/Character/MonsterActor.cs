@@ -9,7 +9,7 @@ public class MonsterActor : Acter
 {
     public int MonsterIndex;
 
-    float FollowSpeed = 8f;
+    float FollowSpeed = 6f;
     float StopDistance = 2f;
     Vector3 warLeftDirect = new Vector3(-1, 1, 1);
 
@@ -38,7 +38,11 @@ public class MonsterActor : Acter
 
     protected void Update()
     {
-            WarAct();
+        if (haveCharacter != null)
+        {
+            if (haveCharacter.Life == Sang.DeadorLive.LIVE)
+                WarAct();
+        }
     }
     protected virtual void WarAct()
     {
