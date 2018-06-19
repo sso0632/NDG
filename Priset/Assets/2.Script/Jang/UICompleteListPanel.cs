@@ -76,7 +76,7 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
         if (!currentFriendlyImage.gameObject.activeSelf)
             currentFriendlyImage.gameObject.SetActive(true);
 
-        currentFriendlyImage.sprite = UIManager.instance.CharacterImage[index];
+        currentFriendlyImage.sprite = DataSet.CharacterImageResources[index];
     }
     void NextPress()
     {

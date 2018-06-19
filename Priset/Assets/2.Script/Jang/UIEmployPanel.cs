@@ -43,7 +43,7 @@ public class UIEmployPanel : MonoBehaviour {
     }
     public void ContentSet(BattleCharacter character)
     {
-        employCharacterImage.sprite = UIManager.instance.CharacterImage[character.Index];
+        employCharacterImage.sprite = DataSet.CharacterImageResources[character.Index];
         employCharacter = character;
     }
     public void EmployFrieldyField(UIFriendlyField friendly)

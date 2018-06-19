@@ -25,8 +25,8 @@ public class UIFriendlyField : MonoBehaviour
         {
             if (value < 0)
                 m_characterIndex = 0;
-            else if (value > UIManager.instance.CharacterImage.Length - 1)
-                m_characterIndex = UIManager.instance.CharacterImage.Length - 1;
+            else if (value > DataSet.CharacterImageResources.Length - 1)
+                m_characterIndex = DataSet.CharacterImageResources.Length - 1;
             else
                 m_characterIndex = value;            
         }
@@ -50,7 +50,7 @@ public class UIFriendlyField : MonoBehaviour
     public void FieldSet(int index)
     {
         m_characterIndex = index;
-        characterImage.sprite = UIManager.instance.CharacterImage[index];
+        characterImage.sprite = DataSet.CharacterImageResources[index];
     }
 
     public void CharacterSet(BattleCharacter character)      //어디선가 에서 받아와야함

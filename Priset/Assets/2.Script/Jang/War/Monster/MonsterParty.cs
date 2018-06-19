@@ -6,10 +6,9 @@ public class MonsterParty : MonoBehaviour
 {
     public static int PartyCount;
     public delegate void PartyPurposeChange(Acter actor);
-    public static event PartyPurposeChange PurposeEvent;
+    public event PartyPurposeChange PurposeEvent;
 
     List<MonsterActor> monsterList;
-
 
     private void Awake()
     {
@@ -32,28 +31,31 @@ public class MonsterParty : MonoBehaviour
 
             obj.transform.SetParent(newPartyObj.transform);
             monster.SetPartyCommader = this;
+            monster.TargetEventAdd();
             monster.MonsterIndex = index;
             monsterList.Add(monster);
         }
 
         monsterList[0].transform.parent.position =
-            new Vector3(transform.position.x - 0.25f, 1, transform.position.z + 0.25f);
+            new Vector3(transform.position.x - 0.25f, 0, transform.position.z + 0.25f);
 
         monsterList[1].transform.parent.position =
-            new Vector3(transform.position.x + 0.25f, 1, transform.position.z + 0.25f);
+            new Vector3(transform.position.x + 0.25f, 0, transform.position.z + 0.25f);
 
         monsterList[2].transform.parent.position =
-           new Vector3(transform.position.x - 0.25f, 1, transform.position.z - 0.25f);
+           new Vector3(transform.position.x - 0.25f, 0, transform.position.z - 0.25f);
 
         monsterList[3].transform.parent.position =
-            new Vector3(transform.position.x + 0.25f, 1, transform.position.z - 0.25f);
+            new Vector3(transform.position.x + 0.25f, 0, transform.position.z - 0.25f);
     }
+
+
 
     public void PartyDestory()
     {
         monsterList.Clear();
     }
-    public static void PartyTargetSet(Acter _target)
+    public void PartyTargetSet(Acter _target)
     {
         PurposeEvent(_target);
     }

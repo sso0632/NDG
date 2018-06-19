@@ -10,7 +10,6 @@ public class UIFriendlyListPanel : MonoBehaviour
 
     Button refreshFriendlyBtn;
 
-    
     private void Start()
     {
         MakeCharacterField();
@@ -40,7 +39,7 @@ public class UIFriendlyListPanel : MonoBehaviour
     {
         for(int i =0; i< currentFieldList.Count; ++i)
         {
-            int rand = Random.Range(0, UIManager.instance.CharacterImage.Length);
+            int rand = Random.Range(0, DataSet.CharacterImageResources.Length);
             currentFieldList[i].FieldSet(rand);
 
             BattleCharacter tempCharacter = new BattleCharacter(rand);

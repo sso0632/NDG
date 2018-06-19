@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIWarManager : MonoBehaviour
 {
     public static UIWarManager instance;
-    public UIWarFriendlyRoom FriendlyRoomManager;
+    public UIPartyButton FriendlyRoom;
 
     private void Awake()
     {

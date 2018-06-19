@@ -5,28 +5,40 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class UIWarFriendlyRoom : MonoBehaviour, IPointerClickHandler
 {
-    BattleCharacter friendlyBattle;
     Image partyFriendlyImage;
+    BattleCharacter roomCharacter;
+    int roomIndex;
 
-    public BattleCharacter GetBattleFriendlyData
-    {
-        get { return friendlyBattle; }
-    }
     void Awake()
     {
-       partyFriendlyImage = transform.GetChild(0).GetComponent<Image>();
+       partyFriendlyImage = transform.GetChild(0).GetChild(0).GetComponent<Image>();
+       roomIndex = int.Parse(name.ToString());
     }
     private void OnEnable()
     {
-        
+        UIPartyButton.PartySelectEvent += WarRoomSet;
     }
-    private void OnDisable()
+    
+    void WarRoomSet()
     {
-        
-    }
+        if (roomIndex == -1)
+            return;
 
+        PlayerParty tempParty = GameManager.instance.PM.GetPlayerParty;
+
+        roomCharacter = tempParty.GetPartyMember(roomIndex);
+
+        if(roomCharacter == null)
+        {
+            Debug.Log("UI__WAR__FRIENDLY BATTLE CHARACTER NULL____");
+            return;
+        }
+        int index = roomCharacter.Index;
+
+        partyFriendlyImage.sprite = DataSet.CharacterImageResources[index];
+    }
     public void OnPointerClick(PointerEventData pointer)
     {
-        
+        UIWarManager.instance.FriendlyRoom.RepresentFriendly(roomCharacter.Index);
     }
 }

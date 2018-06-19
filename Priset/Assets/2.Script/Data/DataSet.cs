@@ -8,6 +8,9 @@ public class DataSet : MonoBehaviour
     Dictionary<string, List<BattleCharacter>> CharacterStatData;
     Dictionary<string, List<Skill>> SkillData;
 
+    public static Sprite[] CharacterImageResources;
+
+
     public void Init()
     {
         CharacterStatLoad();
@@ -26,12 +29,13 @@ public class DataSet : MonoBehaviour
     void CharacterSpriteLoad()
     {       
         int count = (int)(Resources.LoadAll("CharacterImage").Length * 0.5f);
+        CharacterImageResources = new Sprite[count];
+
         string tempSpriteIndex = null;
-        UIManager.instance.CharacterImage = new Sprite[count];
         for(int i =0; i<count; ++i)
         {
             tempSpriteIndex = i.ToString();
-            UIManager.instance.CharacterImage[i] = (Sprite)Resources.Load("CharacterImage/" + tempSpriteIndex, typeof(Sprite));
+            CharacterImageResources[i] = (Sprite)Resources.Load("CharacterImage/" + tempSpriteIndex, typeof(Sprite));
         }
     }
 

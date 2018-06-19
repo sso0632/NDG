@@ -5,13 +5,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class UIPartyButton : MonoBehaviour, IPointerClickHandler
 {
-    public delegate void FriendlyButtonGate(GameObject obj);
+    public delegate void FriendlyButtonGate();
     public static event FriendlyButtonGate PartySelectEvent;
     GameObject partyRoomUI;
+
     Image currentFriendlyRoom;
     Image currentFriendlyImage;
 
     List<UIWarFriendlyRoom> roomList;
+
     void Awake()
     {
         RoomSet();
@@ -23,8 +25,8 @@ public class UIPartyButton : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         partyRoomUI.SetActive(false);
-
     }
+
     void RoomSet()
     {
         roomList = new List<UIWarFriendlyRoom>();
@@ -39,6 +41,19 @@ public class UIPartyButton : MonoBehaviour, IPointerClickHandler
     {
         if (partyRoomUI.activeSelf)
         {
+            PartyUIExist(false);
+        }
+        else
+        {
+            PartyUIExist(true);
+        }
+    }
+
+
+    void PartyUIExist(bool isExist)
+    {
+        if(!isExist)
+        {
             partyRoomUI.SetActive(false);
             currentFriendlyRoom.color = new Color(1, 1, 1, 1);
             currentFriendlyImage.color = new Color(1, 1, 1, 1);
@@ -46,14 +61,15 @@ public class UIPartyButton : MonoBehaviour, IPointerClickHandler
         else
         {
             partyRoomUI.SetActive(true);
-
-
-
             currentFriendlyRoom.color = new Color(1, 1, 1, 0.5f);
             currentFriendlyImage.color = new Color(1, 1, 1, 0.5f);
+            PartySelectEvent();
         }
     }
 
-    
-
+    public void RepresentFriendly(int index)
+    {
+        PartyUIExist(false);
+        currentFriendlyImage.sprite = DataSet.CharacterImageResources[index];
+    }
 }

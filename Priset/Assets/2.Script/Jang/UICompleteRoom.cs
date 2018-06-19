@@ -25,7 +25,7 @@ public class UICompleteRoom : MonoBehaviour , IPointerClickHandler
 
         roomCharacter.gameObject.SetActive(true);
         roomCharacter.sprite
-             = UIManager.instance.CharacterImage[index];
+             = DataSet.CharacterImageResources[index];
 
         SetRoom(UIManager.instance.CompleteListPanel.GetBattleCharacter);
         UIManager.instance.CompleteListPanel.SuccessRoomPress();

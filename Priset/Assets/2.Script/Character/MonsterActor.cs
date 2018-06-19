@@ -13,7 +13,7 @@ public class MonsterActor : Acter
     float StopDistance = 2f;
     Vector3 warLeftDirect = new Vector3(-1, 1, 1);
 
-    private MonsterParty partyCommander = null;
+    public MonsterParty partyCommander = null;
 
     public MonsterParty GetPartyCommader
     {
@@ -27,15 +27,15 @@ public class MonsterActor : Acter
     {
         base.Awake();
     }
-    private void OnEnable()
-    {
-        MonsterParty.PurposeEvent += TargetSet;
-    }
-    private void OnDisable()
-    {
-        MonsterParty.PurposeEvent -= TargetSet;
-    }
 
+    public void TargetEventAdd()
+    {
+        partyCommander.PurposeEvent += TargetSet;
+    }
+    public void TargetEventRemove()
+    {
+        partyCommander.PurposeEvent -= TargetSet;
+    }
     protected void Update()
     {
             WarAct();
@@ -85,7 +85,7 @@ public class MonsterActor : Acter
     {
         if (other.gameObject.CompareTag("Player"))
         { 
-            MonsterParty.PartyTargetSet(other.GetComponent<Acter>());
+            partyCommander.PartyTargetSet(other.GetComponent<Acter>());
             TargetSet(other.GetComponent<Acter>());
         }
     }

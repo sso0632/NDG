@@ -4,6 +4,7 @@ using UnityEngine;
 using Sang;
 
 public class PlayerManager : MonoBehaviour {
+
     public PriestActor[] havePriestCharacter;           //가지고 있는 프리스트
     public List<BattleCharacter> EmployCharacter;      //섭외한 배틀 캐릭터
     PriestActor NowPriest;                              //현재 프리스트
@@ -60,7 +61,7 @@ public class PlayerManager : MonoBehaviour {
 
         if (NowPriest != null)
             actor.Pos = NowPriest.Pos;
-
+        
         NowPriest = actor;
     }
 
@@ -99,7 +100,6 @@ public class PlayerManager : MonoBehaviour {
 
 public class PlayerParty
 {
-
     BattleCharacter[] characterParty;       //파티에 속에있는 캐릭터 데이터
     Acter[] FriendActer;                    //파티에 속에있는 캐릭터 액터
     public Vector3[] Pos= {new Vector3(-1, 0, 1), new Vector3(1,0,1), new Vector3(-1,0,-1), new Vector3(1, 0,-1)};      //포메이션 값
