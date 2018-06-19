@@ -76,8 +76,6 @@ public class UIManager : MonoBehaviour
     }
     public void FriendlyResetTextSet(int min, float second)
     {
-        FriendlyResetTimerText.text = 
-            string.Format("{0:D2} : {1:D2}", min, (int)second);
+        FriendlyResetTimerText.text = string.Format("{0:D2} : {1:D2}", min, (int)second);
     }
-    
 }

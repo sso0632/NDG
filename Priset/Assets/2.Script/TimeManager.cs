@@ -46,7 +46,8 @@ public class TimeManager : MonoBehaviour
         while (isTime)
         {
             m_friendlyResetSecond -= Time.deltaTime;
-            UIManager.instance.FriendlyResetTextSet(m_friendlyResetminute, m_friendlyResetSecond);
+            if(GameManager.instance.NowScene==Sang.SceneNum.Home)
+                UIManager.instance.FriendlyResetTextSet(m_friendlyResetminute, m_friendlyResetSecond);
 
             if (m_friendlyResetSecond <= 0.0f)
             {
@@ -63,8 +64,11 @@ public class TimeManager : MonoBehaviour
         m_friendlyResetminute = 0;
         m_friendlyResetSecond = 0.0f;
 
-        UIManager.instance.FriendlyResetTextSet(m_friendlyResetminute, m_friendlyResetSecond);
-        UIManager.instance.FriendlyListPanel.RefreshOn();
+        if (GameManager.instance.NowScene == Sang.SceneNum.Home)
+        { 
+            UIManager.instance.FriendlyResetTextSet(m_friendlyResetminute, m_friendlyResetSecond);
+            UIManager.instance.FriendlyListPanel.RefreshOn();
+        }
         isResetTime = true;
 
         yield return null;
