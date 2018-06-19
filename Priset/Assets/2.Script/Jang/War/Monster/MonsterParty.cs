@@ -21,14 +21,14 @@ public class MonsterParty : MonoBehaviour
 
         GameObject newPartyObj = new GameObject(PartyCount.ToString());
         newPartyObj.transform.SetParent(DungeonManager.instance.MonsterPartyManager);
-
-
+        Monster haveData;
         for (int i = 0; i < 4; ++i)
         {
             int index = Random.Range(0, DungeonManager.instance.GetMonsterTypeMax);
             GameObject obj = DungeonManager.instance.PopMonster((MONSTER_TYPE)index);
             MonsterActor monster = obj.GetComponentInChildren<MonsterActor>();
-
+            haveData = new Monster(index);
+            monster.RegistCharacter(haveData);
             obj.transform.SetParent(newPartyObj.transform);
             monster.SetPartyCommader = this;
             monster.TargetEventAdd();

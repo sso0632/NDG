@@ -1,0 +1,130 @@
+{
+	"Monsterstat": [
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 0,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 0,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 0,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 1,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 1,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 1,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 1,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 0,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 0,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 0,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 0,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 0,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 0,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 1,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 1,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 0,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 1,
+			"Defence": 0
+		},
+		{
+			"MHeath": 5,
+			"Attack": 1,
+			"ASpeed": 2,
+			"Attacktype": 1,
+			"Defence": 0
+		}
+	]
+}

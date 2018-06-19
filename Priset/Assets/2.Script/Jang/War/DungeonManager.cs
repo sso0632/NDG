@@ -14,9 +14,6 @@ public class DungeonManager : MonoBehaviour
 {
     public static DungeonManager instance;
     public static int CurrentMonsterPartyCount;
-
-
-    
     public Transform MonsterDropPoint;
     public Transform MonsterPartyManager;
     public GameObject[] MonsterPrefabs;
@@ -45,17 +42,18 @@ public class DungeonManager : MonoBehaviour
         StartCoroutine(MonsterDropSystem());
     }
 
-    void MakeMonsterList()
+    void MakeMonsterList()              //생성
     {        
         int monsterMax = MonsterPrefabs.Length;
         monsterList = new List<GameObject>[monsterMax];
 
-        for(int i =0; i < monsterMax; ++i)
+        for (int i =0; i < monsterMax; ++i)
         {
             monsterList[i] = new List<GameObject>();
             for(int j = 0; j < 5; ++j)
             {
                 GameObject obj = Instantiate(MonsterPrefabs[i]);
+
                 obj.name = MonsterPrefabs[i].name;
                 obj.gameObject.SetActive(false);
                 obj.transform.SetParent(transform);

@@ -18,10 +18,14 @@ public class PriestActor : FriendActor {
         base.Start();
     }
 
-    private void Update()
+    protected void Update()
     {
-        base.Update();
+        if (GameManager.instance.NowScene == SceneNum.Home)
+            HomeAct();
+        else if (GameManager.instance.NowScene == SceneNum.War)
+            WarAct();
     }
+
     public Vector3 Pos
     {
         get{

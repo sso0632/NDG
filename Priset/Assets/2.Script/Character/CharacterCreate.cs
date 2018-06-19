@@ -22,8 +22,8 @@ public class CharacterCreate : MonoBehaviour {
 
     public BattleCharacter FriendCreate(int CreateIndex)          //캐릭터 생성
     {
-        BattleCharacter targetCharacter;
-        targetCharacter = new BattleCharacter(CreateIndex);
+        Friendly targetCharacter;
+        targetCharacter = new Friendly(CreateIndex);
 
         return targetCharacter;
     }

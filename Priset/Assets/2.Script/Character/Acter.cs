@@ -14,9 +14,8 @@ public class Acter : MonoBehaviour {
     protected Transform navMeshObject;
 
     protected Acter Target;               //공격 대상
-
     protected bool attackEnable;
-
+    protected bool NoDamageTime=false;         //무적 시간
 
     protected void init()
     {
@@ -25,6 +24,7 @@ public class Acter : MonoBehaviour {
         navMesh = this.transform.parent.GetComponent<NavMeshAgent>();
         navMeshObject = this.transform.parent;
         attackEnable = true;
+
         //if (GameManager.instance.NowScene != SceneNum.War)
         //{
         //    navMesh.enabled = false;
@@ -39,6 +39,11 @@ public class Acter : MonoBehaviour {
     virtual protected void Start()
     {
        
+    }
+
+    public BattleCharacter HChacter
+    {
+        get { return haveCharacter; }
     }
 
     public void RegistCharacter(BattleCharacter _Character)
@@ -69,11 +74,27 @@ public class Acter : MonoBehaviour {
         ActerAni.SetBool("idle", false);
         AniFuction = MoveAni;
     }
-
     protected void AttackAni()
     {
         AniFuction = null;
         ActerAni.SetTrigger("attack");
+    }
+
+    protected void DieAni()
+    {
+        ActerAni.SetBool("walk", false);
+        ActerAni.SetBool("idle", false);
+        ActerAni.SetBool("die", true);
+    }
+    protected void HitAni()
+    {
+        AniFuction = null;
+        ActerAni.SetTrigger("hit");
+
+        if (haveCharacter.Life == DeadorLive.DEAD)
+        {
+            DieAni();
+        }
     }
 
     protected void NavMove(Vector3 TargetPos)     //대상으로 이동
@@ -88,17 +109,21 @@ public class Acter : MonoBehaviour {
     {
         if (_target == Target)
             return;
-                
-        Target = _target;
+
+        if(_target.HChacter.Life==DeadorLive.LIVE)
+            Target = _target;
     }
     protected void Attackwork()
     {
         NavMove(Target.ActorTransform.position);
         if (attackEnable == true)
         {
-            if (navMesh.stoppingDistance >= Vector3.Distance(ActorTransform.position, Target.ActorTransform.position))
+            if(navMesh.remainingDistance <= navMesh.stoppingDistance) 
             {
-                Attack();
+                if (Target.HChacter.Life == DeadorLive.LIVE)
+                    Attack();
+                else
+                    Target = null;
             }
         }
         else if(attackEnable == false)
@@ -116,11 +141,43 @@ public class Acter : MonoBehaviour {
 
     protected virtual void AttackEnd()
     {
-        if( ActerAni.GetCurrentAnimatorStateInfo(0).IsName("Humanoid_Strike") &&
-        ActerAni.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f)
+        if(ActerAni.GetCurrentAnimatorStateInfo(0).IsName("Humanoid_Strike") &&
+        ActerAni.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.65f)
         {
             attackEnable = true;
-            //Target.haveCharacter.HeathDamage(haveCharacter.Attack);
+            if (navMesh.remainingDistance <= navMesh.stoppingDistance)
+            {
+                Target.HChacter.HeathDamage(haveCharacter.Attack);
+                Target.HitAni();
+            }
+        }
+    }
+    public void StartHitEffect(Vector3 AttackPos)
+    {
+        if(NoDamageTime==false)
+        {
+            StartCoroutine("HitEffect", AttackPos);
+        }
+
+    }
+    IEnumerator HitEffect(Vector3 AttackPos)
+    {
+        if(Target!=null)
+        {
+            HitAni();
+            NoDamageTime = true;
+
+            Vector3 Distance = (navMeshObject.position - AttackPos).normalized;
+
+            float value=0.1f;
+
+            for(int i=0; i<10;++i)
+            {
+                navMeshObject.Translate(value * Distance);
+                yield return new WaitForEndOfFrame();
+            }
+            NoDamageTime = false;
+
         }
     }
 }
