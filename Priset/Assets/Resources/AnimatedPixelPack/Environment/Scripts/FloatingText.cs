@@ -38,6 +38,7 @@ namespace AnimatedPixelPack
         void Start()
         {
             this.startX = this.transform.position.x;
+            textComponent = this.GetComponent<Text>();
         }
 
         void Update()

@@ -41,7 +41,9 @@ public class MonsterActor : Acter
         if (haveCharacter != null)
         {
             if (haveCharacter.Life == Sang.DeadorLive.LIVE)
+            {
                 WarAct();
+            }
         }
     }
     protected virtual void WarAct()
@@ -82,7 +84,7 @@ public class MonsterActor : Acter
             return;
 
         Target = _target;
-        Attackwork();
+        //Attackwork();
     }
     
     void OnTriggerStay(Collider other)
