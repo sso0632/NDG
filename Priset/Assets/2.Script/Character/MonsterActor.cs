@@ -13,6 +13,9 @@ public class MonsterActor : Acter
     float StopDistance = 2f;
     Vector3 warLeftDirect = new Vector3(-1, 1, 1);
 
+    bool isHpBarExist;
+
+
     public MonsterParty partyCommander = null;
 
     public MonsterParty GetPartyCommader
@@ -25,6 +28,7 @@ public class MonsterActor : Acter
     }
     new void Awake()
     {
+        isHpBarExist = false;
         base.Awake();
     }
 
@@ -68,7 +72,7 @@ public class MonsterActor : Acter
         warLeftDirect.x = 1;
         ActorTransform.localScale = warLeftDirect;
     }
-
+    
     void Attackact()
     {
         navMesh.speed = FollowSpeed;
@@ -82,15 +86,20 @@ public class MonsterActor : Acter
             return;
 
         Target = _target;
+        if(!isHpBarExist)
+        {
+            UIWarManager.instance.HpBarViewOn(this);
+            isHpBarExist = true;
+        }
         Attackwork();
     }
     
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         { 
             partyCommander.PartyTargetSet(other.GetComponent<Acter>());
-            TargetSet(other.GetComponent<Acter>());
+            //TargetSet(other.GetComponent<Acter>());
         }
     }
 }

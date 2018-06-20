@@ -18,7 +18,7 @@ public class TimeManager : MonoBehaviour
         get { return isResetTime; }
         set { isResetTime = value; }
     }
-    
+
 
     private void Awake()
     {

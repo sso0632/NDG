@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using Sang;
 
-public class Acter : MonoBehaviour {
-
+public class Acter : MonoBehaviour
+{
     protected BattleCharacter haveCharacter;
     protected Animator ActerAni;
     protected NavMeshAgent navMesh;
@@ -34,8 +34,6 @@ public class Acter : MonoBehaviour {
     {
         init();
     }
-
-
     virtual protected void Start()
     {
        
@@ -148,17 +146,17 @@ public class Acter : MonoBehaviour {
             if (navMesh.remainingDistance <= navMesh.stoppingDistance)
             {
                 Target.HChacter.HeathDamage(haveCharacter.Attack);
+                UIWarManager.HealthCallEvent(Target);
                 Target.HitAni();
             }
         }
     }
     public void StartHitEffect(Vector3 AttackPos)
     {
-        if(NoDamageTime==false)
+        if(NoDamageTime ==false)
         {
             StartCoroutine("HitEffect", AttackPos);
         }
-
     }
     IEnumerator HitEffect(Vector3 AttackPos)
     {
@@ -177,7 +175,6 @@ public class Acter : MonoBehaviour {
                 yield return new WaitForEndOfFrame();
             }
             NoDamageTime = false;
-
         }
     }
 }

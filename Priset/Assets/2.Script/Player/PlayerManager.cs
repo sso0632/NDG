@@ -107,6 +107,16 @@ public class PlayerParty
     Priest Leader;                          //사제의 데이터 정도
     Quaternion Direct = new Quaternion(90f, 0, 0, 0);       //warscene 상의 각도
 
+    public Acter[] GetActors()
+    {
+        return FriendActer;
+    }
+    public void SetActor(int index, Acter _actor)
+    {
+        FriendActer[index] = _actor;
+    }
+
+
     public void LeaderSet(Priest _Leader, Transform _LeaderTransform)
     {
         Leader = _Leader;
@@ -135,6 +145,7 @@ public class PlayerParty
     public void PartySet()
     {
         characterParty = new BattleCharacter[4];
+        FriendActer = new Acter[4];
     }
     public void SetLeftUp(BattleCharacter character)
     {

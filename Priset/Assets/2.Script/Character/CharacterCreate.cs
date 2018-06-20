@@ -86,6 +86,7 @@ public class CharacterCreate : MonoBehaviour {
             {
                 Chlid = Craete(temp.GetPos(i), GameManager.instance.PM.GetPartyParent().transform, FriendCreate(temp.GetPartyMember(i).Index)).transform.GetChild(0);
                 Actor = Chlid.GetComponent<FriendActor>();
+                temp.SetActor(i, Actor);
                 Actor.SetParty(GameManager.instance.PM.GetPlayerParty);
                 Actor.RegistCharacter(temp.GetPartyMember(i));
                 Actor.SetFormationPos((PartyPos)i);

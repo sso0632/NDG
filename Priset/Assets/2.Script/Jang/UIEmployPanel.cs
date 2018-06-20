@@ -13,7 +13,6 @@ public class UIEmployPanel : MonoBehaviour {
     BattleCharacter employCharacter;
     tdelgate<BattleCharacter> CreateFunction;   //생성함수 
     UIFriendlyField currentFieldyField;
-
     
     private void Awake()
     {

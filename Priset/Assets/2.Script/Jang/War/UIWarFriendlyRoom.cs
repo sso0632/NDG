@@ -7,8 +7,8 @@ public class UIWarFriendlyRoom : MonoBehaviour, IPointerClickHandler
 {
     Image partyFriendlyImage;
     BattleCharacter roomCharacter;
-    int roomIndex;
 
+    int roomIndex;
     void Awake()
     {
        partyFriendlyImage = transform.GetChild(0).GetChild(0).GetComponent<Image>();
