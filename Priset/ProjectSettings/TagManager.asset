@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Friend
   - Monster
+  - DamageObject
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - 
   - PlayerParty
   - MonsterParty
-  - 
+  - DamageObject
   - 
   - 
   - 

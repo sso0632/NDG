@@ -188,18 +188,25 @@ public class FriendActor : Acter {
         {
             attackEnable = true;
 
-            //Debug.Log(haveCharacter.ASpeed + " " + AttackCount);
-            if (navMesh.remainingDistance <= navMesh.stoppingDistance)
+            if (haveCharacter.Attacktype == CharacterAttackType.SHORT)
+            {
+                if (navMesh.remainingDistance <= navMesh.stoppingDistance)
+                {
+                    AttackCount++;
+                    Target.HChacter.HeathDamage(haveCharacter.Attack);
+                    Target.StartHitEffect(navMeshObject.position);
+                }
+            }
+            else
             {
                 AttackCount++;
-                Target.HChacter.HeathDamage(haveCharacter.Attack);
-                Target.StartHitEffect(navMeshObject.position);
+                haveCharacter.Bullet.CreateClone(FirePos.position, haveCharacter.Attack, 3f, Target.NObject.position, Target.tag);
+            }
 
-                if (haveCharacter.ASpeed <= AttackCount)
-                {
-                    AttackCount = 0;
-                    AttackendBack = true;
-                }
+            if (haveCharacter.ASpeed <= AttackCount)
+            {
+                AttackCount = 0;
+                AttackendBack = true;
             }
         }
     }
@@ -207,13 +214,9 @@ public class FriendActor : Acter {
     bool checkBack()
     {
         if ((int)Vector3.Distance(Party.GetPos((int)formationNum), ActorTransform.position) == 0)
-        {
             return true;
-        }
         else
-        {
             return false;
-        }
     }
         
 }

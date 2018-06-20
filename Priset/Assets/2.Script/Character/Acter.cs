@@ -12,17 +12,21 @@ public class Acter : MonoBehaviour
     protected Transform ActorTransform;
     protected voiddelgate AniFuction;     //애니 저장
     protected Transform navMeshObject;
-
+    protected Transform FirePos;  
     protected Acter Target;               //공격 대상
     protected bool attackEnable;
     protected bool NoDamageTime=false;         //무적 시간
+    protected SphereCollider thisCollder;       //인식
 
     protected void init()
     {
         ActerAni = this.GetComponent<Animator>();
         ActorTransform = this.GetComponent<Transform>();
         navMesh = this.transform.parent.GetComponent<NavMeshAgent>();
+        thisCollder = this.GetComponent<SphereCollider>();
         navMeshObject = this.transform.parent;
+        if (navMeshObject.childCount>1)
+            FirePos = navMeshObject.GetChild(1);
         attackEnable = true;
 
         //if (GameManager.instance.NowScene != SceneNum.War)
@@ -92,6 +96,7 @@ public class Acter : MonoBehaviour
         if (haveCharacter.Life == DeadorLive.DEAD)
         {
             DieAni();
+            thisCollder.enabled = false;
         }
     }
 
@@ -113,10 +118,23 @@ public class Acter : MonoBehaviour
     }
     protected void Attackwork()
     {
+        if(haveCharacter.Attacktype==CharacterAttackType.SHORT)
+        {
+            ShortAttack();
+        }
+        else
+        {
+            Fire();
+        }
+    }
+
+
+    void ShortAttack()
+    {
         NavMove(Target.ActorTransform.position);
         if (attackEnable == true)
         {
-            if(navMesh.remainingDistance <= navMesh.stoppingDistance) 
+            if (navMesh.remainingDistance <= navMesh.stoppingDistance)
             {
                 if (Target.HChacter.Life == DeadorLive.LIVE)
                     Attack();
@@ -124,7 +142,20 @@ public class Acter : MonoBehaviour
                     Target = null;
             }
         }
-        else if(attackEnable == false)
+        else if (attackEnable == false)
+            AttackEnd();
+    }
+
+    void Fire()
+    {
+        if (attackEnable == true)
+        {
+            if (Target.HChacter.Life == DeadorLive.LIVE)
+                Attack();
+            else
+                Target = null;
+        }
+        else if (attackEnable == false)
             AttackEnd();
     }
 
@@ -132,7 +163,14 @@ public class Acter : MonoBehaviour
     {
         if (!ActerAni.GetCurrentAnimatorStateInfo(0).IsName("Humanoid_Strike"))
         {
-            AttackAni();
+            if (haveCharacter.Attacktype == CharacterAttackType.SHORT)
+            {
+                AttackAni();
+            }
+            else
+            {
+                AttackAni();
+            }
             attackEnable = false;
         }
     }
@@ -143,13 +181,26 @@ public class Acter : MonoBehaviour
         ActerAni.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.65f)
         {
             attackEnable = true;
-            if (navMesh.remainingDistance <= navMesh.stoppingDistance)
-            {
-                Target.HChacter.HeathDamage(haveCharacter.Attack);
-                UIWarManager.HealthCallEvent(Target);
-                Target.HitAni();
+
+            if (haveCharacter.Attacktype == CharacterAttackType.SHORT)
+            { 
+                if (navMesh.remainingDistance <= navMesh.stoppingDistance)
+                {
+                    //Hit(Target);
+                }
             }
         }
+    }
+
+    public void Hit(int Damage)                         //자신이 맞을때
+    {
+        HChacter.HeathDamage(haveCharacter.Attack);
+        HitAni();
+    }
+    public void Hit(Acter Target)                         //남을 때릴때
+    {
+        Target.HChacter.HeathDamage(haveCharacter.Attack);
+        Target.HitAni();
     }
     public void StartHitEffect(Vector3 AttackPos)
     {
@@ -176,5 +227,10 @@ public class Acter : MonoBehaviour
             }
             NoDamageTime = false;
         }
+    }
+
+    public Transform NObject
+    {
+        get { return navMeshObject; }
     }
 }

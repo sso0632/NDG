@@ -17,6 +17,7 @@ public class BattleCharacter : Character {
 
     protected CharacterAttackType attacktype;   //공격 유형 
     protected DeadorLive life;        //죽음 여부
+    protected Projectiles haveBullet;   //가지고 있는 총알
 
     public BattleCharacter()         //배틀 캐릭터 생성
     {
@@ -31,12 +32,15 @@ public class BattleCharacter : Character {
 
     protected virtual void indexValueSet()
     {
-        //GameManager.instance.Data.CharacterStatSet(this);
     }
 
     public CharacterAttackType Attacktype
     {
-        set { attacktype = value; }
+        set
+        {
+            attacktype = value;
+            SetProjecttile();
+        }
         get { return attacktype; }
     }
     public float HMSpeed
@@ -76,6 +80,11 @@ public class BattleCharacter : Character {
         get { return Heath; }
     }
 
+    public Projectiles Bullet
+    {
+        get { return haveBullet; }
+    }
+
     public DeadorLive Life
     {
         get { return life; }
@@ -108,5 +117,18 @@ public class BattleCharacter : Character {
     {
         Live();
         HeathFull();
+    }
+
+    void SetProjecttile()
+    {
+        switch(attacktype)
+        {
+            case CharacterAttackType.ARROW:
+                haveBullet =Resources.Load<GameObject>("PrePab/Projectile/Arrow").GetComponent<Projectiles>();
+                break;
+            case CharacterAttackType.FIREBULL:
+                haveBullet = Resources.Load<GameObject>("PrePab/Projectile/Fireball").GetComponent<Projectiles>();
+                break;
+        }
     }
 }

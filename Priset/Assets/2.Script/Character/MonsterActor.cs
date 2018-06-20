@@ -45,7 +45,9 @@ public class MonsterActor : Acter
         if (haveCharacter != null)
         {
             if (haveCharacter.Life == Sang.DeadorLive.LIVE)
+            {
                 WarAct();
+            }
         }
     }
     protected virtual void WarAct()
@@ -91,7 +93,7 @@ public class MonsterActor : Acter
             UIWarManager.instance.HpBarViewOn(this);
             isHpBarExist = true;
         }
-        Attackwork();
+        //Attackwork();
     }
     
     void OnTriggerEnter(Collider other)
@@ -99,7 +101,7 @@ public class MonsterActor : Acter
         if (other.gameObject.CompareTag("Player"))
         { 
             partyCommander.PartyTargetSet(other.GetComponent<Acter>());
-            //TargetSet(other.GetComponent<Acter>());
+            TargetSet(other.GetComponent<Acter>());
         }
     }
 }

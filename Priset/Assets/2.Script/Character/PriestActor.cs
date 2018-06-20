@@ -56,6 +56,7 @@ public class PriestActor : FriendActor {
             MoveAni();
         else
             IdleAni();
+
         navMeshObject.position += (JoyStick.MoveDir * havePriest.MoveSpeed) * Time.deltaTime;
     }
 }
