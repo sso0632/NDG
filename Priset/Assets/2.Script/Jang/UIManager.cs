@@ -26,6 +26,9 @@ public class UIManager : MonoBehaviour
 
     public Text FriendlyResetTimerText;
 
+    public GameObject LoadUI;
+    public Image SliderImage;
+
     private void Awake()
     {
         if (instance == null)
@@ -44,6 +47,7 @@ public class UIManager : MonoBehaviour
         EmployPanel.gameObject.SetActive(false);
         PriestManagerPanel.SetActive(false);
         HighPriestManagerPanel.SetActive(false);
+        LoadUI.SetActive(false);
         PriestPanel.Init();
     }
     public void CaveSupervise()

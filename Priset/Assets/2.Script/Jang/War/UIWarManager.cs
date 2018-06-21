@@ -9,9 +9,13 @@ public class UIWarManager : MonoBehaviour
 
 
     public GameObject HpBarPrefab;
+    public GameObject DamageTextPrefab;
     public Transform HpBarCollecter;
-
+    public Transform DamageCollecter;
+    
     List<UIHpBar> barList;
+    List<UIDamageText> damageTextList;
+    
 
     public delegate void UIBarHealthCall(Acter actor);
     public static event UIBarHealthCall BarHealthCall;
@@ -28,6 +32,7 @@ public class UIWarManager : MonoBehaviour
     {
         BarPooling();
         PartyInit();
+        DamagePool();
     }
     void PartyInit()
     {
@@ -59,6 +64,18 @@ public class UIWarManager : MonoBehaviour
             barList.Add(tempBar);
         }
     }
+    void DamagePool()
+    {
+        damageTextList = new List<UIDamageText>();
+        for (int i = 0; i < 10; ++i)
+        {
+            GameObject temp = Instantiate(DamageTextPrefab);
+            UIDamageText tempDamage = temp.GetComponent<UIDamageText>();
+            temp.transform.SetParent(DamageCollecter);
+            temp.SetActive(false);
+            damageTextList.Add(tempDamage);
+        }
+    }
     
     public UIHpBar PopHpBar()
     { 
@@ -70,7 +87,6 @@ public class UIWarManager : MonoBehaviour
             tempBar.EventAdd();
             temp.SetActive(false);
             return tempBar;
-
         }
         else if(barList.Count > 0)
         {
@@ -78,9 +94,32 @@ public class UIWarManager : MonoBehaviour
             barList.Remove(tempBar);
             return tempBar;
         }
-
         return null;
     }
+    public void ShowDamageText(Vector3 showPoint, float damage)
+    {
+        if (damageTextList.Count > 0)
+        { 
+            UIDamageText tempText = damageTextList[0];
+            tempText.SetDamageText(showPoint, damage.ToString());
+            tempText.OpenTextUI();
+            damageTextList.Remove(tempText);
+        }
+        else if (damageTextList.Count <= 0)
+        {
+            GameObject tempObj = Instantiate(DamageTextPrefab);
+            UIDamageText tempText = tempObj.GetComponent<UIDamageText>();
+            tempObj.transform.SetParent(DamageCollecter);
+            tempText.SetDamageText(showPoint, damage.ToString());
+            tempText.OpenTextUI();
+        }
+    }
+    public void PushDamageText(UIDamageText damageText)
+    {
+        damageText.gameObject.SetActive(false);
+        damageTextList.Add(damageText);
+    }
+
     public void PushHpBar(UIHpBar hpBar)
     {
         hpBar.gameObject.SetActive(false);

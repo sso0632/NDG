@@ -29,9 +29,9 @@ public class BattleCharacter : Character {
         index = _index;
 
     }
-
     protected virtual void indexValueSet()
     {
+
     }
 
     public CharacterAttackType Attacktype
@@ -98,6 +98,7 @@ public class BattleCharacter : Character {
     public void HeathDamage(int Damage)      //데미지 입는 함수
     {
         Heath -= Damage;
+
         if(Heath<=0)
         {
             Die();

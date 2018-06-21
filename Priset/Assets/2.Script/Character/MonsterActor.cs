@@ -26,6 +26,14 @@ public class MonsterActor : Acter
     {
         set { partyCommander = value; }
     }
+    public bool GetHpBarExist
+    {
+        get { return isHpBarExist; }
+    }
+    public bool SetHpBarExist
+    {
+        set { isHpBarExist = value; }
+    }
     new void Awake()
     {
         isHpBarExist = false;
@@ -87,12 +95,14 @@ public class MonsterActor : Acter
         if (_target == Target)
             return;
 
-        Target = _target;
-        if(!isHpBarExist)
+        //플레이어가 나(몬스터)를 인식했으면 HPBar On
+        if (!isHpBarExist && haveCharacter.Life == Sang.DeadorLive.LIVE)
         {
             UIWarManager.instance.HpBarViewOn(this);
             isHpBarExist = true;
         }
+
+        Target = _target;
         //Attackwork();
     }
     
@@ -101,7 +111,7 @@ public class MonsterActor : Acter
         if (other.gameObject.CompareTag("Player"))
         { 
             partyCommander.PartyTargetSet(other.GetComponent<Acter>());
-            TargetSet(other.GetComponent<Acter>());
+            //TargetSet(other.GetComponent<Acter>());
         }
     }
 }

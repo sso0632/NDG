@@ -11,12 +11,14 @@ public class UIHpBar : MonoBehaviour
     RectTransform rectField;
     Vector2 viewPortVector;
 
-
     private void Awake()
     {
 
         hpSlider = GetComponent<Slider>();
         rectField = GetComponent<RectTransform>();
+
+        hpSlider.maxValue = 1;
+        hpSlider.minValue = 0;
 
     }
 
@@ -33,6 +35,11 @@ public class UIHpBar : MonoBehaviour
             return;
 
         nowActor = _setChar;
+        
+        hpSlider.maxValue = nowActor.HChacter.MHeath;
+        hpSlider.minValue = 0;
+        hpSlider.value = nowActor.HChacter.HP;
+
     }
     private void Update()
     {
@@ -40,7 +47,7 @@ public class UIHpBar : MonoBehaviour
             return;
 
         viewPortVector = Camera.main.WorldToScreenPoint(nowActor.transform.position);
-        viewPortVector.y += 60f;
+        viewPortVector.y += 70f;
         rectField.position = viewPortVector;
 
     }
@@ -58,14 +65,16 @@ public class UIHpBar : MonoBehaviour
         if (nowActor != actor)
             return;
 
-        if (nowActor.HChacter.HP <= 0)
-        {
-            nowActor = null;
-            UIWarManager.instance.PushHpBar(this);
+        hpSlider.value = nowActor.HChacter.HP;
+        if (nowActor.HChacter.HP > 0)
             return;
 
-        }
-        hpSlider.value = nowActor.HChacter.HP / nowActor.HChacter.MHeath;
+        MonsterActor temp = (MonsterActor)nowActor;
+        temp.SetHpBarExist = false;
+        temp = null; ;
+
+        UIWarManager.instance.PushHpBar(this);
+        nowActor = null;
     }
 
   
