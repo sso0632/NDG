@@ -133,6 +133,8 @@ public class UIWarManager : MonoBehaviour
     }
     public static void HealthCallEvent(Acter _acter)
     {
+        if (_acter == null)
+            return;
         BarHealthCall(_acter);
     }
 }

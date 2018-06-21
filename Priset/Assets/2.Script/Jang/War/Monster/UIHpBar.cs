@@ -16,10 +16,8 @@ public class UIHpBar : MonoBehaviour
 
         hpSlider = GetComponent<Slider>();
         rectField = GetComponent<RectTransform>();
-
         hpSlider.maxValue = 1;
         hpSlider.minValue = 0;
-
     }
 
 

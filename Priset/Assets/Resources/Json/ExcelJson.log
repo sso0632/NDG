@@ -1,23 +1,23 @@
 
-Loading: E:\joystudy\NDG\Priset\MonsterStat.xlsx
+Loading: E:\joystudy\NDG\Priset\CharacterStat.xlsx
 Parse sheet: Sheet1
-Parsing: E:\joystudy\NDG\Priset\MonsterStat.xlsx.$$$\Sheet1.csv
+Parsing: E:\joystudy\NDG\Priset\CharacterStat.xlsx.$$$\Sheet1.csv
 Parse sheet: Sheet2
-Parsing: E:\joystudy\NDG\Priset\MonsterStat.xlsx.$$$\Sheet2.csv
+Parsing: E:\joystudy\NDG\Priset\CharacterStat.xlsx.$$$\Sheet2.csv
 Parse sheet: Sheet3
-Parsing: E:\joystudy\NDG\Priset\MonsterStat.xlsx.$$$\Sheet3.csv
-Closing: E:\joystudy\NDG\Priset\MonsterStat.xlsx
+Parsing: E:\joystudy\NDG\Priset\CharacterStat.xlsx.$$$\Sheet3.csv
+Closing: E:\joystudy\NDG\Priset\CharacterStat.xlsx
 ------------------------------------------------------------------------------
-[MonsterStat.xlsx(Sheet1): ROW 1]
-Found object mark: '#Monsterstat[{}]'
-[MonsterStat.xlsx(Sheet1): ROW 1]
+[CharacterStat.xlsx(Sheet1): ROW 1]
+Found object mark: '#characterstat[{}]'
+[CharacterStat.xlsx(Sheet1): ROW 1]
  Key: MHeath at 1
-[MonsterStat.xlsx(Sheet1): ROW 1]
+[CharacterStat.xlsx(Sheet1): ROW 1]
  Key: Attack at 2
-[MonsterStat.xlsx(Sheet1): ROW 1]
+[CharacterStat.xlsx(Sheet1): ROW 1]
  Key: ASpeed at 3
-[MonsterStat.xlsx(Sheet1): ROW 1]
+[CharacterStat.xlsx(Sheet1): ROW 1]
  Key: Attacktype at 4
-[MonsterStat.xlsx(Sheet1): ROW 1]
+[CharacterStat.xlsx(Sheet1): ROW 1]
  Key: Defence at 5
 Parsing Array Object Table...

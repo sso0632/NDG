@@ -90,7 +90,7 @@ public class CharacterCreate : MonoBehaviour {
                 Actor.SetParty(GameManager.instance.PM.GetPlayerParty);
                 Actor.RegistCharacter(temp.GetPartyMember(i));
                 Actor.SetFormationPos((PartyPos)i);
-                Chlid.localPosition = Vector3.zero;
+                Chlid.localPosition =new Vector3(0, 0,-0.3f);
                 Chlid.localRotation = Quaternion.Euler(90f, 0, 0);
             }
         }

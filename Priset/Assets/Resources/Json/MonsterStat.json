@@ -8,10 +8,10 @@
 			"Defence": 0
 		},
 		{
-			"MHeath": 5,
+			"MHeath": 3,
 			"Attack": 1,
 			"ASpeed": 2,
-			"Attacktype": 0,
+			"Attacktype": 2,
 			"Defence": 0
 		},
 		{

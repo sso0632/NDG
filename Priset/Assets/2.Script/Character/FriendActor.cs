@@ -11,11 +11,11 @@ public class FriendActor : Acter {
 
     PlayerParty Party;                  //속해있는 파티
     Quaternion LeftDirect = new Quaternion(0, 180, 0, 0);
-    Vector3 warLeftDirect = new Vector3(-1, 1, 1);
     PartyPos formationNum;
 
     float MonsterFollowSpeed=6f;
-    float MonsterStopDistance=1f;
+    float MonsterStopDistance=2f;
+    float LongDistance;
 
     int AttackCount=0;                    //공격한 횟수 
     bool AttackendBack=false;                   //공격 완료 돌아가기
@@ -23,6 +23,7 @@ public class FriendActor : Acter {
     private void Awake() 
     {
         base.Awake();
+        LongDistance = RangeArea.radius;
     }
     override protected void Start()
     {
@@ -103,7 +104,10 @@ public class FriendActor : Acter {
 
         if(!AttackendBack)
         {
-            navMesh.stoppingDistance = MonsterStopDistance;
+            if (haveCharacter.Attacktype == CharacterAttackType.SHORT)
+                navMesh.stoppingDistance = MonsterStopDistance;
+           else 
+                navMesh.stoppingDistance = LongDistance;
             Attackwork();
         }
         else
@@ -114,9 +118,11 @@ public class FriendActor : Acter {
             {
                 AttackendBack = false;
                 Target = null;
+                RangeRefresh();
             }
         }
     }
+
     void FollowLeader()
     {
         navMesh.stoppingDistance = 0;
@@ -170,21 +176,22 @@ public class FriendActor : Acter {
         navMesh.enabled = true;
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Monster"))
         {
-            if(Target==null)
+            if (Target == null)
             {
                 TargetSet(other.GetComponent<Acter>());
             }
         }
     }
 
+
     protected override void AttackEnd()
     {
         if (ActerAni.GetCurrentAnimatorStateInfo(0).IsName("Humanoid_Strike") &&
-        ActerAni.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f)
+        ActerAni.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.65f)
         {
             attackEnable = true;
 

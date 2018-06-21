@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using Sang;
 
 
 public class MonsterActor : Acter
@@ -10,9 +10,8 @@ public class MonsterActor : Acter
     public int MonsterIndex;
 
     float FollowSpeed = 6f;
-    float StopDistance = 2f;
-    Vector3 warLeftDirect = new Vector3(-1, 1, 1);
-
+    float StopDistance = 1f;
+    float LongDistance;
     bool isHpBarExist;
 
 
@@ -38,6 +37,7 @@ public class MonsterActor : Acter
     {
         isHpBarExist = false;
         base.Awake();
+        LongDistance = RangeArea.radius;
     }
 
     public void TargetEventAdd()
@@ -86,7 +86,11 @@ public class MonsterActor : Acter
     void Attackact()
     {
         navMesh.speed = FollowSpeed;
-        navMesh.stoppingDistance = StopDistance;
+
+        if (haveCharacter.Attacktype == CharacterAttackType.SHORT)
+            navMesh.stoppingDistance = StopDistance;
+        else
+            navMesh.stoppingDistance = LongDistance;
         Attackwork();
     }
 
@@ -101,15 +105,14 @@ public class MonsterActor : Acter
             UIWarManager.instance.HpBarViewOn(this);
             isHpBarExist = true;
         }
-
         Target = _target;
         //Attackwork();
     }
-    
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        { 
+        {
             partyCommander.PartyTargetSet(other.GetComponent<Acter>());
             //TargetSet(other.GetComponent<Acter>());
         }

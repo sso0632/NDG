@@ -6,6 +6,9 @@ using Sang;
 
 public class Acter : MonoBehaviour
 {
+
+    protected SphereCollider RangeArea;       //인식
+
     protected BattleCharacter haveCharacter;
     protected Animator ActerAni;
     protected NavMeshAgent navMesh;
@@ -16,14 +19,17 @@ public class Acter : MonoBehaviour
     protected Acter Target;               //공격 대상
     protected bool attackEnable;
     protected bool NoDamageTime=false;         //무적 시간
-    protected SphereCollider thisCollder;       //인식
+
+    protected SphereCollider HitArea;       //인식
+    protected Vector3 warLeftDirect = new Vector3(-1, 1, 1);
 
     protected void init()
     {
         ActerAni = this.GetComponent<Animator>();
         ActorTransform = this.GetComponent<Transform>();
         navMesh = this.transform.parent.GetComponent<NavMeshAgent>();
-        thisCollder = this.GetComponent<SphereCollider>();
+        HitArea = this.GetComponent<SphereCollider>();
+        RangeArea = transform.GetChild(0).GetComponent<SphereCollider>();
         navMeshObject = this.transform.parent;
         if (navMeshObject.childCount>1)
             FirePos = navMeshObject.GetChild(1);
@@ -88,6 +94,11 @@ public class Acter : MonoBehaviour
         ActerAni.SetBool("idle", false);
         ActerAni.SetBool("die", true);
     }
+    protected void FireAni()
+    {
+        AniFuction = null;
+        ActerAni.SetTrigger("fire");
+    }
     protected void HitAni()
     {
         AniFuction = null;
@@ -96,7 +107,8 @@ public class Acter : MonoBehaviour
         if (haveCharacter.Life == DeadorLive.DEAD)
         {
             DieAni();
-            thisCollder.enabled = false;
+            RangeArea.enabled = false;
+            HitArea.enabled = false;
         }
     }
 
@@ -106,6 +118,9 @@ public class Acter : MonoBehaviour
             navMesh.enabled = true;
 
         navMesh.SetDestination(TargetPos);
+
+        if(Target!=null)
+            TargetView();
     }
 
     protected virtual void TargetSet(Acter _target)
@@ -113,23 +128,20 @@ public class Acter : MonoBehaviour
         if (_target == Target)
             return;
 
-        if(_target.HChacter.Life==DeadorLive.LIVE)
+        if (_target.HChacter.Life == DeadorLive.LIVE)
+        {
             Target = _target;
+            TargetView();
+        }
     }
     protected void Attackwork()
     {
-        if(haveCharacter.Attacktype==CharacterAttackType.SHORT)
-        {
-            ShortAttack();
-        }
-        else
-        {
-            Fire();
-        }
+        MoveToAttack();
+        if (Target != null)
+            TargetView();
     }
 
-
-    void ShortAttack()
+    void MoveToAttack()
     {
         NavMove(Target.ActorTransform.position);
         if (attackEnable == true)
@@ -141,19 +153,6 @@ public class Acter : MonoBehaviour
                 else
                     Target = null;
             }
-        }
-        else if (attackEnable == false)
-            AttackEnd();
-    }
-
-    void Fire()
-    {
-        if (attackEnable == true)
-        {
-            if (Target.HChacter.Life == DeadorLive.LIVE)
-                Attack();
-            else
-                Target = null;
         }
         else if (attackEnable == false)
             AttackEnd();
@@ -186,8 +185,12 @@ public class Acter : MonoBehaviour
             { 
                 if (navMesh.remainingDistance <= navMesh.stoppingDistance)
                 {
-                    //Hit(Target);
+                    Hit(Target);
                 }
+            }
+            else
+            {
+                haveCharacter.Bullet.CreateClone(FirePos.position, haveCharacter.Attack, 3f, Target.NObject.position, Target.tag);
             }
         }
     }
@@ -232,5 +235,30 @@ public class Acter : MonoBehaviour
     public Transform NObject
     {
         get { return navMeshObject; }
+    }
+
+    protected void RangeRefresh()
+    {
+        RangeArea.enabled = false;
+        RangeArea.enabled = true;
+    }
+
+
+    void TargetView()
+    {
+        if (navMeshObject.position.x < Target.navMeshObject.position.x)
+            right();
+        if (navMeshObject.position.x > Target.navMeshObject.position.x)
+            Left();
+    }
+    protected void Left()
+    {
+        warLeftDirect.x = -1;
+        ActorTransform.localScale = warLeftDirect;
+    }
+    protected void right()
+    {
+        warLeftDirect.x = 1;
+        ActorTransform.localScale = warLeftDirect;
     }
 }
