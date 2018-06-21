@@ -1,21 +1,21 @@
 {
 	"characterstat": [
 		{
-			"MHeath": 10,
+			"MHeath": 20,
 			"Attack": 1,
 			"ASpeed": 2,
 			"Attacktype": 0,
 			"Defence": 0
 		},
 		{
-			"MHeath": 10,
+			"MHeath": 20,
 			"Attack": 1,
 			"ASpeed": 2,
 			"Attacktype": 0,
 			"Defence": 0
 		},
 		{
-			"MHeath": 10,
+			"MHeath": 20,
 			"Attack": 1,
 			"ASpeed": 2,
 			"Attacktype": 0,
@@ -24,68 +24,68 @@
 		{
 			"MHeath": 8,
 			"Attack": 1,
-			"ASpeed": 2,
+			"ASpeed": 1,
 			"Attacktype": 2,
 			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
-			"ASpeed": 2,
+			"ASpeed": 1,
 			"Attacktype": 2,
 			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
-			"ASpeed": 2,
+			"ASpeed": 1,
 			"Attacktype": 1,
 			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
-			"ASpeed": 2,
+			"ASpeed": 1,
 			"Attacktype": 2,
 			"Defence": 0
 		},
 		{
-			"MHeath": 10,
+			"MHeath": 20,
 			"Attack": 1,
 			"ASpeed": 2,
 			"Attacktype": 0,
 			"Defence": 0
 		},
 		{
-			"MHeath": 10,
+			"MHeath": 20,
 			"Attack": 1,
 			"ASpeed": 2,
 			"Attacktype": 0,
 			"Defence": 0
 		},
 		{
-			"MHeath": 10,
+			"MHeath": 20,
 			"Attack": 1,
 			"ASpeed": 2,
 			"Attacktype": 0,
 			"Defence": 0
 		},
 		{
-			"MHeath": 10,
+			"MHeath": 20,
 			"Attack": 1,
 			"ASpeed": 2,
 			"Attacktype": 0,
 			"Defence": 0
 		},
 		{
-			"MHeath": 10,
+			"MHeath": 20,
 			"Attack": 1,
 			"ASpeed": 2,
 			"Attacktype": 0,
 			"Defence": 0
 		},
 		{
-			"MHeath": 10,
+			"MHeath": 20,
 			"Attack": 1,
 			"ASpeed": 2,
 			"Attacktype": 0,
@@ -94,19 +94,19 @@
 		{
 			"MHeath": 8,
 			"Attack": 1,
-			"ASpeed": 2,
+			"ASpeed": 1,
 			"Attacktype": 1,
 			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
-			"ASpeed": 2,
+			"ASpeed": 1,
 			"Attacktype": 2,
 			"Defence": 0
 		},
 		{
-			"MHeath": 10,
+			"MHeath": 20,
 			"Attack": 1,
 			"ASpeed": 2,
 			"Attacktype": 2,
@@ -115,14 +115,14 @@
 		{
 			"MHeath": 8,
 			"Attack": 1,
-			"ASpeed": 2,
+			"ASpeed": 1,
 			"Attacktype": 2,
 			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
-			"ASpeed": 2,
+			"ASpeed": 1,
 			"Attacktype": 2,
 			"Defence": 0
 		}

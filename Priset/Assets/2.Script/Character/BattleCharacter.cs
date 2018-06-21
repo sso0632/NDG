@@ -32,6 +32,7 @@ public class BattleCharacter : Character {
 
     protected virtual void indexValueSet()
     {
+
     }
 
     public CharacterAttackType Attacktype

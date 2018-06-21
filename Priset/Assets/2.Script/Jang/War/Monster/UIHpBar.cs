@@ -17,7 +17,6 @@ public class UIHpBar : MonoBehaviour
 
         hpSlider = GetComponent<Slider>();
         rectField = GetComponent<RectTransform>();
-
     }
 
 
