@@ -33,7 +33,9 @@ public class Acter : MonoBehaviour
         navMeshObject = this.transform.parent;
         if (navMeshObject.childCount>1)
             FirePos = navMeshObject.GetChild(1);
+
         attackEnable = true;
+        OnNavmesh();
 
         //if (GameManager.instance.NowScene != SceneNum.War)
         //{
@@ -109,6 +111,7 @@ public class Acter : MonoBehaviour
             DieAni();
             RangeArea.enabled = false;
             HitArea.enabled = false;
+            OffNavmesh();
         }
     }
 
@@ -119,8 +122,12 @@ public class Acter : MonoBehaviour
 
         navMesh.SetDestination(TargetPos);
 
-        if(Target!=null)
-            TargetView();
+        //if (Target != null)
+        //    TargetView();
+    }
+    public void ProjectileOwnerFind(Vector3 TargetPos)
+    {
+        NavMove(TargetPos);
     }
 
     protected virtual void TargetSet(Acter _target)
@@ -260,5 +267,14 @@ public class Acter : MonoBehaviour
     {
         warLeftDirect.x = 1;
         ActorTransform.localScale = warLeftDirect;
+    }
+
+    protected void OffNavmesh()
+    {
+        navMesh.enabled = false;
+    }
+    protected void OnNavmesh()
+    {
+        navMesh.enabled = true;
     }
 }

@@ -99,11 +99,11 @@ public class DungeonManager : MonoBehaviour
     {
         while(gameObject.activeSelf)
         {
-            if (CurrentMonsterPartyCount <= monsterDropList.Length - 30)
+            if (CurrentMonsterPartyCount <= monsterDropList.Length - 45)
             {
                 yield return StartCoroutine(MakeMonster());
             }
-            else if(CurrentMonsterPartyCount > monsterDropList.Length - 30)
+            else if(CurrentMonsterPartyCount > monsterDropList.Length - 45)
             {
                 yield return new WaitForEndOfFrame();
             }

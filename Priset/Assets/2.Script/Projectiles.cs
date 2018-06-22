@@ -14,6 +14,8 @@ public class Projectiles : MonoBehaviour {
     string TargetTag;                //발사체 주인의 태그
 
     public SpriteRenderer spritegone;       //스프라이트가 없어져야 할때 
+
+    public Vector3 ProjectilePos;                  //물체가 시작 한 위치
     private void Update()
     {
         if(Die== DeadorLive.LIVE)
@@ -31,10 +33,12 @@ public class Projectiles : MonoBehaviour {
         Projectiles Clone=Instantiate(this.gameObject).GetComponent<Projectiles>();
         Clone.TargetTag = _TargetTag;
         Clone.transform.position = StartPos;
+        Clone.ProjectilePos = StartPos;
         Clone.AttackPoint = _AttackPoint;
         Clone.MoveSpeed = _MoveSpeed;
         Clone.DirectionSet(targetPos);
         Clone.Init();
+        
     }
 
     void SetAngle(Vector3 targetPos)
@@ -79,10 +83,18 @@ void DirectionSet(Vector3 targetPos)
 
     private void OnTriggerEnter(Collider other)
     {
+        Acter getTarget;
         if (other.gameObject.CompareTag(TargetTag))
         {
-           other.GetComponent<Acter>().Hit(AttackPoint);
-           Hit();
+            getTarget = other.GetComponent<Acter>();
+            getTarget.Hit(AttackPoint);
+
+            if (TargetTag == "Monster")
+                getTarget.ProjectileOwnerFind(ProjectilePos);
+
+            UIWarManager.HealthCallEvent(getTarget);
+            UIWarManager.instance.ShowDamageText(getTarget.transform.position, getTarget.HChacter.Attack);
+            Hit();
         }
     }
 

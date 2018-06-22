@@ -14,7 +14,7 @@ public class FriendActor : Acter {
     PartyPos formationNum;
 
     float MonsterFollowSpeed=6f;
-    float MonsterStopDistance=2f;
+    float MonsterStopDistance=1f;
     float LongDistance;
 
     int AttackCount=0;                    //공격한 횟수 
@@ -118,7 +118,6 @@ public class FriendActor : Acter {
             {
                 AttackendBack = false;
                 Target = null;
-                RangeRefresh();
             }
         }
     }
@@ -128,6 +127,7 @@ public class FriendActor : Acter {
         navMesh.stoppingDistance = 0;
         navMesh.speed = Party.LeaderSpeed()+3;
         NavMove(Party.GetPos((int)formationNum));
+        RangeRefresh();
     }
 
     void HomeMoveFuctionWork()      //집에서 이동 작동
@@ -191,7 +191,7 @@ public class FriendActor : Acter {
     protected override void AttackEnd()
     {
         if (ActerAni.GetCurrentAnimatorStateInfo(0).IsName("Humanoid_Strike") &&
-        ActerAni.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.65f)
+        ActerAni.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
         {
             attackEnable = true;
 

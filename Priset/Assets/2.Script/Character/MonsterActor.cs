@@ -69,8 +69,12 @@ public class MonsterActor : Acter
         else
             IdleAni();
 
-        if (Target != null)
+        if(Target==null)
+            RangeRefresh();
+        else if (Target != null)
+        {
             Attackact();
+        }
     }
     protected void Left()
     {
