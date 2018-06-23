@@ -8,7 +8,6 @@ public class Acter : MonoBehaviour
 {
 
     protected SphereCollider RangeArea;       //인식
-
     protected BattleCharacter haveCharacter;
     protected Animator ActerAni;
     protected NavMeshAgent navMesh;
@@ -22,6 +21,7 @@ public class Acter : MonoBehaviour
 
     protected SphereCollider HitArea;       //인식
     protected Vector3 warLeftDirect = new Vector3(-1, 1, 1);
+
 
     protected void init()
     {
@@ -50,6 +50,7 @@ public class Acter : MonoBehaviour
     {
        
     }
+
 
     public BattleCharacter HChacter
     {

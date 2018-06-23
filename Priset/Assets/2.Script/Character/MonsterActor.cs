@@ -14,6 +14,8 @@ public class MonsterActor : Acter
     float LongDistance;
     bool isHpBarExist;
 
+            
+     
 
     public MonsterParty partyCommander = null;
 
@@ -33,9 +35,10 @@ public class MonsterActor : Acter
     {
         set { isHpBarExist = value; }
     }
+
     new void Awake()
     {
-        isHpBarExist = false;
+        //isHpBarExist = false;
         base.Awake();
         LongDistance = RangeArea.radius;
     }
@@ -104,11 +107,16 @@ public class MonsterActor : Acter
             return;
 
         //플레이어가 나(몬스터)를 인식했으면 HPBar On
-        if (!isHpBarExist && haveCharacter.Life == Sang.DeadorLive.LIVE)
+        if (haveCharacter.Life == Sang.DeadorLive.LIVE)
         {
-            UIWarManager.instance.HpBarViewOn(this);
-            isHpBarExist = true;
+            if(isHpBarExist == false)
+            {
+                UIWarManager.instance.HpBarReceiver(this);
+                isHpBarExist = true;
+            }
         }
+
+
         Target = _target;
         //Attackwork();
     }

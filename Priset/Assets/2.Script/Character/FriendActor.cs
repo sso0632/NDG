@@ -201,7 +201,7 @@ public class FriendActor : Acter {
                 {
                     AttackCount++;
                     Target.HChacter.HeathDamage(haveCharacter.Attack);
-                    UIWarManager.HealthCallEvent(Target);
+                    UIWarManager.SetAmountChange(Target.HChacter);
                     UIWarManager.instance.ShowDamageText(Target.transform.position, haveCharacter.Attack);
                     Target.StartHitEffect(navMeshObject.position);
                 }

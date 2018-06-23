@@ -10,7 +10,6 @@ public class JoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler
  
     public RectTransform JoyBack;
 
-
     public void OnDrag(PointerEventData eventData)
     {
         if (TwoBetweenDis() == true)

@@ -13,33 +13,38 @@ public class UIHpBar : MonoBehaviour
 
     private void Awake()
     {
-
         hpSlider = GetComponent<Slider>();
         rectField = GetComponent<RectTransform>();
         hpSlider.maxValue = 1;
         hpSlider.minValue = 0;
     }
-
-
     public Acter GetBattleCharacter()
     {
         return nowActor;
-    }
+    }    
     public void SetBattleCharacter(Acter _setChar)
     {
         if (!gameObject.activeSelf)
             gameObject.SetActive(true);
+
         if (nowActor == _setChar)
             return;
 
         nowActor = _setChar;
-        
         hpSlider.maxValue = nowActor.HChacter.MHeath;
         hpSlider.minValue = 0;
         hpSlider.value = nowActor.HChacter.HP;
+    }
+    public void AddEvent()
+    {
+        UIWarManager.ChangeBarAmountEvent += HealthChange;
+    }
+    public void RemoveEvent()
+    {
+        UIWarManager.ChangeBarAmountEvent -= HealthChange;
 
     }
-    private void Update()
+    void Update()
     {
         if (nowActor == null)
             return;
@@ -47,33 +52,35 @@ public class UIHpBar : MonoBehaviour
         viewPortVector = Camera.main.WorldToScreenPoint(nowActor.transform.position);
         viewPortVector.y += 70f;
         rectField.position = viewPortVector;
-
-    }
-    public void EventAdd()
-    {
-        UIWarManager.BarHealthCall += HeathCall;
-    }
-    public void EventRemove()
-    {
-        UIWarManager.BarHealthCall -= HeathCall;
     }
 
-    void HeathCall(Acter actor)
+    public void HealthChange(BattleCharacter actor)
     {
-        if (nowActor != actor)
+        if (actor != nowActor.HChacter)
             return;
 
-        hpSlider.value = nowActor.HChacter.HP;
-        if (nowActor.HChacter.HP > 0)
-            return;
-
-        MonsterActor temp = (MonsterActor)nowActor;
-        temp.SetHpBarExist = false;
-        temp = null; ;
-
+        hpSlider.value = actor.HP;
+        if(hpSlider.value <= hpSlider.minValue)
+        {
+            OptionChange();  
+        }
+    }
+    void OptionChange()
+    {
+        switch(nowActor.tag)
+        {
+            case "Monster":
+                MonsterActor tempMonster = (MonsterActor)nowActor;
+                tempMonster.SetHpBarExist = false;
+                nowActor = null;
+                tempMonster = null;
+                break;
+            default:
+                break;
+        }
         UIWarManager.instance.PushHpBar(this);
-        nowActor = null;
     }
 
-  
+
+
 }

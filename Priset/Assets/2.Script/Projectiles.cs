@@ -92,7 +92,7 @@ void DirectionSet(Vector3 targetPos)
             if (TargetTag == "Monster")
                 getTarget.ProjectileOwnerFind(ProjectilePos);
 
-            UIWarManager.HealthCallEvent(getTarget);
+            UIWarManager.SetAmountChange(getTarget.HChacter);
             UIWarManager.instance.ShowDamageText(getTarget.transform.position, getTarget.HChacter.Attack);
             Hit();
         }

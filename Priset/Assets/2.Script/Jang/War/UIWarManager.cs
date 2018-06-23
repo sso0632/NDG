@@ -15,11 +15,10 @@ public class UIWarManager : MonoBehaviour
     
     List<UIHpBar> barList;
     List<UIDamageText> damageTextList;
-    
 
-    public delegate void UIBarHealthCall(Acter actor);
-    public static event UIBarHealthCall BarHealthCall;
 
+    public delegate void ChangeBarAmount(BattleCharacter _actor);
+    public static event ChangeBarAmount ChangeBarAmountEvent;
 
     private void Awake()
     {
@@ -28,6 +27,7 @@ public class UIWarManager : MonoBehaviour
         else
             Destroy(gameObject);      
     }
+
     private void Start()
     {
         BarPooling();
@@ -37,19 +37,16 @@ public class UIWarManager : MonoBehaviour
     void PartyInit()
     {
         int count = GameManager.instance.PM.GetPlayerParty.PartyCount();
-
         PlayerParty tempParty = GameManager.instance.PM.GetPlayerParty;
-        for(int i =0; i< count; ++i)
+
+        for (int i =0; i< count; ++i)
         {
             if(tempParty.GetActors()[i] != null)
             {
-                UIHpBar hpBar = PopHpBar();
-                hpBar.gameObject.SetActive(true);
-                hpBar.SetBattleCharacter(tempParty.GetActors()[i]);
+                HpBarReceiver(tempParty.GetActors()[i]);
             }
         }
     }
-  
     void BarPooling()
     {
         barList = new List<UIHpBar>();
@@ -59,7 +56,6 @@ public class UIWarManager : MonoBehaviour
             GameObject temp = Instantiate(HpBarPrefab);
             UIHpBar tempBar = temp.GetComponent<UIHpBar>();
             temp.transform.SetParent(HpBarCollecter);
-            tempBar.EventAdd();
             temp.SetActive(false);
             barList.Add(tempBar);
         }
@@ -76,26 +72,7 @@ public class UIWarManager : MonoBehaviour
             damageTextList.Add(tempDamage);
         }
     }
-    
-    public UIHpBar PopHpBar()
-    { 
-        if (barList.Count <= 0)
-        {
-            GameObject temp = Instantiate(HpBarPrefab);
-            UIHpBar tempBar = temp.GetComponent<UIHpBar>();
-            temp.transform.SetParent(HpBarCollecter);
-            tempBar.EventAdd();
-            temp.SetActive(false);
-            return tempBar;
-        }
-        else if(barList.Count > 0)
-        {
-            UIHpBar tempBar = barList[0];
-            barList.Remove(tempBar);
-            return tempBar;
-        }
-        return null;
-    }
+
     public void ShowDamageText(Vector3 showPoint, float damage)
     {
         if (damageTextList.Count > 0)
@@ -119,22 +96,39 @@ public class UIWarManager : MonoBehaviour
         damageText.gameObject.SetActive(false);
         damageTextList.Add(damageText);
     }
-
     public void PushHpBar(UIHpBar hpBar)
     {
         hpBar.gameObject.SetActive(false);
-        hpBar.EventRemove();
+        hpBar.RemoveEvent();
         barList.Add(hpBar);
     }
-    public void HpBarViewOn(Acter _actor)
+
+    public void HpBarReceiver(Acter _actor)
     {
-        UIHpBar tempUIBar = PopHpBar();
-        tempUIBar.SetBattleCharacter(_actor);
-    }
-    public static void HealthCallEvent(Acter _acter)
-    {
-        if (_acter == null)
+        if (barList.Count <= 0)
+        {
+            GameObject temp = Instantiate(HpBarPrefab);
+            UIHpBar tempBar = temp.GetComponent<UIHpBar>();
+            temp.transform.SetParent(HpBarCollecter);
+            temp.SetActive(true);
+            tempBar.SetBattleCharacter(_actor);
+            tempBar.AddEvent();
             return;
-        BarHealthCall(_acter);
+        }
+        else if (barList.Count > 0)
+        {
+            UIHpBar tempBar = barList[0];
+            tempBar.gameObject.SetActive(true);
+            tempBar.SetBattleCharacter(_actor);
+            barList.Remove(tempBar);
+            tempBar.AddEvent();
+            return;
+        }
     }
+
+    public static void SetAmountChange(BattleCharacter character)
+    {
+        ChangeBarAmountEvent(character);
+    }
+  
 }

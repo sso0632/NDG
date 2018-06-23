@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class UIDamageText : MonoBehaviour
 {
-
     Text damageText;
     bool isEvent;
     float delayTimer;
     float force;
     float colorAlpha;
 
-    RectTransform rectField;
 
+    RectTransform rectField;
     Vector3 showPoint;
+
 
     private void Awake()
     {
@@ -69,6 +69,7 @@ public class UIDamageText : MonoBehaviour
 
         isEvent = false;
         UIWarManager.instance.PushDamageText(this);
+        
         yield return null;
     }
 
