@@ -59,7 +59,6 @@ public class PlayerManager : MonoBehaviour {
 
     void SetPriestActor(PriestActor actor)
     {
-        Debug.Log(actor);
         actor.transform.parent.gameObject.SetActive(true);
 
         if (NowPriest != null)

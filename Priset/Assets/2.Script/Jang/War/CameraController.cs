@@ -12,7 +12,8 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        followTarget = GameObject.FindGameObjectWithTag("Player").transform;
+        followTarget = GameObject.FindGameObjectWithTag("priest").transform;
+        Debug.Log(followTarget);
     }
 
     private void LateUpdate()
