@@ -39,21 +39,14 @@
 			"MHeath": 8,
 			"Attack": 1,
 			"ASpeed": 1,
-			"Attacktype": 1,
+			"Attacktype": 4,
 			"Defence": 0
 		},
 		{
 			"MHeath": 8,
 			"Attack": 1,
 			"ASpeed": 1,
-			"Attacktype": 2,
-			"Defence": 0
-		},
-		{
-			"MHeath": 20,
-			"Attack": 1,
-			"ASpeed": 2,
-			"Attacktype": 0,
+			"Attacktype": 3,
 			"Defence": 0
 		},
 		{
@@ -102,21 +95,14 @@
 			"MHeath": 8,
 			"Attack": 1,
 			"ASpeed": 1,
-			"Attacktype": 2,
+			"Attacktype": 3,
 			"Defence": 0
 		},
 		{
 			"MHeath": 20,
 			"Attack": 1,
 			"ASpeed": 2,
-			"Attacktype": 2,
-			"Defence": 0
-		},
-		{
-			"MHeath": 8,
-			"Attack": 1,
-			"ASpeed": 1,
-			"Attacktype": 2,
+			"Attacktype": 5,
 			"Defence": 0
 		},
 		{

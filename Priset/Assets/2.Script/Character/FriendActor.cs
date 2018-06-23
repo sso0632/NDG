@@ -197,7 +197,7 @@ public class FriendActor : Acter {
 
             if (haveCharacter.Attacktype == CharacterAttackType.SHORT)
             {
-                if (navMesh.remainingDistance <= navMesh.stoppingDistance)
+                if (navMesh.remainingDistance <= navMesh.stoppingDistance && Target.HChacter.Life == DeadorLive.LIVE)
                 {
                     AttackCount++;
                     Target.HChacter.HeathDamage(haveCharacter.Attack);

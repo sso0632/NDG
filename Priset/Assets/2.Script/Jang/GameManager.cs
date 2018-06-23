@@ -10,9 +10,8 @@ public class GameManager : MonoBehaviour {
     public CharacterCreate CreateCharacter;
     public PlayerManager PM;
     public SceneNum NowScene;
-    public SkillManager SkillSpace;                    //스킬 공간
+    public SkillManager SkillSpace;                    //모든 스킬 저장
     public bool FirstStart=true;
-
 
     AsyncOperation loadAsync;
     bool isLoad;
@@ -50,6 +49,7 @@ public class GameManager : MonoBehaviour {
     public void GoWarScene()
     {
         NowScene = SceneNum.War;
+        PM.GoWarscene();
         StartCoroutine(LoadingSystem((int)NowScene));   
     }
     IEnumerator LoadingSystem(int mapIndex)

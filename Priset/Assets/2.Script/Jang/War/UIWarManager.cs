@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class UIWarManager : MonoBehaviour
 {
     public static UIWarManager instance;
     public UIPartyButton FriendlyRoom;
 
 
+    public Text Scoreview;
+
+   
     public GameObject HpBarPrefab;
     public GameObject DamageTextPrefab;
     public Transform HpBarCollecter;
@@ -128,7 +131,11 @@ public class UIWarManager : MonoBehaviour
 
     public static void SetAmountChange(BattleCharacter character)
     {
-        ChangeBarAmountEvent(character);
+        if(ChangeBarAmountEvent!=null)
+            ChangeBarAmountEvent(character);
     }
-  
+    public void SetScore(int value)
+    {
+        Scoreview.text = value.ToString();
+    }
 }

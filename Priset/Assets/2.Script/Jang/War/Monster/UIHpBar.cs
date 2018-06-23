@@ -62,7 +62,7 @@ public class UIHpBar : MonoBehaviour
         hpSlider.value = actor.HP;
         if(hpSlider.value <= hpSlider.minValue)
         {
-            OptionChange();  
+            OptionChange();
         }
     }
     void OptionChange()

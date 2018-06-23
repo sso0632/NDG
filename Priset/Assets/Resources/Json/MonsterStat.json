@@ -1,21 +1,21 @@
 {
 	"Monsterstat": [
 		{
-			"MHeath": 5,
+			"MHeath": 2,
 			"Attack": 1,
 			"ASpeed": 2,
 			"Attacktype": 0,
 			"Defence": 0
 		},
 		{
-			"MHeath": 3,
+			"MHeath": 1,
 			"Attack": 1,
 			"ASpeed": 2,
-			"Attacktype": 2,
+			"Attacktype": 6,
 			"Defence": 0
 		},
 		{
-			"MHeath": 5,
+			"MHeath": 2,
 			"Attack": 1,
 			"ASpeed": 2,
 			"Attacktype": 0,

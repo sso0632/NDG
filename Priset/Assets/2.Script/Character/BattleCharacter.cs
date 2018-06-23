@@ -130,6 +130,18 @@ public class BattleCharacter : Character {
             case CharacterAttackType.FIREBULL:
                 haveBullet = Resources.Load<GameObject>("PrePab/Projectile/Fireball").GetComponent<Projectiles>();
                 break;
+            case CharacterAttackType.BOLT:
+                haveBullet = Resources.Load<GameObject>("PrePab/Projectile/CrossbowBolt").GetComponent<Projectiles>();
+                break;
+            case CharacterAttackType.MANABALL:
+                haveBullet = Resources.Load<GameObject>("PrePab/Projectile/Manaball").GetComponent<Projectiles>();
+                break;
+            case CharacterAttackType.SKULL:
+                haveBullet = Resources.Load<GameObject>("PrePab/Projectile/Skull").GetComponent<Projectiles>();
+                break;
+            case CharacterAttackType.SLIMEBALL:
+                haveBullet = Resources.Load<GameObject>("PrePab/Projectile/Slimeball").GetComponent<Projectiles>();
+                break;
         }
     }
 }

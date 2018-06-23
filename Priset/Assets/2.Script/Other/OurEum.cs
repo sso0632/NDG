@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Sang
 {
-    public enum CharacterAttackType {SHORT, ARROW, FIREBULL}
+    public enum CharacterAttackType {SHORT, ARROW, FIREBULL,MANABALL, BOLT, SKULL, SLIMEBALL}
     public enum HomeActNum {RightWalk,LeftWalk, Idle}
     public enum DeadorLive { LIVE, DEAD }
     public enum PartyPos { LEFT_UP, RIGHT_UP, LEFT_DOWN, RIGHT_DOWN}

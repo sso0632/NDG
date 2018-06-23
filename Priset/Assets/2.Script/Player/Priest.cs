@@ -46,4 +46,13 @@ public class Priest : MonoBehaviour
     {
         return SkillSlot;
     }
+
+    public void HeathFull()
+    {
+        Heath = HeathMax;
+    }
+    public void init()
+    {
+        HeathFull();
+    }
 }

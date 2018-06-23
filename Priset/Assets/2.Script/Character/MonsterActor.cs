@@ -14,9 +14,6 @@ public class MonsterActor : Acter
     float LongDistance;
     bool isHpBarExist;
 
-            
-     
-
     public MonsterParty partyCommander = null;
 
     public MonsterParty GetPartyCommader

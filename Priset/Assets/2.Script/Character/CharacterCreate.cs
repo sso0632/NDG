@@ -28,16 +28,6 @@ public class CharacterCreate : MonoBehaviour {
         return targetCharacter;
     }
 
-    void AbleFriendCreate()             //생성 가능한 친구를 생성
-    {
-        int Randomindex;
-        for(int i=0; i< AbleFriendCount; ++i)
-        {
-            Randomindex=Random.Range(1, 19);
-            CreateAbleFriend.Add(FriendCreate(Randomindex));
-        }
-    }
-
     public GameObject Craete(Vector3 Pos, Transform parent, BattleCharacter CCharacter)
     {
         GameObject targetObject;

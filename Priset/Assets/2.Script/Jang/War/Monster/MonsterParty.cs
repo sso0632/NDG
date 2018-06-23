@@ -36,17 +36,18 @@ public class MonsterParty : MonoBehaviour
             monsterList.Add(monster);
         }
 
-        monsterList[0].transform.parent.position =
-            new Vector3(transform.position.x - 0.25f, 0, transform.position.z + 0.25f);
 
-        monsterList[1].transform.parent.position =
-            new Vector3(transform.position.x + 0.25f, 0, transform.position.z + 0.25f);
+        float randomvalue=3f;
+        
+        float RandomposX;
+        float RandomposZ;
 
-        monsterList[2].transform.parent.position =
-           new Vector3(transform.position.x - 0.25f, 0, transform.position.z - 0.25f);
-
-        monsterList[3].transform.parent.position =
-            new Vector3(transform.position.x + 0.25f, 0, transform.position.z - 0.25f);
+        for(int i=0; i<4;++i)
+        {
+            RandomposX = Random.Range(-randomvalue, randomvalue);
+            RandomposZ = Random.Range(-randomvalue, randomvalue);
+            monsterList[i].transform.parent.position = new Vector3(transform.position.x + RandomposX, 0, transform.position.z + RandomposZ);
+        }
     }
 
 

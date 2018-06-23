@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour {
     PlayerParty Party;
     GameObject PartyParent;                         //파티 부모
     int Gold;                                   //플레이어 돈
+    int Score;                                  //점수
+
 
     public PlayerParty GetPlayerParty
     {
@@ -43,8 +45,8 @@ public class PlayerManager : MonoBehaviour {
         if (NowPriest != null)
         {
             if(NowPriest!= havePriestCharacter[index])
-            { 
-                NowPriest.gameObject.SetActive(false);
+            {
+                NowPriest.transform.parent.gameObject.SetActive(false);
                 //현재 프리스트의 값을 초기화
                 SetPriestActor(havePriestCharacter[index]);
             }
@@ -57,7 +59,8 @@ public class PlayerManager : MonoBehaviour {
 
     void SetPriestActor(PriestActor actor)
     {
-        actor.gameObject.SetActive(true);
+        Debug.Log(actor);
+        actor.transform.parent.gameObject.SetActive(true);
 
         if (NowPriest != null)
             actor.Pos = NowPriest.Pos;
@@ -85,6 +88,7 @@ public class PlayerManager : MonoBehaviour {
         {
             UIManager.instance.PriestPanel.CharacterUnlock(0);
         }
+        UIManager.instance.PriestPanel.CharacterUnlock(1);
     }
 
     public GameObject GetPartyParent()
@@ -95,6 +99,22 @@ public class PlayerManager : MonoBehaviour {
     public void GoWarScene()
     {
         Party.LeaderSet(NowPriest.havePriest, NowPriest.transform);
+    }
+    public void GoWarscene()
+    {
+        NowPriest.Init();
+    }
+    public void HuntCountUp()
+    {
+        Score++;
+    }
+    public int SCORE
+    {
+        get{ return Score;  }
+    }
+    void ScoreReset()
+    {
+        Score = 0;
     }
 }
 

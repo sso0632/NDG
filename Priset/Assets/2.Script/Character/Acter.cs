@@ -109,20 +109,33 @@ public class Acter : MonoBehaviour
 
         if (haveCharacter.Life == DeadorLive.DEAD)
         {
-            DieAni();
-            RangeArea.enabled = false;
-            HitArea.enabled = false;
-            OffNavmesh();
+            Dead();
+            if(this.GetType()==typeof(MonsterActor))
+            {
+                GameManager.instance.PM.HuntCountUp();
+                UIWarManager.instance.SetScore(GameManager.instance.PM.SCORE);
+            }
         }
+    }
+
+    void Dead()
+    {
+        DieAni();
+        RangeArea.enabled = false;
+        HitArea.enabled = false;
+        OffNavmesh();
     }
 
     protected void NavMove(Vector3 TargetPos)     //대상으로 이동
     {
-        if (!navMesh.enabled)
-            navMesh.enabled = true;
 
-        navMesh.SetDestination(TargetPos);
+        if (HChacter.Life == DeadorLive.LIVE)
+        {
+            if (!navMesh.enabled)
+                navMesh.enabled = true;
 
+            navMesh.SetDestination(TargetPos);
+        }
         //if (Target != null)
         //    TargetView();
     }

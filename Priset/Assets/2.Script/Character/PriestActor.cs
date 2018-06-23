@@ -7,11 +7,17 @@ public class PriestActor : FriendActor {
     public Priest havePriest;
     Transform thisTransform;
 
+
+    public void Init()
+    {
+        havePriest.init();
+    }
     private void Awake()
     {
         base.Awake();
         thisTransform = GetComponent<Transform>();
         havePriest = GetComponent<Priest>();
+
     }
     private void Start()
     {
