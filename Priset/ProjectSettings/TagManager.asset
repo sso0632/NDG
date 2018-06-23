@@ -9,6 +9,7 @@ TagManager:
   - DamageObject
   - MonsterRange
   - PlayerRange
+  - priest
   layers:
   - Default
   - TransparentFX

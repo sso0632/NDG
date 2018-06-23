@@ -3078,6 +3078,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1574986058487386, guid: 444f78e2fca31ba4cb7021cae9b33c35, type: 2}
+      propertyPath: m_TagString
+      value: priest
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 444f78e2fca31ba4cb7021cae9b33c35, type: 2}
   m_IsPrefabParent: 0
@@ -55751,6 +55755,10 @@ Prefab:
     - target: {fileID: 1560573085583402, guid: a15038bf7e54311469723298bbf3ace1, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560573085583402, guid: a15038bf7e54311469723298bbf3ace1, type: 2}
+      propertyPath: m_TagString
+      value: priest
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135001429178865664, guid: a15038bf7e54311469723298bbf3ace1, type: 2}
