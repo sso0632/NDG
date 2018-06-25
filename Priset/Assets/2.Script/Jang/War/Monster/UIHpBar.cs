@@ -5,18 +5,19 @@ using UnityEngine.UI;
 
 public class UIHpBar : MonoBehaviour
 {
-    Slider hpSlider;
     Acter nowActor;
-
+    Text barText;
     RectTransform rectField;
     Vector2 viewPortVector;
 
+    int minValue = 0;
+    int maxValue = 0;
+    int currentValue = 0;
+
     private void Awake()
     {
-        hpSlider = GetComponent<Slider>();
+        barText = GetComponent<Text>();
         rectField = GetComponent<RectTransform>();
-        hpSlider.maxValue = 1;
-        hpSlider.minValue = 0;
     }
     public Acter GetBattleCharacter()
     {
@@ -31,9 +32,10 @@ public class UIHpBar : MonoBehaviour
             return;
 
         nowActor = _setChar;
-        hpSlider.maxValue = nowActor.HChacter.MHeath;
-        hpSlider.minValue = 0;
-        hpSlider.value = nowActor.HChacter.HP;
+        minValue = 0;
+        maxValue = nowActor.HChacter.MHeath;
+        currentValue = maxValue;
+        barText.text = string.Format("{0}", currentValue);
     }
     public void AddEvent()
     {
@@ -42,7 +44,6 @@ public class UIHpBar : MonoBehaviour
     public void RemoveEvent()
     {
         UIWarManager.ChangeBarAmountEvent -= HealthChange;
-
     }
     void Update()
     {
@@ -50,24 +51,25 @@ public class UIHpBar : MonoBehaviour
             return;
 
         viewPortVector = Camera.main.WorldToScreenPoint(nowActor.transform.position);
-        viewPortVector.y += 70f;
+        viewPortVector.y += 80f;
         rectField.position = viewPortVector;
     }
-
     public void HealthChange(BattleCharacter actor)
     {
+        if (actor == null)
+            return;
         if (actor != nowActor.HChacter)
             return;
 
-        hpSlider.value = actor.HP;
-        if(hpSlider.value <= hpSlider.minValue)
-        {
+        currentValue = nowActor.HChacter.HP;
+        barText.text = string.Format("{0}", currentValue);
+        if(currentValue <= minValue)
             OptionChange();
-        }
     }
     void OptionChange()
     {
-        switch(nowActor.tag)
+        UIWarManager.instance.PushHpBar(this);
+        switch (nowActor.tag)
         {
             case "Monster":
                 MonsterActor tempMonster = (MonsterActor)nowActor;
@@ -78,7 +80,6 @@ public class UIHpBar : MonoBehaviour
             default:
                 break;
         }
-        UIWarManager.instance.PushHpBar(this);
     }
 
 

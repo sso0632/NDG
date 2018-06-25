@@ -26,7 +26,7 @@ public class UISkillSelect : MonoBehaviour {
     {
         for (int i = 0; i < GameManager.instance.SkillSpace.SkillCount(); ++i)
         {
-            SkillFieldData=Instantiate(SkillField, SkillFieldParent).GetComponent<UISkillField>();
+            SkillFieldData =Instantiate(SkillField, SkillFieldParent).GetComponent<UISkillField>();
             SkillFieldData.SetSkill(GameManager.instance.SkillSpace.SkillGet(i));
             SkillFieldData.SetButtonAcitve(SlotSet);
         }

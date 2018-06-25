@@ -28,19 +28,12 @@ public class UISkillIcon : MonoBehaviour {
     Sprite LoadImage(int skillindex)
     {
         SkillIcon.color = new Color(1, 1, 1, 1);
-        string Path = null;
-        switch(skillindex)
+        if (DataSet.SkillImageResources[skillindex] == null)
         {
-            case 0:
-                Path = "SkillImage/healing";
-                return Resources.Load<Sprite>(Path);
-                break;
-            case 1:
-                Path = "SkillImage/AttUp";
-                return Resources.Load<Sprite>(Path);
-                break;
+            ImageNone();
+            return null;
         }
-        ImageNone();
-        return null;
+        else
+            return DataSet.SkillImageResources[skillindex];
     }
 }

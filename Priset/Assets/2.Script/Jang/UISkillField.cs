@@ -32,7 +32,6 @@ public class UISkillField : MonoBehaviour {
         GameManager.instance.PM.SkillSet(haveSkill);
         ButtonAcitve();
     }
-
     void SkillFieldSet()
     {
         haveIcon.SkillSet(haveSkill.SkillIndex);

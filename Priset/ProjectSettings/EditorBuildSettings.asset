@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/1.Scene/Home.unity
-    guid: c4c9178de0cb23b4891c289856eda4e8
+    guid: c5b1ba9ef82668845b7ea1a36dde53f8
   - enabled: 1
     path: Assets/1.Scene/War.unity
     guid: ea964a0a22d397c48bc3e5c3699fba5d

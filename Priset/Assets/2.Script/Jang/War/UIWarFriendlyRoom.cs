@@ -16,7 +16,7 @@ public class UIWarFriendlyRoom : MonoBehaviour, IPointerClickHandler
     }
     private void OnEnable()
     {
-        UIPartyButton.PartySelectEvent += WarRoomSet;
+        //UIPartyButton.PartySelectEvent += WarRoomSet;
     }
     
     void WarRoomSet()
@@ -39,6 +39,6 @@ public class UIWarFriendlyRoom : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData pointer)
     {
-        UIWarManager.instance.FriendlyRoom.RepresentFriendly(roomCharacter.Index);
+        //UIWarManager.instance.FriendlyRoom.RepresentFriendly(roomCharacter.Index);
     }
 }

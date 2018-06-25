@@ -5,12 +5,10 @@ using UnityEngine.UI;
 public class UIWarManager : MonoBehaviour
 {
     public static UIWarManager instance;
-    public UIPartyButton FriendlyRoom;
-
+    //public UIPartyButton FriendlyRoom;
 
     public Text Scoreview;
 
-   
     public GameObject HpBarPrefab;
     public GameObject DamageTextPrefab;
     public Transform HpBarCollecter;
@@ -30,14 +28,12 @@ public class UIWarManager : MonoBehaviour
         else
             Destroy(gameObject);      
     }
-
     private void Start()
     {
         BarPooling();
-        PartyInit();
         DamagePool();
     }
-    void PartyInit()
+    public void PartyInit()
     {
         int count = GameManager.instance.PM.GetPlayerParty.PartyCount();
         PlayerParty tempParty = GameManager.instance.PM.GetPlayerParty;
@@ -131,8 +127,7 @@ public class UIWarManager : MonoBehaviour
 
     public static void SetAmountChange(BattleCharacter character)
     {
-        if(ChangeBarAmountEvent!=null)
-            ChangeBarAmountEvent(character);
+       ChangeBarAmountEvent(character);
     }
     public void SetScore(int value)
     {

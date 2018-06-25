@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour {
 
         PM.GoWarScene();
         CreateCharacter.PartyCreate();
+        UIWarManager.instance.PartyInit();
 
         yield return null;
     }

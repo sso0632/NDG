@@ -7,14 +7,17 @@ public class UIDamageText : MonoBehaviour
 {
     Text damageText;
     bool isEvent;
-    float delayTimer;
+
     float force;
     float colorAlpha;
+    int fontForce;
 
 
     RectTransform rectField;
     Vector3 showPoint;
+    Vector3 drawPoint;
 
+    float showTimer;
 
     private void Awake()
     {
@@ -33,48 +36,66 @@ public class UIDamageText : MonoBehaviour
         if(!isEvent)
         {
             isEvent = true;
-            damageText.gameObject.SetActive(true);
+            ShowTextDataInit();
             StartCoroutine(DamageAnimation());
         }
+    }
+    void ShowTextDataInit()
+    {
+        damageText.gameObject.SetActive(true);
+        damageText.color = new Color(1, 1, 1, 1);
+        damageText.fontSize = 25;
+
+        rectField.position = Camera.main.WorldToScreenPoint(showPoint);
+    }
+    void AnimStart()
+    {
+        colorAlpha = 0.5f;
+        force = 150;
+        showTimer = 0;
+        fontForce = 1;
     }
 
     IEnumerator DamageAnimation()
     {
-        damageText.color = new Color(1, 1, 1, 1);
-        damageText.fontSize = 5;
-        delayTimer = 0;
-        colorAlpha = 1;
-        force = 50;
-    
+        AnimStart();
+
         rectField.position = Camera.main.WorldToScreenPoint(showPoint);
-        
-        while (delayTimer <= 1.2f)
+
+        drawPoint = rectField.position;
+
+        while (showTimer <= 0.5f)
         {
-            delayTimer += Time.deltaTime;
+            showTimer += Time.deltaTime;
+
+            drawPoint.y += Time.deltaTime * force;
+
+            drawPoint.z = 0;
+
+            if (colorAlpha <= 1)
+                colorAlpha += Time.deltaTime;
+            
+            if (force < 300)
+                force += Time.deltaTime * 200;
+            else if (force > 300)
+                force -= Time.deltaTime * 100;
 
             if (damageText.fontSize <= 55)
-                damageText.fontSize += 1;
-
-            rectField.position += Vector3.up * Time.deltaTime * force;
-
-            force -= Time.deltaTime;
-
-            if (colorAlpha >= 0.5f)
-                colorAlpha -= Time.deltaTime * 2;
+                damageText.fontSize += 2;
 
             damageText.color = new Color(1, 1, 1, colorAlpha);
-            
+            rectField.position = drawPoint;
             yield return null;
         }
 
         isEvent = false;
         UIWarManager.instance.PushDamageText(this);
-        
-        yield return null;
     }
 
 
-    
-    
-	
+
+
+
+
+
 }

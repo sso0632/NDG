@@ -191,6 +191,7 @@ public class Acter : MonoBehaviour
             {
                 AttackAni();
             }
+
             attackEnable = false;
         }
     }

@@ -113,7 +113,6 @@ public class MonsterActor : Acter
             }
         }
 
-
         Target = _target;
         //Attackwork();
     }

@@ -10,13 +10,14 @@ public class DataSet : MonoBehaviour
     Dictionary<string, List<Skill>> SkillData;
 
     public static Sprite[] CharacterImageResources;
-
+    public static Sprite[] SkillImageResources;
 
     public void Init()
     {
         CharacterStatLoad();
         CharacterSpriteLoad();
         SkillDataLoad();
+        SkillSpriteLoad();
     }
 
     void DebugList()
@@ -26,20 +27,27 @@ public class DataSet : MonoBehaviour
             Debug.Log(CharacterStatData["characterstat"][i].Attack);
         }
     }
-    
-    void CharacterSpriteLoad()
-    {       
-        int count = (int)(Resources.LoadAll("CharacterImage").Length * 0.5f);
-        CharacterImageResources = new Sprite[count];
+    void SkillSpriteLoad()
+    {
+        int count = Resources.LoadAll("SkillImage", typeof(Sprite)).Length;
 
-        string tempSpriteIndex = null;
-        for(int i =0; i<count; ++i)
+        SkillImageResources = new Sprite[count];
+
+        for(int spriteNumber = 0; spriteNumber < SkillImageResources.Length; ++spriteNumber)
         {
-            tempSpriteIndex = i.ToString();
-            CharacterImageResources[i] = (Sprite)Resources.Load("CharacterImage/" + tempSpriteIndex, typeof(Sprite));
+            SkillImageResources[spriteNumber] = (Sprite)Resources.Load("SKillImage/" + spriteNumber.ToString(), typeof(Sprite));
         }
     }
+    void CharacterSpriteLoad()
+    {
+        int count = Resources.LoadAll("CharacterImage", typeof(Sprite)).Length;
 
+        CharacterImageResources = new Sprite[count];
+        for (int spriteNumber = 0; spriteNumber < count; ++spriteNumber)
+        {
+            CharacterImageResources[spriteNumber] = (Sprite)Resources.Load("CharacterImage/" + spriteNumber.ToString(), typeof(Sprite));
+        }
+    }
     void CharacterStatLoad()
     {
         TextAsset Characterstatjson = (TextAsset)Resources.Load("Json/CharacterStat", typeof(TextAsset));
