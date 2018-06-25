@@ -12,7 +12,6 @@ public class UIDamageText : MonoBehaviour
     float colorAlpha;
     int fontForce;
 
-
     RectTransform rectField;
     Vector3 showPoint;
     Vector3 drawPoint;
@@ -59,7 +58,11 @@ public class UIDamageText : MonoBehaviour
     IEnumerator DamageAnimation()
     {
         AnimStart();
-
+        damageText.color = new Color(1, 0, 0, 1);
+        damageText.fontSize = 5;
+        colorAlpha = 1;
+        force = 50;
+   
         rectField.position = Camera.main.WorldToScreenPoint(showPoint);
 
         drawPoint = rectField.position;
@@ -91,11 +94,4 @@ public class UIDamageText : MonoBehaviour
         isEvent = false;
         UIWarManager.instance.PushDamageText(this);
     }
-
-
-
-
-
-
-
 }

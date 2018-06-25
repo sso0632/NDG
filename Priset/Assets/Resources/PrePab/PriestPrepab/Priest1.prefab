@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 195213816720345324}
   m_Layer: 8
   m_Name: Priest1
-  m_TagString: Player
+  m_TagString: priest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,7 +216,6 @@ GameObject:
   - component: {fileID: 95620211510824570}
   - component: {fileID: 114738835465192768}
   - component: {fileID: 114873544805414158}
-  - component: {fileID: 135001429178865664}
   m_Layer: 8
   m_Name: Priest1
   m_TagString: Player
@@ -595,18 +594,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   havePriest: {fileID: 0}
---- !u!135 &135001429178865664
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1791211300202914}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!195 &195213816720345324
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -688,7 +675,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1023611536
+  randomSeed: -749311801
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -766,7 +753,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.42745098, g: 0.42745098, b: 0.42745098, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

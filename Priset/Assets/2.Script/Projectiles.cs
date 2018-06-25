@@ -47,7 +47,7 @@ public class Projectiles : MonoBehaviour {
         transform.rotation = Quaternion.Euler(90, 0, angle);
     }
 
-void DirectionSet(Vector3 targetPos)
+    void DirectionSet(Vector3 targetPos)
     {
         Direction = (targetPos-transform.position).normalized;
         Direction.y = 0f;
@@ -88,7 +88,7 @@ void DirectionSet(Vector3 targetPos)
         {
             getTarget = other.GetComponent<Acter>();
             getTarget.Hit(AttackPoint);
-
+            transform.parent = getTarget.transform;
             if (TargetTag == "Monster")
                 getTarget.ProjectileOwnerFind(ProjectilePos);
 

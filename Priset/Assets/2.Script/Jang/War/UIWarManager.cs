@@ -8,7 +8,6 @@ public class UIWarManager : MonoBehaviour
     //public UIPartyButton FriendlyRoom;
 
     public Text Scoreview;
-
     public GameObject HpBarPrefab;
     public GameObject DamageTextPrefab;
     public Transform HpBarCollecter;
@@ -16,7 +15,6 @@ public class UIWarManager : MonoBehaviour
     
     List<UIHpBar> barList;
     List<UIDamageText> damageTextList;
-
 
     public delegate void ChangeBarAmount(BattleCharacter _actor);
     public static event ChangeBarAmount ChangeBarAmountEvent;
