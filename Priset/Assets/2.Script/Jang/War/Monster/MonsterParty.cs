@@ -47,6 +47,7 @@ public class MonsterParty : MonoBehaviour
             RandomposX = Random.Range(-randomvalue, randomvalue);
             RandomposZ = Random.Range(-randomvalue, randomvalue);
             monsterList[i].transform.parent.position = new Vector3(transform.position.x + RandomposX, 0, transform.position.z + RandomposZ);
+            monsterList[i].SetStartPos(monsterList[i].transform.parent.position);
         }
     }
 

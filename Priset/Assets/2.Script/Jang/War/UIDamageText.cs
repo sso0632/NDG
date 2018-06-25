@@ -40,7 +40,7 @@ public class UIDamageText : MonoBehaviour
 
     IEnumerator DamageAnimation()
     {
-        damageText.color = new Color(1, 1, 1, 1);
+        damageText.color = new Color(1, 0, 0, 1);
         damageText.fontSize = 5;
         delayTimer = 0;
         colorAlpha = 1;
@@ -62,7 +62,7 @@ public class UIDamageText : MonoBehaviour
             if (colorAlpha >= 0.5f)
                 colorAlpha -= Time.deltaTime * 2;
 
-            damageText.color = new Color(1, 1, 1, colorAlpha);
+            damageText.color = new Color(1, 0, 0, colorAlpha);
             
             yield return null;
         }

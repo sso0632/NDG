@@ -9,10 +9,16 @@ public class MonsterActor : Acter
 {
     public int MonsterIndex;
 
-    float FollowSpeed = 6f;
-    float StopDistance = 1f;
+
+    float EnermyFollowSpeed = 6f;
+    float EnermyStopDistance = 1f;
+    float ReseauchSpeed = 1f;
+    float ReseauchStopDistance = 1f;
     float LongDistance;
     bool isHpBarExist;
+    Vector3 StartPos;
+
+    bool ReseauchEnd=true;
 
     public MonsterParty partyCommander = null;
 
@@ -38,6 +44,10 @@ public class MonsterActor : Acter
         //isHpBarExist = false;
         base.Awake();
         LongDistance = RangeArea.radius;
+    }
+    public void SetStartPos(Vector3 value)
+    {
+        StartPos = value;
     }
 
     public void TargetEventAdd()
@@ -70,12 +80,45 @@ public class MonsterActor : Acter
             IdleAni();
 
         if(Target==null)
+        { 
             RangeRefresh();
+            EnermyResearch();
+        }
         else if (Target != null)
         {
             Attackact();
         }
     }
+
+    void EnermyResearch()          //적군 찾는 행위
+    {
+        if (ReseauchEnd == true)
+        {
+            float range = 3f;
+            Vector3 FindPos;
+
+            float XRanagevalue = Random.Range(-range, range);
+            float ZRanagevalue = Random.Range(-range, range);
+
+
+            FindPos = new Vector3(XRanagevalue, 0, ZRanagevalue);
+            FindPos += StartPos;
+
+
+            navMesh.speed = ReseauchSpeed;
+            navMesh.stoppingDistance = ReseauchStopDistance;
+            NavMove(FindPos);
+            ReseauchEnd = false;
+        }
+        else if (ReseauchEnd == false)
+        {
+            if (navMesh.remainingDistance <= navMesh.stoppingDistance)
+            {
+                ReseauchEnd = true;
+            }
+        }
+    }
+
     protected void Left()
     {
         warLeftDirect.x = -1;
@@ -89,10 +132,10 @@ public class MonsterActor : Acter
     
     void Attackact()
     {
-        navMesh.speed = FollowSpeed;
+        navMesh.speed = EnermyFollowSpeed;
 
         if (haveCharacter.Attacktype == CharacterAttackType.SHORT)
-            navMesh.stoppingDistance = StopDistance;
+            navMesh.stoppingDistance = EnermyStopDistance;
         else
             navMesh.stoppingDistance = LongDistance;
         Attackwork();
@@ -112,8 +155,6 @@ public class MonsterActor : Acter
                 isHpBarExist = true;
             }
         }
-
-
         Target = _target;
         //Attackwork();
     }
@@ -125,5 +166,11 @@ public class MonsterActor : Acter
             partyCommander.PartyTargetSet(other.GetComponent<Acter>());
             //TargetSet(other.GetComponent<Acter>());
         }
+    }
+
+    public override void ProjectileOwnerFind(Vector3 TargetPos)
+    {
+        navMesh.speed = EnermyFollowSpeed;
+        NavMove(TargetPos);
     }
 }

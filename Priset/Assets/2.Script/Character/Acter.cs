@@ -139,7 +139,7 @@ public class Acter : MonoBehaviour
         //if (Target != null)
         //    TargetView();
     }
-    public void ProjectileOwnerFind(Vector3 TargetPos)
+   public virtual void ProjectileOwnerFind(Vector3 TargetPos)
     {
         NavMove(TargetPos);
     }
@@ -164,9 +164,9 @@ public class Acter : MonoBehaviour
 
     void MoveToAttack()
     {
-        NavMove(Target.ActorTransform.position);
         if (attackEnable == true)
         {
+            NavMove(Target.ActorTransform.position);
             if (navMesh.remainingDistance <= navMesh.stoppingDistance)
             {
                 if (Target.HChacter.Life == DeadorLive.LIVE)
