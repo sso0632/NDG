@@ -5,8 +5,7 @@ using UnityEngine.UI;
 public class UIWarManager : MonoBehaviour
 {
     public static UIWarManager instance;
-    //public UIPartyButton FriendlyRoom;
-
+    public UIParty UIPartyManager;
     public Text Scoreview;
     public GameObject HpBarPrefab;
     public GameObject DamageTextPrefab;
@@ -30,6 +29,7 @@ public class UIWarManager : MonoBehaviour
     {
         BarPooling();
         DamagePool();
+        UIPartyManager.DataInit();
     }
     public void PartyInit()
     {

@@ -53,20 +53,20 @@ public class UIDamageText : MonoBehaviour
         force = 150;
         showTimer = 0;
         fontForce = 1;
+
+        damageText.color = new Color(1, 0, 0, 1);
+        damageText.fontSize = 5;
+        colorAlpha = 1;
+        force = 50;
+
+        rectField.position = Camera.main.WorldToScreenPoint(showPoint);
+        drawPoint = rectField.position;
     }
 
     IEnumerator DamageAnimation()
     {
         AnimStart();
-        damageText.color = new Color(1, 0, 0, 1);
-        damageText.fontSize = 5;
-        colorAlpha = 1;
-        force = 50;
-   
-        rectField.position = Camera.main.WorldToScreenPoint(showPoint);
-
-        drawPoint = rectField.position;
-
+      
         while (showTimer <= 0.5f)
         {
             showTimer += Time.deltaTime;

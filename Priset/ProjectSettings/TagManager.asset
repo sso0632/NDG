@@ -10,6 +10,8 @@ TagManager:
   - MonsterRange
   - PlayerRange
   - priest
+  - HealingButton
+  - UIPartyMember
   layers:
   - Default
   - TransparentFX
