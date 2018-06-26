@@ -15,6 +15,12 @@ public class UIFriendlyField : MonoBehaviour
     BattleCharacter haveCharacter;          //생성할 캐릭터
     GameObject employSuccessObj;
 
+    Text AttackTypeText;
+    Text HealthPointText;
+    Text AttackPointText;
+    Text DefPointText;
+
+
     public int CharacterIndex
     {
         get
@@ -37,8 +43,15 @@ public class UIFriendlyField : MonoBehaviour
         characterImage = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
         employButton = transform.GetChild(0).GetChild(1).GetComponent<Button>();
         contentText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
-    
-        employSuccessObj = transform.GetChild(1).gameObject;
+
+        employSuccessObj = transform.GetChild(5).gameObject;
+
+        AttackTypeText = transform.GetChild(1).GetComponent<Text>();
+        HealthPointText = transform.GetChild(2).GetComponent<Text>();
+        AttackPointText = transform.GetChild(3).GetComponent<Text>();
+        DefPointText = transform.GetChild(4).GetComponent<Text>();
+
+
         employButton.onClick.AddListener(Create);
 
     }
@@ -55,7 +68,8 @@ public class UIFriendlyField : MonoBehaviour
 
     public void CharacterSet(BattleCharacter character)      //어디선가 에서 받아와야함
     {
-        haveCharacter = character;  
+        haveCharacter = character;
+        InfoSet();
     }
     public void SuccessEmploy()
     {
@@ -69,5 +83,18 @@ public class UIFriendlyField : MonoBehaviour
         UIManager.instance.EmployPanel.EmployFrieldyField(this);
         UIManager.instance.EmployPanel.ContentSet(haveCharacter);
     }
+
+
+    void InfoSet()
+    {
+        if (haveCharacter.Attacktype == CharacterAttackType.SHORT)
+            AttackTypeText.text = "근거리공격";
+        else
+            AttackTypeText.text = "원거리공격";
+        HealthPointText.text = haveCharacter.MHeath.ToString();
+        AttackPointText.text = haveCharacter.Attack.ToString();
+        DefPointText.text = haveCharacter.Defence.ToString();
+    }
+
 }
 
