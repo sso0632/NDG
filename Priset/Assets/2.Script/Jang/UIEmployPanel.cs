@@ -13,12 +13,19 @@ public class UIEmployPanel : MonoBehaviour {
     BattleCharacter employCharacter;
     tdelgate<BattleCharacter> CreateFunction;   //생성함수 
     UIFriendlyField currentFieldyField;
-    
+
+    Text GoldText;
+    Text FoodText;
+
     private void Awake()
     {
         employCharacterImage = transform.GetChild(0).GetChild(0).GetComponent<Image>();
         employButton = transform.GetChild(1).GetComponent<Button>();
         closeButton = transform.GetChild(2).GetComponent<Button>();
+
+        //GoldText = transform.GetChild(3).GetChild(0).GetComponent<Text>();
+        //FoodText = transform.GetChild(3).GetChild(1).GetComponent<Text>();
+
         ButtonDataInit();
     }
     void ButtonDataInit()
@@ -44,11 +51,16 @@ public class UIEmployPanel : MonoBehaviour {
     {
         employCharacterImage.sprite = DataSet.CharacterImageResources[character.Index];
         employCharacter = character;
+        InfoSet();
     }
     public void EmployFrieldyField(UIFriendlyField friendly)
     {
         currentFieldyField = friendly;
     }
 
+    void InfoSet()
+    {
 
+        //돈 정보 주입
+    }
 }
