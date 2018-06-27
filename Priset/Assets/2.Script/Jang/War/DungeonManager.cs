@@ -21,6 +21,7 @@ public class DungeonManager : MonoBehaviour
     MonsterDropPoint[] monsterDropList;    
     List<GameObject>[] monsterList;
 
+    
     public int GetMonsterTypeMax
     {
         get { return MonsterPrefabs.Length; }
@@ -41,7 +42,6 @@ public class DungeonManager : MonoBehaviour
         CurrentMonsterPartyCount = 0;
         StartCoroutine(MonsterDropSystem());
     }
-
     void MakeMonsterList()              //생성
     {        
         int monsterMax = MonsterPrefabs.Length;

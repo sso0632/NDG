@@ -29,7 +29,6 @@ public class UIWarManager : MonoBehaviour
     {
         BarPooling();
         DamagePool();
-        UIPartyManager.DataInit();
     }
     public void PartyInit()
     {
@@ -43,6 +42,7 @@ public class UIWarManager : MonoBehaviour
                 HpBarReceiver(tempParty.GetActors()[i]);
             }
         }
+        UIPartyManager.DataInit();
     }
     void BarPooling()
     {

@@ -17,9 +17,11 @@ public class Priest : MonoBehaviour
 
     PlayerManager pm;
 
+
     private void Awake()
     {
         SlotCount = 2;
+        PriestPower = 2;
         SkillSlot = new Skill[SlotCount];
     }
 
@@ -37,7 +39,9 @@ public class Priest : MonoBehaviour
     public void SkillActive(int targetnum)
     {
         if (nowSkill.SelfSkill == false)
+        {            
             nowSkill.SetActive(pm.GetPlayerParty.GetPartyMember(targetnum));
+        }            
         else
             nowSkill.SetActive(this);
     }

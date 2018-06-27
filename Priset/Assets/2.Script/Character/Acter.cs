@@ -6,7 +6,6 @@ using Sang;
 
 public class Acter : MonoBehaviour
 {
-
     protected SphereCollider RangeArea;       //인식
     protected BattleCharacter haveCharacter;
     protected Animator ActerAni;

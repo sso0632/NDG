@@ -7,22 +7,20 @@ using UnityEngine.EventSystems;
 public class UIHealingButton : MonoBehaviour, IDragHandler, IPointerUpHandler
 {
     public static RectTransform RectField;
-
-    UIPartyMember colliderPartyMember;
+    public static RectTransform ColliderField;
     public RectTransform backPoint;
 
+    UIPartyMember colliderPartyMember;
+    float dragDis = 80f;
+    bool isHealing = false;
 
-    public static RectTransform ColliderField;
-
-    private float dragDis = 80;
-
+    WaitForSeconds healingWaitDelay = new WaitForSeconds(0.5f);
 
     private void Awake()
     {
         RectField = GetComponent<RectTransform>();
     }
-    
-
+   
     public void OnDrag(PointerEventData eventData)
     {
         if (colliderPartyMember == null)
@@ -45,13 +43,31 @@ public class UIHealingButton : MonoBehaviour, IDragHandler, IPointerUpHandler
                 return;
             }
             transform.position = colliderPartyMember.transform.position;
+
+            if(!isHealing)
+            {
+                isHealing = true;
+                StartCoroutine(Healing());
+            }
         }
     }
+
     public void OnPointerUp(PointerEventData eventData)
     {
         transform.position = backPoint.position;
         colliderPartyMember = null;
     }
+    IEnumerator Healing()
+    {
+        while(colliderPartyMember != null)
+        {
+            //힐링 부분 
+            colliderPartyMember.MemberHeal();
+            yield return healingWaitDelay;
+        }
+        isHealing = false;       
+    }
+
     private bool TwoBetweenDis()
     {
         float dis = Vector2.Distance(backPoint.position, transform.position);

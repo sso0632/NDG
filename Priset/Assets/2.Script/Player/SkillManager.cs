@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sang;
 public class SkillManager : MonoBehaviour
-{
+{ 
     List<Skill> SkillBox;
-
+    
     public void Init()
     {
         SkillBox = GameManager.instance.Data.SkillSet();
@@ -61,6 +61,7 @@ public class Skill
     tdelgate<BattleCharacter> SkillActive = null;
     tdelgate<Priest> SkillPriestActive = null;
 
+    GameObject skillParticle;
 
     public float SkillValue
     {
@@ -92,7 +93,10 @@ public class Skill
         set { SelfSkillCheck = value; }
         get { return SelfSkillCheck; }
     }
-
+    public void SetParticle(GameObject obj)
+    {
+        skillParticle = obj;
+    }
     public Skill (int index, string _name, string _content, float value, float Time, bool _check)
     {
         name = _name;

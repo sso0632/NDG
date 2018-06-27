@@ -6,12 +6,27 @@ using UnityEngine.UI;
 public class UIPartyMember : MonoBehaviour
 {
     Image memberImage;
+
     RectTransform rectField;
-    private void Awake()
+
+    int memberIndex;
+
+    public int MemberIndex
+    {
+        get { return memberIndex; }
+        set { memberIndex = value; }
+    }
+    
+    public void MemberInit()
     {
         memberImage = transform.GetChild(0).GetChild(0).GetComponent<Image>();
         rectField = GetComponent<RectTransform>();
     }
+    public RectTransform GetRectField()
+    {
+        return rectField;
+    }
+
     public void AddEvent()
     {
         UIParty.PartyMemberCallEvent += MemberCompare;
@@ -20,14 +35,31 @@ public class UIPartyMember : MonoBehaviour
     {
         UIParty.PartyMemberCallEvent -= MemberCompare;
     }
-    public void UIPartyMemberSet(int _index)
+    public void SetBatlleData(int index)
     {
-        memberImage.sprite = DataSet.CharacterImageResources[_index];
+        memberIndex = index;
+        memberImage.sprite = DataSet.CharacterImageResources[index];
     }
+
+    //멤버 힐 하는 부분
+    public void MemberHeal()
+    {
+       PriestActor tempActor = GameManager.instance.PM.GetNowPriest();
+
+        if (tempActor == null)
+            return;
+
+        Debug.Log("멤버 번호 : " + memberIndex + " - 힐링");
+        tempActor.havePriest.SkillActive(memberIndex);        
+    }
+
     void MemberCompare(UIPartyMember member)
     {
         if (member != this)
             return;
+    
+        
+                
     }
 
 
