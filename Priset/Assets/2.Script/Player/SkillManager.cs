@@ -54,6 +54,7 @@ public class Skill
     float SkilActiveTime;             //스킬 지속 시간
     float Skillvalue;                 //스킬 량
     int Index;                   //스킬 인덱스 번호
+    int Needvalue;                  //스킬 필요한 량
     string Content;                   //스킬 설정
     bool SelfSkillCheck;                   //프리스트 대상
 
@@ -62,6 +63,11 @@ public class Skill
     tdelgate<Priest> SkillPriestActive = null;
 
 
+    public int SkillNeedValue
+    {
+        get { return Needvalue; }
+        set { Needvalue = value; }
+    }
     public float SkillValue
     {
         set { Skillvalue = value; }
@@ -93,7 +99,7 @@ public class Skill
         get { return SelfSkillCheck; }
     }
 
-    public Skill (int index, string _name, string _content, float value, float Time, bool _check)
+    public Skill(int index, string _name, string _content, float value, int Nvalue, float Time, bool _check)
     {
         name = _name;
         Content = _content;
@@ -101,6 +107,7 @@ public class Skill
         Skillvalue = value;
         SkilActiveTime = Time;
         SelfSkillCheck = _check;
+        Needvalue = Nvalue;
     }
 
     public void SKillSet()
@@ -108,7 +115,6 @@ public class Skill
         if(Index==0)
             SkillActive = Heailng;
     }
-
     public void SKillSet(SkillDelgate<BattleCharacter> skillFuction)
     {
         TimerActive = skillFuction;

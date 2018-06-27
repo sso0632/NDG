@@ -19,6 +19,8 @@ public class BattleCharacter : Character {
     protected DeadorLive life;        //죽음 여부
     protected Projectiles haveBullet;   //가지고 있는 총알
 
+    protected int NeedGold;
+
     public BattleCharacter()         //배틀 캐릭터 생성
     {
 
@@ -78,6 +80,11 @@ public class BattleCharacter : Character {
     {
         set { Heath = value; }
         get { return Heath; }
+    }
+
+    public int NeedMoney
+    {
+        get { return NeedGold; }
     }
 
     public Projectiles Bullet
@@ -141,6 +148,31 @@ public class BattleCharacter : Character {
                 break;
             case CharacterAttackType.SLIMEBALL:
                 haveBullet = Resources.Load<GameObject>("PrePab/Projectile/Slimeball").GetComponent<Projectiles>();
+                break;
+        }
+    }
+
+    protected void GoldSet()
+    {
+        switch (attacktype)
+        {
+            case CharacterAttackType.SHORT:
+                NeedGold = (int)(AttackPoint * AttackSpeed) + (Heath);
+                break;
+            case CharacterAttackType.ARROW:
+                NeedGold = (int)(AttackPoint * AttackSpeed) + (Heath * 2);
+                break;
+            case CharacterAttackType.BOLT:
+                NeedGold = (int)(AttackPoint * AttackSpeed) + (Heath * 2);
+                break;
+            case CharacterAttackType.FIREBULL:
+                NeedGold = (int)(AttackPoint * AttackSpeed) + (Heath * 2);
+                break;
+            case CharacterAttackType.MANABALL:
+                NeedGold = (int)(AttackPoint * AttackSpeed) + (Heath * 2);
+                break;
+            case CharacterAttackType.SKULL:
+                NeedGold = (int)(AttackPoint * AttackSpeed) + (Heath * 2);
                 break;
         }
     }

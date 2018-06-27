@@ -1,23 +1,27 @@
 
-Loading: E:\joystudy\NDG\Priset\MonsterStat.xlsx
+Loading: E:\joystudy\NDG\Priset\Skill.xlsx
 Parse sheet: Sheet1
-Parsing: E:\joystudy\NDG\Priset\MonsterStat.xlsx.$$$\Sheet1.csv
+Parsing: E:\joystudy\NDG\Priset\Skill.xlsx.$$$\Sheet1.csv
 Parse sheet: Sheet2
-Parsing: E:\joystudy\NDG\Priset\MonsterStat.xlsx.$$$\Sheet2.csv
+Parsing: E:\joystudy\NDG\Priset\Skill.xlsx.$$$\Sheet2.csv
 Parse sheet: Sheet3
-Parsing: E:\joystudy\NDG\Priset\MonsterStat.xlsx.$$$\Sheet3.csv
-Closing: E:\joystudy\NDG\Priset\MonsterStat.xlsx
+Parsing: E:\joystudy\NDG\Priset\Skill.xlsx.$$$\Sheet3.csv
+Closing: E:\joystudy\NDG\Priset\Skill.xlsx
 ------------------------------------------------------------------------------
-[MonsterStat.xlsx(Sheet1): ROW 1]
-Found object mark: '#Monsterstat[{}]'
-[MonsterStat.xlsx(Sheet1): ROW 1]
- Key: MHeath at 1
-[MonsterStat.xlsx(Sheet1): ROW 1]
- Key: Attack at 2
-[MonsterStat.xlsx(Sheet1): ROW 1]
- Key: ASpeed at 3
-[MonsterStat.xlsx(Sheet1): ROW 1]
- Key: Attacktype at 4
-[MonsterStat.xlsx(Sheet1): ROW 1]
- Key: Defence at 5
+[Skill.xlsx(Sheet1): ROW 2]
+Found object mark: '#Skill[{}]'
+[Skill.xlsx(Sheet1): ROW 2]
+ Key: SkillName at 1
+[Skill.xlsx(Sheet1): ROW 2]
+ Key: SkillValue at 2
+[Skill.xlsx(Sheet1): ROW 2]
+ Key: SkillTime at 3
+[Skill.xlsx(Sheet1): ROW 2]
+ Key: SkillContent at 4
+[Skill.xlsx(Sheet1): ROW 2]
+ Key: SkillIndex at 5
+[Skill.xlsx(Sheet1): ROW 2]
+ Key: SelfSkill at 6
+[Skill.xlsx(Sheet1): ROW 2]
+ Key: SkillNeedValue at 7
 Parsing Array Object Table...

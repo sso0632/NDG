@@ -35,7 +35,7 @@ public class DataSet : MonoBehaviour
 
         for(int spriteNumber = 0; spriteNumber < SkillImageResources.Length; ++spriteNumber)
         {
-            SkillImageResources[spriteNumber] = (Sprite)Resources.Load("SKillImage/" + spriteNumber.ToString(), typeof(Sprite));
+            SkillImageResources[spriteNumber] = (Sprite)Resources.Load("SkillImage/" + spriteNumber.ToString(), typeof(Sprite));
         }
     }
     void CharacterSpriteLoad()

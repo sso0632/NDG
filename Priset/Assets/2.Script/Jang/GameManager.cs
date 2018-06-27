@@ -18,13 +18,6 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
         //게임의 데이터 불러오고
-
-        if(FirstStart==true)
-        { 
-            //맨처음 시작 했을 때
-            FirstStart = false;
-        }
-
         if (instance == null)
             instance = this;
         else
@@ -39,6 +32,13 @@ public class GameManager : MonoBehaviour {
         DataSet();
         SkillSpace.Init();
         NowScene = SceneNum.Home;
+
+        if (FirstStart == true)
+        {
+            //맨처음 시작 했을 때
+            PM.AddMoney(100);
+            FirstStart = false;
+        }
     }
     void DataSet()
     {

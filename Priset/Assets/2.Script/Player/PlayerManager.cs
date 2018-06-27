@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour {
         Party.PartySet();
         ChagePriest(0);
         DontDestroyOnLoad(gameObject);
+
     }
     private void Update()
     {
@@ -90,6 +91,21 @@ public class PlayerManager : MonoBehaviour {
         UIManager.instance.PriestPanel.CharacterUnlock(1);
     }
 
+
+    public bool GoldTraid(int NeedMoney)
+    {
+        if(NeedMoney <= Gold)
+        {
+            MinusMoney(NeedMoney);
+            return true;
+        }
+        else
+        {
+            Debug.Log("돈이 부족 합니다 ");
+            return false;
+        }
+    }
+
     public GameObject GetPartyParent()
     {
         return PartyParent;
@@ -107,6 +123,21 @@ public class PlayerManager : MonoBehaviour {
     {
         Score++;
     }
+    public int Money
+    {
+        get { return Gold; }
+    }
+    public void AddMoney(int _Gold)
+    {
+        Gold += _Gold;
+        UIManager.instance.GoldView();
+    }
+    void MinusMoney(int _Gold)
+    {
+        Gold -= _Gold;
+        UIManager.instance.GoldView();
+    }
+
     public int SCORE
     {
         get{ return Score;  }

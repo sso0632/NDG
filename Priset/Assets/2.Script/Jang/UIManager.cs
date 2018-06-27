@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
     public GameObject LoadUI;
     public Image SliderImage;
 
+    public Text TownGoldText;
+
     private void Awake()
     {
         if (instance == null)
@@ -79,5 +81,10 @@ public class UIManager : MonoBehaviour
     public void FriendlyResetTextSet(int min, float second)
     {
         FriendlyResetTimerText.text = string.Format("{0:D2} : {1:D2}", min, (int)second);
+    }
+
+    public void GoldView()
+    {
+        TownGoldText.text =string.Format("{0:D9}", GameManager.instance.PM.Money);
     }
 }
