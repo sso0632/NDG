@@ -9,7 +9,6 @@ public class UISkillSelect : MonoBehaviour {
     GameObject SkillField;
     UISkillField SkillFieldData;
 
-
     private void Awake()
     {
         Init();

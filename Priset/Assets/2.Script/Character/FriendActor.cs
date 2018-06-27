@@ -16,6 +16,7 @@ public class FriendActor : Acter {
     float MonsterFollowSpeed=6f;
     float MonsterStopDistance=1f;
     float LongDistance;
+    float HomeMoveLimite=4.5f;
 
     int AttackCount=0;                    //공격한 횟수 
     bool AttackendBack=false;                   //공격 완료 돌아가기
@@ -49,10 +50,9 @@ public class FriendActor : Acter {
     {
         StopCoroutine("decisionHomeAct");
     }
-    IEnumerator decisionHomeAct()
-    {
-        homeactkind = (HomeActNum)Random.Range(0, 3);
 
+    void decisionAct()
+    {
         switch (homeactkind)
         {
             case HomeActNum.RightWalk:
@@ -70,7 +70,11 @@ public class FriendActor : Acter {
                 HomeMoveFuction = null;
                 break;
         }
-
+    }
+    IEnumerator decisionHomeAct()
+    {
+        homeactkind = (HomeActNum)Random.Range(0, 3);
+        decisionAct();
         yield return new WaitForSeconds(2f);
         if (GameManager.instance.NowScene != SceneNum.War)
         {
@@ -142,12 +146,34 @@ public class FriendActor : Acter {
     }
     void HomeMove()     //집에서 이동
     {
-        ActorTransform.Translate(Vector3.right * Time.deltaTime);
+        if(HomeMoveLimite > 0)
+        {
+            if (ActorTransform.localPosition.x < HomeMoveLimite)
+                ActorTransform.Translate(Vector3.right * Time.deltaTime);
+            else
+            {
+                homeactkind = HomeActNum.LeftWalk;
+                decisionAct();
+            }
+        }
+        else if(HomeMoveLimite < 0)
+        {
+            if (ActorTransform.localPosition.x > HomeMoveLimite)
+                ActorTransform.Translate(Vector3.right * Time.deltaTime);
+            else
+            {
+                homeactkind = HomeActNum.RightWalk;
+                decisionAct();
+            }
+        }
     }
     protected void Left()   
     {
         if (GameManager.instance.NowScene != SceneNum.War)
+        {
+            HomeMoveLimite = -4.5f;
             ActorTransform.rotation = LeftDirect;
+        }
         else if (GameManager.instance.NowScene != SceneNum.Home)
         {
             warLeftDirect.x = -1;
@@ -157,10 +183,13 @@ public class FriendActor : Acter {
     protected void right()
     {
         if (GameManager.instance.NowScene != SceneNum.War)
+        {
+            HomeMoveLimite = 4.5f;
             ActorTransform.rotation = Quaternion.identity;
-
+        }
         else if (GameManager.instance.NowScene != SceneNum.Home)
         {
+
             warLeftDirect.x = 1;
             ActorTransform.localScale = warLeftDirect;
         }

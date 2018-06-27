@@ -11,7 +11,7 @@ public class Priest : MonoBehaviour
     int Heath;             //현재 게임의 지속 시간
     int PriestPower;       //현재 신성력 == 엠피
     int SlotCount;         //스킬 슬롯 갯수
-    Skill[] SkillSlot;
+    Skill[] SkillSlot;     
     Skill nowSkill;        //현재 스킬
     public int MoveSpeed;  //프리스트 이동 속도
 
@@ -23,6 +23,7 @@ public class Priest : MonoBehaviour
         SlotCount = 2;
         PriestPower = 2;
         SkillSlot = new Skill[SlotCount];
+        
     }
 
     public void SetSkill(Skill getSkill)
@@ -36,14 +37,44 @@ public class Priest : MonoBehaviour
             }
         }
     }
+
     public void SkillActive(int targetnum)
     {
-        if (nowSkill.SelfSkill == false)
-        {            
-            nowSkill.SetActive(pm.GetPlayerParty.GetPartyMember(targetnum));
-        }            
+        if (nowSkill.SelfSkill == false) 
+        { 
+            if(CheckPower())
+            {
+                nowSkill.SetActive(pm.GetPlayerParty.GetPartyMember(targetnum));
+            }
+        }
         else
-            nowSkill.SetActive(this);
+        {
+            if (CheckPower())
+            {
+                nowSkill.SetActive(this);
+            }
+        }
+    }
+
+
+    void NowSkillSet(int skillindex)
+    {
+        nowSkill = SkillSlot[skillindex];
+    }
+    void PowerMinuce()
+    {
+        PriestPower -= nowSkill.SkillNeedValue;
+    }
+
+    bool CheckPower()
+    {
+        if (PriestPower >= nowSkill.SkillNeedValue)
+        {
+            PowerMinuce();
+            return true;
+        }
+        else
+            return false;
     }
 
     public Skill[] GetSkill()
@@ -58,5 +89,6 @@ public class Priest : MonoBehaviour
     public void init()
     {
         HeathFull();
+        NowSkillSet(0);
     }
 }

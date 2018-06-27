@@ -23,7 +23,7 @@ public class UIEmployPanel : MonoBehaviour {
         employButton = transform.GetChild(1).GetComponent<Button>();
         closeButton = transform.GetChild(2).GetComponent<Button>();
 
-        //GoldText = transform.GetChild(3).GetChild(0).GetComponent<Text>();
+        GoldText = transform.GetChild(3).GetChild(0).GetComponent<Text>();
         //FoodText = transform.GetChild(3).GetChild(1).GetComponent<Text>();
 
         ButtonDataInit();
@@ -43,9 +43,16 @@ public class UIEmployPanel : MonoBehaviour {
     }
     void EmployPress()
     {
-        CreateFunction(employCharacter);
-        currentFieldyField.SuccessEmploy();
-        gameObject.SetActive(false);
+        if(GameManager.instance.PM.GoldTraid(employCharacter.NeedMoney))
+        { 
+            CreateFunction(employCharacter);
+            currentFieldyField.SuccessEmploy();
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("돈이 부족 합니다");
+        }
     }
     public void ContentSet(BattleCharacter character)
     {
@@ -60,7 +67,7 @@ public class UIEmployPanel : MonoBehaviour {
 
     void InfoSet()
     {
-
+        GoldText.text = employCharacter.NeedMoney.ToString();
         //돈 정보 주입
     }
 }
