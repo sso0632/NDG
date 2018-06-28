@@ -21,9 +21,11 @@ public class Acter : MonoBehaviour
     protected SphereCollider HitArea;       //인식
     protected Vector3 warLeftDirect = new Vector3(-1, 1, 1);
 
+    protected List<skillParticle> haveSkillParicle;
 
     protected void init()
     {
+        haveSkillParicle = new List<skillParticle>();
         ActerAni = this.GetComponent<Animator>();
         ActorTransform = this.GetComponent<Transform>();
         navMesh = this.transform.parent.GetComponent<NavMeshAgent>();
@@ -221,9 +223,10 @@ public class Acter : MonoBehaviour
         HChacter.HeathDamage(haveCharacter.Attack);
         HitAni();
     }
-    public void Hit(Acter Target)                         //남을 때릴때
+    public virtual void Hit(Acter Target)                         //남을 때릴때
     {
         Target.HChacter.HeathDamage(haveCharacter.Attack);
+        UIWarManager.SetAmountChange(Target.HChacter);
         Target.HitAni();
     }
     public void StartHitEffect(Vector3 AttackPos)
@@ -291,4 +294,15 @@ public class Acter : MonoBehaviour
     {
         navMesh.enabled = true;
     }
+    public skillParticle GethaveSkillParicle(int index)
+    {
+        return haveSkillParicle[index];
+    }
+
+    public void haveSkillParicleClear()
+    {
+        haveSkillParicle = null;
+    }
+    public virtual void SkillParticleSet(skillParticle value) { }
+    public virtual void haveParticlePlay(int skillindex) { }
 }

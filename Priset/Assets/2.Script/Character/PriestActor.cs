@@ -7,7 +7,6 @@ public class PriestActor : FriendActor {
     public Priest havePriest;
     Transform thisTransform;
 
-
     public void Init()
     {
         havePriest.init();

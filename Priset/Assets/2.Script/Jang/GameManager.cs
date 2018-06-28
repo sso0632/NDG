@@ -49,9 +49,10 @@ public class GameManager : MonoBehaviour {
     public void GoWarScene()
     {
         NowScene = SceneNum.War;
-        PM.GoWarscene();
-        StartCoroutine(LoadingSystem((int)NowScene));   
+        PM.PriestInit();
+        StartCoroutine(LoadingSystem((int)NowScene));
     }
+
     IEnumerator LoadingSystem(int mapIndex)
     {
         UIManager.instance.LoadUI.SetActive(true);
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour {
 
         PM.GoWarScene();
         CreateCharacter.PartyCreate();
+        PM.PriestFirstSkillSet();
         UIWarManager.instance.PartyInit();
 
         yield return null;

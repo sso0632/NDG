@@ -29,14 +29,15 @@ public class SkillManager : MonoBehaviour
             {
                 case 0:
                     SkillBox[i].SKillSet();
+                    SkillBox[i].SetParticle(DataSet.SkillParicle[0]);
                     break;
                 case 1:
                     SkillBox[i].SKillSet(Attup);
+                    SkillBox[i].SetParticle(DataSet.SkillParicle[0]);
                     break;
             }
         }
     }
-
 
     void Attup(Skill self, BattleCharacter target)
     {
@@ -45,6 +46,22 @@ public class SkillManager : MonoBehaviour
     void Defup(Skill self, BattleCharacter target)
     {
         StartCoroutine(self.AttUpBuffTimer(target));
+    }
+}
+public struct skillParticle
+{
+    int skillindex;
+    GameObject particle;
+
+    public GameObject Particle
+    {
+        get { return particle; }
+        set { particle = value; }
+    }
+    public int Index
+    {
+        get { return skillindex; }
+        set { skillindex = value; }
     }
 }
 
@@ -99,6 +116,11 @@ public class Skill
         set { SelfSkillCheck = value; }
         get { return SelfSkillCheck; }
     }
+
+    public GameObject Particle
+    {
+        get { return skillParticle; }
+    }
     public void SetParticle(GameObject obj)
     {
         skillParticle = obj;
@@ -134,9 +156,9 @@ public class Skill
 
     public void SetActive(BattleCharacter target)
     {
-        if(SkillActive!=null)
+        if (SkillActive != null)
             SkillActive(target);
-        if(TimerActive!=null)
+        if (TimerActive!=null)
             TimerActive(this, target);
     }
     public void SetActive(Priest target)
@@ -148,6 +170,7 @@ public class Skill
     void Heailng(BattleCharacter target)
     {
         target.HP += (int)SkillValue;
+        UIWarManager.SetAmountChange(target);
     }
 
     public IEnumerator AttUpBuffTimer(BattleCharacter target)

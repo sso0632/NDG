@@ -54,6 +54,7 @@ public class UIHpBar : MonoBehaviour
         viewPortVector.y += 80f;
         rectField.position = viewPortVector;
     }
+
     public void HealthChange(BattleCharacter actor)
     {
         if (actor == null)
