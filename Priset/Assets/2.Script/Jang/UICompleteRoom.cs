@@ -7,7 +7,6 @@ using Sang;
 public class UICompleteRoom : MonoBehaviour , IPointerClickHandler
 {
     Image roomCharacter;
-
     int roomIndex;
 
     private void Awake()

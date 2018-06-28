@@ -227,10 +227,7 @@ public class FriendActor : Acter {
                 if (navMesh.remainingDistance <= navMesh.stoppingDistance && Target.HChacter.Life == DeadorLive.LIVE)
                 {
                     AttackCount++;
-                    Target.HChacter.HeathDamage(haveCharacter.Attack);
-                    UIWarManager.SetAmountChange(Target.HChacter);
-                    UIWarManager.instance.ShowDamageText(Target.transform.position, haveCharacter.Attack);
-                    Target.StartHitEffect(navMeshObject.position);
+                    Hit(Target);
                 }
             }
             else
@@ -247,6 +244,14 @@ public class FriendActor : Acter {
         }
     }
 
+    public override void Hit(Acter Target)                         //남을 때릴때
+    {
+        Target.HChacter.HeathDamage(haveCharacter.Attack);
+        UIWarManager.SetAmountChange(Target.HChacter);
+        UIWarManager.instance.ShowDamageText(Target.transform.position, haveCharacter.Attack);
+        Target.StartHitEffect(navMeshObject.position);
+    }
+
     bool checkBack()
     {
         if ((int)Vector3.Distance(Party.GetPos((int)formationNum), ActorTransform.position) == 0)
@@ -254,5 +259,17 @@ public class FriendActor : Acter {
         else
             return false;
     }
-        
+
+    public override void SkillParticleSet(skillParticle value)
+    {
+        haveSkillParicle.Add(value);
+    }
+
+    public override void haveParticlePlay(int skillindex)
+    {
+        haveSkillParicle.Find(x => x.Index == skillindex).Particle.SetActive(false);
+        haveSkillParicle.Find(x => x.Index == skillindex).Particle.SetActive(true);
+    }
+
+    
 }

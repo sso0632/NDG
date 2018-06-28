@@ -12,12 +12,15 @@ public class DataSet : MonoBehaviour
     public static Sprite[] CharacterImageResources;
     public static Sprite[] SkillImageResources;
 
+
+    public static GameObject[] SkillParicle;
     public void Init()
     {
         CharacterStatLoad();
         CharacterSpriteLoad();
         SkillDataLoad();
         SkillSpriteLoad();
+        SkillPartcleLoad();
     }
 
     void DebugList()
@@ -48,6 +51,16 @@ public class DataSet : MonoBehaviour
             CharacterImageResources[spriteNumber] = (Sprite)Resources.Load("CharacterImage/" + spriteNumber.ToString(), typeof(Sprite));
         }
     }
+    void SkillPartcleLoad()
+    {
+        int count = Resources.LoadAll("PrePab/SkillPartcle", typeof(GameObject)).Length;
+        SkillParicle = new GameObject[count];
+        for (int PartcleNumber = 0; PartcleNumber < count; ++PartcleNumber)
+        {
+            SkillParicle[PartcleNumber] = (GameObject)Resources.Load("PrePab/SkillPartcle/" + string.Format("s{0}", PartcleNumber));
+        }
+    }
+
     void CharacterStatLoad()
     {
         TextAsset Characterstatjson = (TextAsset)Resources.Load("Json/CharacterStat", typeof(TextAsset));
@@ -83,3 +96,5 @@ public class DataSet : MonoBehaviour
         return SkillData["Skill"];
     }
 }
+
+

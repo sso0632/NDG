@@ -115,9 +115,13 @@ public class PlayerManager : MonoBehaviour {
     {
         Party.LeaderSet(NowPriest.havePriest, NowPriest.transform);
     }
-    public void GoWarscene()
+    public void PriestInit()
     {
         NowPriest.Init();
+    }
+    public void PriestFirstSkillSet()
+    {
+        NowPriest.havePriest.NowSkillSet(0);
     }
     public void HuntCountUp()
     {
@@ -166,7 +170,6 @@ public class PlayerParty
         FriendActer[index] = _actor;
     }
 
-
     public void LeaderSet(Priest _Leader, Transform _LeaderTransform)
     {
         Leader = _Leader;
@@ -180,6 +183,12 @@ public class PlayerParty
     {
         return characterParty[index];
     }
+
+    public Acter GetPartyActor(int index)
+    {
+        return FriendActer[index];
+    }
+
     public int PartyCount()
     {
         return characterParty.Length;

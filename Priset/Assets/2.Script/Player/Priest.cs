@@ -15,15 +15,13 @@ public class Priest : MonoBehaviour
     Skill nowSkill;        //현재 스킬
     public int MoveSpeed;  //프리스트 이동 속도
 
-    PlayerManager pm;
-
-
+    bool FirstSkillActive;  //스킬 처음사용
     private void Awake()
     {
         SlotCount = 2;
         PriestPower = 2;
         SkillSlot = new Skill[SlotCount];
-        
+        FirstSkillActive = false;
     }
 
     public void SetSkill(Skill getSkill)
@@ -44,7 +42,8 @@ public class Priest : MonoBehaviour
         { 
             if(CheckPower())
             {
-                nowSkill.SetActive(pm.GetPlayerParty.GetPartyMember(targetnum));
+                nowSkill.SetActive(GameManager.instance.PM.GetPlayerParty.GetPartyMember(targetnum));
+                SkillParticleActive(GameManager.instance.PM.GetPlayerParty.GetPartyActor(targetnum));
             }
         }
         else
@@ -52,14 +51,23 @@ public class Priest : MonoBehaviour
             if (CheckPower())
             {
                 nowSkill.SetActive(this);
+                SkillParticleActive(GameManager.instance.PM.GetPlayerParty.GetPartyActor(targetnum));
             }
         }
     }
 
 
-    void NowSkillSet(int skillindex)
+   public void NowSkillSet(int skillindex)
     {
         nowSkill = SkillSlot[skillindex];
+
+        for (int i=0; i< 4; ++i)
+        {
+            if (GameManager.instance.PM.GetPlayerParty.GetPartyActor(i)!=null)
+            {
+                SkillParticleSet(GameManager.instance.PM.GetPlayerParty.GetPartyActor(i));
+            }
+        }
     }
     void PowerMinuce()
     {
@@ -74,7 +82,7 @@ public class Priest : MonoBehaviour
             return true;
         }
         else
-            return false;
+            return true;
     }
 
     public Skill[] GetSkill()
@@ -89,6 +97,18 @@ public class Priest : MonoBehaviour
     public void init()
     {
         HeathFull();
-        NowSkillSet(0);
+    }
+
+    void SkillParticleSet(Acter targetacter)
+    {
+        skillParticle temp = new skillParticle();
+        temp.Particle = (GameObject)Instantiate(nowSkill.Particle, targetacter.transform);
+        temp.Index = nowSkill.SkillIndex;
+
+        targetacter.SkillParticleSet(temp);
+    }
+    void SkillParticleActive(Acter targetacter)
+    {
+        targetacter.haveParticlePlay(nowSkill.SkillIndex);
     }
 }
