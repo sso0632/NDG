@@ -215,8 +215,6 @@ public class FriendActor : Acter {
             }
         }
     }
-
-
     protected override void AttackEnd()
     {
         if (ActerAni.GetCurrentAnimatorStateInfo(0).IsName("Humanoid_Strike") &&

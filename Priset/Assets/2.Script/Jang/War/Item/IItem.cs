@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoBattleCharacter : Character
+public interface IItem
 {
-
-
-
+    void EatItem();
 }

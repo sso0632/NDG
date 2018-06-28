@@ -11,6 +11,7 @@ public class UIHealingButton : MonoBehaviour, IDragHandler, IPointerUpHandler
     public RectTransform backPoint;
 
     UIPartyMember colliderPartyMember;
+
     float dragDis = 80f;
     bool isHealing = false;
 
@@ -63,6 +64,7 @@ public class UIHealingButton : MonoBehaviour, IDragHandler, IPointerUpHandler
         {
             //힐링 부분 
             colliderPartyMember.MemberHeal();
+
             yield return healingWaitDelay;
         }
         isHealing = false;       

@@ -7,7 +7,6 @@ public class PriestActor : FriendActor {
     public Priest havePriest;
     Transform thisTransform;
 
-
     public void Init()
     {
         havePriest.init();
@@ -65,4 +64,6 @@ public class PriestActor : FriendActor {
 
         navMeshObject.position += (JoyStick.MoveDir * havePriest.MoveSpeed) * Time.deltaTime;
     }
+
+     
 }
