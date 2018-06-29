@@ -12,14 +12,17 @@ public class CHolyItem : CItem
         get { return holyAmount; }
         set { holyAmount = value; }
     }
-}
 
+}
 public class HolyItem : Item
-{    
+{
     public override void EatItem()
     {
+         
+
 
 
     }
+
 }
 

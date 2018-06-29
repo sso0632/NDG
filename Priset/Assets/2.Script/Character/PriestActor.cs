@@ -16,7 +16,6 @@ public class PriestActor : FriendActor {
         base.Awake();
         thisTransform = GetComponent<Transform>();
         havePriest = GetComponent<Priest>();
-
     }
     private void Start()
     {

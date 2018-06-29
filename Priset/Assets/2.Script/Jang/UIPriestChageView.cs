@@ -10,9 +10,7 @@ public class UIPriestChageView : MonoBehaviour {
     {
         Priestmagevalue = new UIPriesthaveField[10];
         ComponentSet();
-        
     }
-
     void ComponentSet()
     {
         int count = this.gameObject.transform.GetChild(0).GetChildCount();

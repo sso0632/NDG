@@ -1,0 +1,67 @@
+{
+	"HealthItem": [
+		{
+			"HealAmount": 1
+		},
+		{
+			"HealAmount": 2
+		},
+		{
+			"HealAmount": 3
+		},
+		{
+			"HealAmount": 4
+		},
+		{
+			"HealAmount": 5
+		},
+		{
+			"HealAmount": 6
+		},
+		{
+			"HealAmount": 7
+		},
+		{
+			"HealAmount": 8
+		},
+		{
+			"HealAmount": 9
+		},
+		{
+			"HealAmount": 10
+		}
+	],
+	"HolyItem": [
+		{
+			"HealAmount": 1
+		},
+		{
+			"HealAmount": 2
+		},
+		{
+			"HealAmount": 3
+		},
+		{
+			"HealAmount": 4
+		},
+		{
+			"HealAmount": 5
+		},
+		{
+			"HealAmount": 6
+		},
+		{
+			"HealAmount": 7
+		},
+		{
+			"HealAmount": 8
+		},
+		{
+			"HealAmount": 9
+		},
+		{
+			"HealAmount": 10
+		}
+	],
+	"SpeedItem": []
+}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SubPlayerController : MonoBehaviour {
 
     public static Transform PlayerTransform;
@@ -14,4 +15,6 @@ public class SubPlayerController : MonoBehaviour {
     {
         transform.position += JoyStick.MoveDir * Time.deltaTime * 3;
     }
+
+
 }

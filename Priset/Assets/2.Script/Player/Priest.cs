@@ -98,6 +98,12 @@ public class Priest : MonoBehaviour
     {
         HeathFull();
     }
+    public void HealthChange(int amount)
+    {
+        Heath += amount;
+        if (Heath >= HeathMax)
+            Heath = HeathMax;
+    }
 
     void SkillParticleSet(Acter targetacter)
     {

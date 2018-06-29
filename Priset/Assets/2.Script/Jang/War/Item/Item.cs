@@ -5,7 +5,7 @@ using UnityEngine;
 public class CItem
 {
     int itemCode;
-
+    
     public int ItemCode
     {
         get { return itemCode; }
@@ -13,17 +13,15 @@ public class CItem
     }
 }
 
+
 public class Item : MonoBehaviour
 {
     public virtual void EatItem() { }
 
     private void OnTriggerEnter(Collider other)
     { 
-       
-                
-
+      
     }
-    
 }
 
 

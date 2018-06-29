@@ -1,27 +1,25 @@
 
-Loading: E:\joystudy\NDG\Priset\Skill.xlsx
+Loading: D:\NoD\Priset\ItemStat.xlsx
 Parse sheet: Sheet1
-Parsing: E:\joystudy\NDG\Priset\Skill.xlsx.$$$\Sheet1.csv
+Parsing: D:\NoD\Priset\ItemStat.xlsx.$$$\Sheet1.csv
 Parse sheet: Sheet2
-Parsing: E:\joystudy\NDG\Priset\Skill.xlsx.$$$\Sheet2.csv
+Parsing: D:\NoD\Priset\ItemStat.xlsx.$$$\Sheet2.csv
 Parse sheet: Sheet3
-Parsing: E:\joystudy\NDG\Priset\Skill.xlsx.$$$\Sheet3.csv
-Closing: E:\joystudy\NDG\Priset\Skill.xlsx
+Parsing: D:\NoD\Priset\ItemStat.xlsx.$$$\Sheet3.csv
+Closing: D:\NoD\Priset\ItemStat.xlsx
 ------------------------------------------------------------------------------
-[Skill.xlsx(Sheet1): ROW 2]
-Found object mark: '#Skill[{}]'
-[Skill.xlsx(Sheet1): ROW 2]
- Key: SkillName at 1
-[Skill.xlsx(Sheet1): ROW 2]
- Key: SkillValue at 2
-[Skill.xlsx(Sheet1): ROW 2]
- Key: SkillTime at 3
-[Skill.xlsx(Sheet1): ROW 2]
- Key: SkillContent at 4
-[Skill.xlsx(Sheet1): ROW 2]
- Key: SkillIndex at 5
-[Skill.xlsx(Sheet1): ROW 2]
- Key: SelfSkill at 6
-[Skill.xlsx(Sheet1): ROW 2]
- Key: SkillNeedValue at 7
+[ItemStat.xlsx(Sheet1): ROW 2]
+Found object mark: '#HealthItem[{}]'
+[ItemStat.xlsx(Sheet1): ROW 2]
+ Key: HealAmount at 1
+Parsing Array Object Table...
+------------------------------------------------------------------------------
+[ItemStat.xlsx(Sheet1): ROW 15]
+Found object mark: '#HolyItem[{}]'
+[ItemStat.xlsx(Sheet1): ROW 15]
+ Key: HealAmount at 1
+Parsing Array Object Table...
+------------------------------------------------------------------------------
+[ItemStat.xlsx(Sheet1): ROW 28]
+Found object mark: '#SpeedItem[{}]'
 Parsing Array Object Table...

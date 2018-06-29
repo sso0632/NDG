@@ -26,7 +26,6 @@ public class UIPartyMember : MonoBehaviour
     {
         return rectField;
     }
-
     public void AddEvent()
     {
         UIParty.PartyMemberCallEvent += MemberCompare;
@@ -50,16 +49,19 @@ public class UIPartyMember : MonoBehaviour
             return;
 
         Debug.Log("멤버 번호 : " + memberIndex + " - 힐링");
+
         tempActor.havePriest.SkillActive(memberIndex);        
+
     }
 
     void MemberCompare(UIPartyMember member)
     {
         if (member != this)
             return;
-    
         
-                
+
+
+
     }
 
 

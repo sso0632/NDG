@@ -6,19 +6,23 @@ using UnityEngine;
 
 public class CHealthItem : CItem
 {
-    float healAmount;
+    int healAmount;
 
-    public float HealAmount
+    public int HealAmount
     {
         get { return healAmount; }
         set { healAmount = value; }
     }
+
 }
 public class HealthItem : Item
 {
+    CHealthItem healItem;
+
     public override void EatItem()
     {
-        Debug.Log("체력 아이템");
+        PriestActor tempActor = GameManager.instance.PM.GetNowPriest();
+        tempActor.havePriest.HealthChange(healItem.HealAmount);
     }
 
 }

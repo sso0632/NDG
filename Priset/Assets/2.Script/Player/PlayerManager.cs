@@ -7,9 +7,9 @@ public class PlayerManager : MonoBehaviour {
 
     public PriestActor[] havePriestCharacter;           //가지고 있는 프리스트
     public List<BattleCharacter> EmployCharacter;      //섭외한 배틀 캐릭터
-    PriestActor NowPriest;                              //현재 프리스트
+    PriestActor NowPriest;                      //현재 프리스트
     PlayerParty Party;
-    GameObject PartyParent;                         //파티 부모
+    GameObject PartyParent;                     //파티 부모
     int Gold;                                   //플레이어 돈
     int Score;                                  //점수
 
