@@ -111,16 +111,6 @@ public class DataSet : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
-=======
-    void CharacterStatLoad()
-    {
-        TextAsset Characterstatjson = (TextAsset)Resources.Load("Json/CharacterStat", typeof(TextAsset));
-        CharacterStatData = JsonConvert.DeserializeObject<Dictionary<string, List<BattleCharacter>>>(Characterstatjson.text);
-
-        Characterstatjson = (TextAsset)Resources.Load("Json/MonsterStat", typeof(TextAsset));
-        MonsterStatData = JsonConvert.DeserializeObject<Dictionary<string, List<BattleCharacter>>>(Characterstatjson.text);
-    }
     void PriestStatLoad()
     {
         TextAsset Prieststatjson = (TextAsset)Resources.Load("Json/PriestStat", typeof(TextAsset));
@@ -128,7 +118,6 @@ public class DataSet : MonoBehaviour
 
 
     }
->>>>>>> 20180629
     void SkillDataLoad()
     {
         TextAsset Skilljson = (TextAsset)Resources.Load("Json/Skill", typeof(TextAsset));
