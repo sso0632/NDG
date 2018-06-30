@@ -23,7 +23,7 @@ public class UIParty : MonoBehaviour
     public void DataInit()
     {
         UIPartyInit();
-        PlayerParty tempParty = GameManager.instance.PM.GetPlayerParty;
+        PlayerParty tempParty = PlayerManager.instance.GetPlayerParty;
         List<int> tempBatlleNumber = new List<int>();
         int activeCount = 0;
         int partyCount = tempParty.PartyCount();

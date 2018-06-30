@@ -56,20 +56,20 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
     void DungeonPress()
     {
         PriestActor tempActor;
-        tempActor = GameManager.instance.PM.GetNowPriest();
+        tempActor = PlayerManager.instance.GetNowPriest();
         tempActor.StopDecision();
         tempActor.PriestWarSceneStart();
         GameManager.instance.GoWarScene();
     }
     void FriendlyFieldSet()
     {
-        if (GameManager.instance.PM.EmployCharacter.Count <= 0)
+        if (PlayerManager.instance.EmployCharacter.Count <= 0)
         {
             NoneFriendlyField();
             return;
         }
           
-        currentBattleCharacter = GameManager.instance.PM.EmployCharacter[viewIndex];
+        currentBattleCharacter = PlayerManager.instance.EmployCharacter[viewIndex];
 
         int index = currentBattleCharacter.Index;
 
@@ -80,7 +80,7 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
     }
     void NextPress()
     {
-        if (GameManager.instance.PM.EmployCharacter.Count <= 0)
+        if (PlayerManager.instance.EmployCharacter.Count <= 0)
         {
             NoneFriendlyField();
             return;
@@ -91,14 +91,14 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
 
         ++viewIndex;
 
-        if (viewIndex > GameManager.instance.PM.EmployCharacter.Count - 1)
+        if (viewIndex > PlayerManager.instance.EmployCharacter.Count - 1)
             viewIndex = 0;
 
         FriendlyFieldSet();
     }
     void Check()
     {
-        if(GameManager.instance.PM.EmployCharacter.Count > 0)
+        if(PlayerManager.instance.EmployCharacter.Count > 0)
         {
             nextBtn.interactable = true;
             previousBtn.interactable = true;
@@ -112,7 +112,7 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
     }
     void PreviousPress()
     {
-        if (GameManager.instance.PM.EmployCharacter.Count <= 0)
+        if (PlayerManager.instance.EmployCharacter.Count <= 0)
         {
             NoneFriendlyField();
             return;
@@ -124,7 +124,7 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
         --viewIndex;
 
         if (viewIndex < 0)
-            viewIndex = GameManager.instance.PM.EmployCharacter.Count - 1;
+            viewIndex = PlayerManager.instance.EmployCharacter.Count - 1;
 
         FriendlyFieldSet();
     }
@@ -160,13 +160,13 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
     
     public void SuccessRoomPress()
     {
-        if (GameManager.instance.PM.EmployCharacter.Count <= 0)
+        if (PlayerManager.instance.EmployCharacter.Count <= 0)
         {
             NoneFriendlyField();
             return;
         }
         
-        GameManager.instance.PM.EmployCharacter.Remove(currentBattleCharacter);
+        PlayerManager.instance.EmployCharacter.Remove(currentBattleCharacter);
         currentBattleCharacter = null;
         nextBtn.interactable = true;
         previousBtn.interactable = true;
@@ -176,7 +176,7 @@ public class UICompleteListPanel : MonoBehaviour, IPointerClickHandler
         ++viewIndex;
         currentSelectObj.gameObject.SetActive(false);
 
-        if (viewIndex > GameManager.instance.PM.EmployCharacter.Count - 1)
+        if (viewIndex > PlayerManager.instance.EmployCharacter.Count - 1)
             viewIndex = 0;
         
         FriendlyFieldSet();

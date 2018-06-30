@@ -8,12 +8,13 @@ public class UIPriesthaveField : MonoBehaviour {
     Image thisImage;    
     bool Lock;
 
-    public void Init()
+    public void Init(int num)
     {
         thisbutton = GetComponent<Button>();
         thisImage = GetComponent<Image>();
         Lock = true;
         CheckLock();
+        SetFunction(num);
     }
 
     void CheckLock()
@@ -35,4 +36,9 @@ public class UIPriesthaveField : MonoBehaviour {
         Lock = false;
         CheckLock();
     }
+    public void SetFunction(int index)
+    {
+        thisbutton.onClick.AddListener(() => PlayerManager.instance.ChagePriest(index));
+    }
 }
+

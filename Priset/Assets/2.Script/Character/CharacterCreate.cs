@@ -61,12 +61,12 @@ public class CharacterCreate : MonoBehaviour {
     {
         Vector3 pos = new Vector3(0, 0, 0);
         Craete(pos, FieldParent, CCharacter);
-        GameManager.instance.PM.Employ(CCharacter);
+        PlayerManager.instance.Employ(CCharacter);
     }
 
     public void PartyCreate()
     {
-        PlayerParty temp = GameManager.instance.PM.GetPlayerParty;
+        PlayerParty temp = PlayerManager.instance.GetPlayerParty;
         Transform  Chlid;
         FriendActor Actor;
 
@@ -74,10 +74,10 @@ public class CharacterCreate : MonoBehaviour {
         {
             if(temp.GetPartyMember(i) != null)
             {
-                Chlid = Craete(temp.GetPos(i), GameManager.instance.PM.GetPartyParent().transform, FriendCreate(temp.GetPartyMember(i).Index)).transform.GetChild(0);
+                Chlid = Craete(temp.GetPos(i), PlayerManager.instance.GetPartyParent().transform, FriendCreate(temp.GetPartyMember(i).Index)).transform.GetChild(0);
                 Actor = Chlid.GetComponent<FriendActor>();
                 temp.SetActor(i, Actor);
-                Actor.SetParty(GameManager.instance.PM.GetPlayerParty);
+                Actor.SetParty(PlayerManager.instance.GetPlayerParty);
                 Actor.RegistCharacter(temp.GetPartyMember(i));
                 Actor.SetFormationPos((PartyPos)i);
                 Chlid.localPosition =new Vector3(0, 0,-0.3f);

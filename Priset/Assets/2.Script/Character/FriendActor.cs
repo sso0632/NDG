@@ -15,6 +15,7 @@ public class FriendActor : Acter {
 
     float MonsterFollowSpeed=6f;
     float MonsterStopDistance=1f;
+
     float LongDistance;
     float HomeMoveLimite=4.5f;
 
@@ -28,12 +29,16 @@ public class FriendActor : Acter {
     }
     override protected void Start()
     {
+        StartDecision();
+    }
+
+    protected void StartDecision()
+    {
         if (GameManager.instance.NowScene != SceneNum.War)
         {
             StartCoroutine("decisionHomeAct");
         }
     }
-
     protected void Update()
     {
         if (GameManager.instance.NowScene == SceneNum.Home)

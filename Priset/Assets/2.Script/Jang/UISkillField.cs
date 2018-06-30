@@ -29,7 +29,7 @@ public class UISkillField : MonoBehaviour {
     }
     public void SetButton()     //스킬 셋팅 버튼 
     {
-        GameManager.instance.PM.SkillSet(haveSkill);
+        PlayerManager.instance.SkillSet(haveSkill);
         ButtonAcitve();
     }
     void SkillFieldSet()

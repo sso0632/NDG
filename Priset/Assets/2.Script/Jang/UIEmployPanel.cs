@@ -43,7 +43,7 @@ public class UIEmployPanel : MonoBehaviour {
     }
     void EmployPress()
     {
-        if(GameManager.instance.PM.GoldTraid(employCharacter.NeedMoney))
+        if(PlayerManager.instance.GoldTraid(employCharacter.NeedMoney))
         { 
             CreateFunction(employCharacter);
             currentFieldyField.SuccessEmploy();

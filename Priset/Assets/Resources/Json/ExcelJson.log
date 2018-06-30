@@ -1,4 +1,5 @@
 
+<<<<<<< Updated upstream
 Loading: D:\NoD\Priset\ItemStat.xlsx
 Parse sheet: Sheet1
 Parsing: D:\NoD\Priset\ItemStat.xlsx.$$$\Sheet1.csv
@@ -22,6 +23,30 @@ Parsing Array Object Table...
 ------------------------------------------------------------------------------
 [ItemStat.xlsx(Sheet1): ROW 28]
 Found object mark: '#SpeedItem[{}]'
+<<<<<<< HEAD
 [ItemStat.xlsx(Sheet1): ROW 28]
  Key: SpeedAmount at 1
+=======
+=======
+Loading: E:\joystudy\NDG\Priset\PriestStat.xlsx
+Parse sheet: Sheet1
+Parsing: E:\joystudy\NDG\Priset\PriestStat.xlsx.$$$\Sheet1.csv
+Parse sheet: Sheet2
+Parsing: E:\joystudy\NDG\Priset\PriestStat.xlsx.$$$\Sheet2.csv
+Parse sheet: Sheet3
+Parsing: E:\joystudy\NDG\Priset\PriestStat.xlsx.$$$\Sheet3.csv
+Closing: E:\joystudy\NDG\Priset\PriestStat.xlsx
+------------------------------------------------------------------------------
+[PriestStat.xlsx(Sheet1): ROW 2]
+Found object mark: '#prieststat[{}]'
+[PriestStat.xlsx(Sheet1): ROW 2]
+ Key: INDEX at 1
+[PriestStat.xlsx(Sheet1): ROW 2]
+ Key: MAXHEATH at 2
+[PriestStat.xlsx(Sheet1): ROW 2]
+ Key: HOLYPOWER at 3
+[PriestStat.xlsx(Sheet1): ROW 2]
+ Key: MOVESPEED at 4
+>>>>>>> Stashed changes
+>>>>>>> 20180629
 Parsing Array Object Table...

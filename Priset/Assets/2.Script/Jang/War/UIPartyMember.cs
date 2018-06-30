@@ -43,7 +43,7 @@ public class UIPartyMember : MonoBehaviour
     //멤버 힐 하는 부분
     public void MemberHeal()
     {
-       PriestActor tempActor = GameManager.instance.PM.GetNowPriest();
+       PriestActor tempActor = PlayerManager.instance.GetNowPriest();
 
         if (tempActor == null)
             return;

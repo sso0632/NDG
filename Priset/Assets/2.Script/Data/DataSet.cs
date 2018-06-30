@@ -10,14 +10,9 @@ public class DataSet : MonoBehaviour
 {
     Dictionary<string, List<BattleCharacter>> CharacterStatData;
     Dictionary<string, List<BattleCharacter>> MonsterStatData;
-
+    Dictionary<string, List<Priest>> PriestStatData;
     Dictionary<string, List<Skill>> SkillData;
-    
-
     Dictionary<ITEM_TYPE, List<CItem>> itemList;
-
-
-
 
     public static Sprite[] CharacterImageResources;
     public static Sprite[] SkillImageResources;
@@ -25,6 +20,7 @@ public class DataSet : MonoBehaviour
     public static GameObject[] SkillParicle;
     public void Init()
     {
+        PriestStatLoad();
         CharacterStatLoad();
         CharacterSpriteLoad();
         SkillDataLoad();
@@ -115,6 +111,24 @@ public class DataSet : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
+=======
+    void CharacterStatLoad()
+    {
+        TextAsset Characterstatjson = (TextAsset)Resources.Load("Json/CharacterStat", typeof(TextAsset));
+        CharacterStatData = JsonConvert.DeserializeObject<Dictionary<string, List<BattleCharacter>>>(Characterstatjson.text);
+
+        Characterstatjson = (TextAsset)Resources.Load("Json/MonsterStat", typeof(TextAsset));
+        MonsterStatData = JsonConvert.DeserializeObject<Dictionary<string, List<BattleCharacter>>>(Characterstatjson.text);
+    }
+    void PriestStatLoad()
+    {
+        TextAsset Prieststatjson = (TextAsset)Resources.Load("Json/PriestStat", typeof(TextAsset));
+        PriestStatData = JsonConvert.DeserializeObject<Dictionary<string, List<Priest>>>(Prieststatjson.text);
+
+
+    }
+>>>>>>> 20180629
     void SkillDataLoad()
     {
         TextAsset Skilljson = (TextAsset)Resources.Load("Json/Skill", typeof(TextAsset));
@@ -129,6 +143,16 @@ public class DataSet : MonoBehaviour
         target.Attacktype = CharacterStatData["characterstat"][target.Index].Attacktype;
         target.Defence = CharacterStatData["characterstat"][target.Index].Defence;
     }
+
+    public void PriestStatSet(Priest target, int indexNum)
+    {
+        target.MAXHEATH = PriestStatData["prieststat"][indexNum].MAXHEATH;
+        target.HOLYPOWER = PriestStatData["prieststat"][indexNum].HOLYPOWER;
+        target.MOVESPEED = PriestStatData["prieststat"][indexNum].MOVESPEED;
+        target.INDEX = PriestStatData["prieststat"][indexNum].INDEX;
+    }
+
+
     public void MonsterStatSet(BattleCharacter target)
     {
         target.Attack = MonsterStatData["Monsterstat"][target.Index].Attack;

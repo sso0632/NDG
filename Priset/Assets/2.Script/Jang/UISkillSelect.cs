@@ -33,7 +33,7 @@ public class UISkillSelect : MonoBehaviour {
 
     void SlotSet()
     {
-        Skill[] IndexSkill = GameManager.instance.PM.NowPriestSkillGet();
+        Skill[] IndexSkill = PlayerManager.instance.NowPriestSkillGet();
 
         for (int i = 0; i < SkillSlot.Length; ++i)
         {

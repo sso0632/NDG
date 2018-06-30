@@ -23,7 +23,31 @@ public class Priest : MonoBehaviour
         SkillSlot = new Skill[SlotCount];
         FirstSkillActive = false;
     }
-
+    public int INDEX
+    {
+        get { return index; }
+        set{ index = value;}
+    }
+    public int MAXHEATH
+    {
+        get { return HeathMax; }
+        set { HeathMax = value; }
+    }
+    public int HEATH
+    {
+        get { return Heath; }
+        set { Heath = value; }
+    }
+    public int HOLYPOWER
+    {
+        get { return PriestPowerMax; }
+        set { PriestPowerMax = value; }
+    }
+    public int MOVESPEED
+    {
+        get { return MoveSpeed; }
+        set { MoveSpeed = value; }
+    }
     public void SetSkill(Skill getSkill)
     {
         for(int i=0; i< SlotCount; ++i)
@@ -42,8 +66,8 @@ public class Priest : MonoBehaviour
         { 
             if(CheckPower())
             {
-                nowSkill.SetActive(GameManager.instance.PM.GetPlayerParty.GetPartyMember(targetnum));
-                SkillParticleActive(GameManager.instance.PM.GetPlayerParty.GetPartyActor(targetnum));
+                nowSkill.SetActive(PlayerManager.instance.GetPlayerParty.GetPartyMember(targetnum));
+                SkillParticleActive(PlayerManager.instance.GetPlayerParty.GetPartyActor(targetnum));
             }
         }
         else
@@ -51,7 +75,7 @@ public class Priest : MonoBehaviour
             if (CheckPower())
             {
                 nowSkill.SetActive(this);
-                SkillParticleActive(GameManager.instance.PM.GetPlayerParty.GetPartyActor(targetnum));
+                SkillParticleActive(PlayerManager.instance.GetPlayerParty.GetPartyActor(targetnum));
             }
         }
     }
@@ -63,9 +87,9 @@ public class Priest : MonoBehaviour
 
         for (int i=0; i< 4; ++i)
         {
-            if (GameManager.instance.PM.GetPlayerParty.GetPartyActor(i)!=null)
+            if (PlayerManager.instance.GetPlayerParty.GetPartyActor(i)!=null)
             {
-                SkillParticleSet(GameManager.instance.PM.GetPlayerParty.GetPartyActor(i));
+                SkillParticleSet(PlayerManager.instance.GetPlayerParty.GetPartyActor(i));
             }
         }
     }
@@ -116,5 +140,27 @@ public class Priest : MonoBehaviour
     void SkillParticleActive(Acter targetacter)
     {
         targetacter.haveParticlePlay(nowSkill.SkillIndex);
+    }
+
+    public void HeathMiuns(int value)
+    {
+        Heath -= value;
+    }
+    public void HeathAdd(int value)
+    {
+        Heath += value;
+    }
+
+    public float HeathPercent()
+    {
+        return (float)Heath / (float)HeathMax;
+    }
+
+    public void DebugStat()
+    {
+        Debug.Log(MAXHEATH);
+        Debug.Log(HOLYPOWER);
+        Debug.Log(MOVESPEED);
+        Debug.Log(INDEX);
     }
 }

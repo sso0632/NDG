@@ -7,8 +7,11 @@ public class UIWarManager : MonoBehaviour
     public static UIWarManager instance;
     public UIParty UIPartyManager;
     public Text Scoreview;
+    public Scrollbar PriestHpBarView;
     public GameObject HpBarPrefab;
     public GameObject DamageTextPrefab;
+    public GameObject GameEndUi;
+    public Button GoHomeButton;
     public Transform HpBarCollecter;
     public Transform DamageCollecter;
     
@@ -32,8 +35,8 @@ public class UIWarManager : MonoBehaviour
     }
     public void PartyInit()
     {
-        int count = GameManager.instance.PM.GetPlayerParty.PartyCount();
-        PlayerParty tempParty = GameManager.instance.PM.GetPlayerParty;
+        int count = PlayerManager.instance.GetPlayerParty.PartyCount();
+        PlayerParty tempParty = PlayerManager.instance.GetPlayerParty;
 
         for (int i =0; i< count; ++i)
         {
@@ -130,5 +133,16 @@ public class UIWarManager : MonoBehaviour
     public void SetScore(int value)
     {
         Scoreview.text = value.ToString();
+    }
+
+    public void HpBarSet(float value)
+    {
+        PriestHpBarView.size = value;
+    }
+
+    public void DungeonEndUiOn()
+    {
+        GameEndUi.SetActive(true);
+        GoHomeButton.onClick.AddListener(GameManager.instance.GoHomeScene);
     }
 }
