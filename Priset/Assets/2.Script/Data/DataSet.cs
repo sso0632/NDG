@@ -1,17 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.UI;
+
+
 public class DataSet : MonoBehaviour
 {
     Dictionary<string, List<BattleCharacter>> CharacterStatData;
     Dictionary<string, List<BattleCharacter>> MonsterStatData;
+
     Dictionary<string, List<Skill>> SkillData;
+    
+
+    Dictionary<ITEM_TYPE, List<CItem>> itemList;
+
+
+
 
     public static Sprite[] CharacterImageResources;
     public static Sprite[] SkillImageResources;
-
 
     public static GameObject[] SkillParicle;
     public void Init()
@@ -21,7 +30,51 @@ public class DataSet : MonoBehaviour
         SkillDataLoad();
         SkillSpriteLoad();
         SkillPartcleLoad();
+        ItemDataLoad();
     }
+    void ItemDataLoad()
+    {
+        itemList = new Dictionary<ITEM_TYPE, List<CItem>>();
+        TextAsset textAsset = (TextAsset)Resources.Load("Json/ItemStat", typeof(TextAsset));
+
+        Dictionary<string, List<CHealthItem>> tempItemHealth;
+        tempItemHealth = JsonConvert.DeserializeObject<Dictionary<string, List<CHealthItem>>>(textAsset.text);
+
+        List<CItem> tempItemData = new List<CItem>();
+
+
+        for (int i =0; i< tempItemHealth["HealthItem"].Count; ++i)
+        {
+            CItem temp = tempItemHealth["HealthItem"][i];
+            tempItemData.Add(temp);
+        }
+        itemList.Add(ITEM_TYPE.Health , new List<CItem>(tempItemData));
+        tempItemData.Clear();
+
+        Dictionary<string, List<CHolyItem>> tempHolyItem;
+        tempHolyItem = JsonConvert.DeserializeObject<Dictionary<string, List<CHolyItem>>>(textAsset.text);
+
+        for (int i = 0; i < tempHolyItem["HolyItem"].Count; ++i)
+        {
+            CHolyItem temp = tempHolyItem["HolyItem"][i];
+            tempItemData.Add(temp);
+        }
+        itemList.Add(ITEM_TYPE.Holy, new List<CItem>(tempItemData));
+        tempHolyItem.Clear();
+
+
+        Debug.Log(itemList[ITEM_TYPE.Health].Count);
+
+    }
+    void CharacterStatLoad()
+    {
+        TextAsset Characterstatjson = (TextAsset)Resources.Load("Json/CharacterStat", typeof(TextAsset));
+        CharacterStatData = JsonConvert.DeserializeObject<Dictionary<string, List<BattleCharacter>>>(Characterstatjson.text);
+
+        Characterstatjson = (TextAsset)Resources.Load("Json/MonsterStat", typeof(TextAsset));
+        MonsterStatData = JsonConvert.DeserializeObject<Dictionary<string, List<BattleCharacter>>>(Characterstatjson.text);
+    }
+
 
     void DebugList()
     {
@@ -50,6 +103,7 @@ public class DataSet : MonoBehaviour
         {
             CharacterImageResources[spriteNumber] = (Sprite)Resources.Load("CharacterImage/" + spriteNumber.ToString(), typeof(Sprite));
         }
+
     }
     void SkillPartcleLoad()
     {
@@ -61,19 +115,12 @@ public class DataSet : MonoBehaviour
         }
     }
 
-    void CharacterStatLoad()
-    {
-        TextAsset Characterstatjson = (TextAsset)Resources.Load("Json/CharacterStat", typeof(TextAsset));
-        CharacterStatData = JsonConvert.DeserializeObject<Dictionary<string, List<BattleCharacter>>>(Characterstatjson.text);
-
-        Characterstatjson = (TextAsset)Resources.Load("Json/MonsterStat", typeof(TextAsset));
-        MonsterStatData = JsonConvert.DeserializeObject<Dictionary<string, List<BattleCharacter>>>(Characterstatjson.text);
-    }
     void SkillDataLoad()
     {
         TextAsset Skilljson = (TextAsset)Resources.Load("Json/Skill", typeof(TextAsset));
         SkillData = JsonConvert.DeserializeObject<Dictionary<string, List<Skill>>>(Skilljson.text);
     }
+   
     public void CharacterStatSet(BattleCharacter target)
     {
         target.Attack= CharacterStatData["characterstat"][target.Index].Attack;

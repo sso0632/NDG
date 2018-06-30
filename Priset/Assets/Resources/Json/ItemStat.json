@@ -33,34 +33,34 @@
 	],
 	"HolyItem": [
 		{
-			"HealAmount": 1
+			"HolyAmount": 1
 		},
 		{
-			"HealAmount": 2
+			"HolyAmount": 2
 		},
 		{
-			"HealAmount": 3
+			"HolyAmount": 3
 		},
 		{
-			"HealAmount": 4
+			"HolyAmount": 4
 		},
 		{
-			"HealAmount": 5
+			"HolyAmount": 5
 		},
 		{
-			"HealAmount": 6
+			"HolyAmount": 6
 		},
 		{
-			"HealAmount": 7
+			"HolyAmount": 7
 		},
 		{
-			"HealAmount": 8
+			"HolyAmount": 8
 		},
 		{
-			"HealAmount": 9
+			"HolyAmount": 9
 		},
 		{
-			"HealAmount": 10
+			"HolyAmount": 10
 		}
 	],
 	"SpeedItem": []

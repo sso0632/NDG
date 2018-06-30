@@ -17,9 +17,11 @@ Parsing Array Object Table...
 [ItemStat.xlsx(Sheet1): ROW 15]
 Found object mark: '#HolyItem[{}]'
 [ItemStat.xlsx(Sheet1): ROW 15]
- Key: HealAmount at 1
+ Key: HolyAmount at 1
 Parsing Array Object Table...
 ------------------------------------------------------------------------------
 [ItemStat.xlsx(Sheet1): ROW 28]
 Found object mark: '#SpeedItem[{}]'
+[ItemStat.xlsx(Sheet1): ROW 28]
+ Key: SpeedAmount at 1
 Parsing Array Object Table...

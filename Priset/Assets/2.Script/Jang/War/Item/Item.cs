@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum ITEM_TYPE
+{
+    Health,
+    Holy,
+    Speed,
+}
+
 public class CItem
 {
     int itemCode;
@@ -12,6 +20,7 @@ public class CItem
         set { itemCode = value; }
     }
 }
+
 
 
 public class Item : MonoBehaviour
