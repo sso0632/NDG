@@ -85,6 +85,6 @@ public class UIManager : MonoBehaviour
 
     public void GoldView()
     {
-        TownGoldText.text =string.Format("{0:D9}", GameManager.instance.PM.Money);
+        TownGoldText.text =string.Format("{0:D9}", PlayerManager.instance.Money);
     }
 }

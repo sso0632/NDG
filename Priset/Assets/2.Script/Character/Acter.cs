@@ -113,8 +113,8 @@ public class Acter : MonoBehaviour
             Dead();
             if(this.GetType()==typeof(MonsterActor))
             {
-                GameManager.instance.PM.HuntCountUp();
-                UIWarManager.instance.SetScore(GameManager.instance.PM.SCORE);
+                PlayerManager.instance.HuntCountUp();
+                UIWarManager.instance.SetScore(PlayerManager.instance.SCORE);
             }
         }
     }

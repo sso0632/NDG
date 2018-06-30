@@ -35,16 +35,16 @@ public class UICompleteRoom : MonoBehaviour , IPointerClickHandler
         switch(roomIndex)
         {
             case (int)PartyPos.LEFT_UP:
-                GameManager.instance.PM.GetPlayerParty.SetLeftUp(character);
+                PlayerManager.instance.GetPlayerParty.SetLeftUp(character);
                 break;
             case (int)PartyPos.RIGHT_UP:
-                GameManager.instance.PM.GetPlayerParty.SetRightUp(character);
+                PlayerManager.instance.GetPlayerParty.SetRightUp(character);
                 break;
             case (int)PartyPos.RIGHT_DOWN:
-                GameManager.instance.PM.GetPlayerParty.SetRightDown(character);
+                PlayerManager.instance.GetPlayerParty.SetRightDown(character);
                 break;
             case (int)PartyPos.LEFT_DOWN:
-                GameManager.instance.PM.GetPlayerParty.SetLeftDown(character);
+                PlayerManager.instance.GetPlayerParty.SetLeftDown(character);
                 break;
         }
     }

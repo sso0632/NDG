@@ -24,7 +24,7 @@ public class UIWarFriendlyRoom : MonoBehaviour, IPointerClickHandler
         if (roomIndex == -1)
             return;
 
-        PlayerParty tempParty = GameManager.instance.PM.GetPlayerParty;
+        PlayerParty tempParty = PlayerManager.instance.GetPlayerParty;
 
         roomCharacter = tempParty.GetPartyMember(roomIndex);
 
