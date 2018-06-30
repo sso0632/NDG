@@ -25,6 +25,6 @@ public class MoneyItem : Item
     }
     public override void EatItem()
     {
-        GameManager.instance.PM.AddMoney(moneyData.MoneyAmount);
+        PlayerManager.instance.AddMoney(moneyData.MoneyAmount);
     }
 }

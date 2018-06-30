@@ -21,7 +21,7 @@ public class HealthItem : Item
 
     public override void EatItem()
     {
-        PriestActor tempActor = GameManager.instance.PM.GetNowPriest();
+        PriestActor tempActor = PlayerManager.instance.GetNowPriest();
         tempActor.havePriest.HealthChange(healItem.HealAmount);
     }
 

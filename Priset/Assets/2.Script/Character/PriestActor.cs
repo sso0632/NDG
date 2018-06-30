@@ -6,7 +6,7 @@ public class PriestActor : FriendActor {
 
     public Priest havePriest;
     Transform thisTransform;
-
+    
     public void Init()
     {
         havePriest.init();
@@ -40,8 +40,12 @@ public class PriestActor : FriendActor {
         }
     }
 
-    public void AcitveSkill(int index)
+    public void PriesHomeSceneStart()
     {
+        transform.parent.localPosition = new Vector3(0, -1f, 0);
+        this.transform.localPosition = new Vector3(0, 0, 0);
+        this.transform.localRotation = Quaternion.identity;
+        StartDecision();
 
     }
     public void PriestWarSceneStart()
@@ -64,5 +68,9 @@ public class PriestActor : FriendActor {
         navMeshObject.position += (JoyStick.MoveDir * havePriest.MoveSpeed) * Time.deltaTime;
     }
 
+    public void PriestDamage(int value)
+    {
+        havePriest.HeathMiuns(value);
+    }
      
 }

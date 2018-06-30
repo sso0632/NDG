@@ -1,0 +1,64 @@
+{
+	"prieststat": [
+		{
+			"INDEX": 0,
+			"MAXHEATH": 100,
+			"HOLYPOWER": 10,
+			"MOVESPEED": 2
+		},
+		{
+			"INDEX": 1,
+			"MAXHEATH": 100,
+			"HOLYPOWER": 10,
+			"MOVESPEED": 2
+		},
+		{
+			"INDEX": 2,
+			"MAXHEATH": 100,
+			"HOLYPOWER": 10,
+			"MOVESPEED": 2
+		},
+		{
+			"INDEX": 3,
+			"MAXHEATH": 100,
+			"HOLYPOWER": 10,
+			"MOVESPEED": 1
+		},
+		{
+			"INDEX": 4,
+			"MAXHEATH": 100,
+			"HOLYPOWER": 10,
+			"MOVESPEED": 1
+		},
+		{
+			"INDEX": 5,
+			"MAXHEATH": 100,
+			"HOLYPOWER": 10,
+			"MOVESPEED": 1
+		},
+		{
+			"INDEX": 6,
+			"MAXHEATH": 100,
+			"HOLYPOWER": 10,
+			"MOVESPEED": 1
+		},
+		{
+			"INDEX": 7,
+			"MAXHEATH": 100,
+			"HOLYPOWER": 10,
+			"MOVESPEED": 1
+		},
+		{
+			"INDEX": 8,
+			"MAXHEATH": 100,
+			"HOLYPOWER": 10,
+			"MOVESPEED": 1
+		},
+		{
+			"INDEX": 9,
+			"MAXHEATH": 100,
+			"HOLYPOWER": 10,
+			"MOVESPEED": 1
+		}
+	]
+}

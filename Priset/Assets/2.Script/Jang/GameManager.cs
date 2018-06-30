@@ -50,10 +50,47 @@ public class GameManager : MonoBehaviour {
     {
         NowScene = SceneNum.War;
         PM.PriestInit();
-        StartCoroutine(LoadingSystem((int)NowScene));
+        StartCoroutine(WarSceneLoadingSystem((int)NowScene));
     }
+    public void GoHomeScene()
+    {
+        NowScene = SceneNum.Home;
 
-    IEnumerator LoadingSystem(int mapIndex)
+        StartCoroutine(HomeSceneLoadingSystem((int)NowScene));
+    }
+    IEnumerator HomeSceneLoadingSystem(int mapIndex)
+    {
+       // UIManager.instance.LoadUI.SetActive(true);
+        if (!isLoad)
+        {
+            isLoad = true;
+
+            loadAsync = SceneManager.LoadSceneAsync(mapIndex);
+            loadAsync.allowSceneActivation = false;
+
+            float timer = 0;
+            while (!loadAsync.isDone)
+            {
+                while (timer <= 1)
+                {
+                    timer += Time.deltaTime;
+                   // UIManager.instance.SliderImage.fillAmount = timer;
+                    yield return null;
+                    if (timer >= 0.9f)
+                    {
+                        loadAsync.allowSceneActivation = true;
+                        break;
+                    }
+                }
+
+                yield return null;
+            }
+            isLoad = false;
+            PM.GetNowPriest().PriesHomeSceneStart();
+        }
+        yield return null;
+    }
+    IEnumerator WarSceneLoadingSystem(int mapIndex)
     {
         UIManager.instance.LoadUI.SetActive(true);
         if (!isLoad)
@@ -79,6 +116,7 @@ public class GameManager : MonoBehaviour {
                 }
                 yield return null;
             }
+            isLoad = false;
         }
 
         PM.GoWarScene();

@@ -5,6 +5,7 @@ using Sang;
 
 public class PlayerManager : MonoBehaviour {
 
+    public static PlayerManager instance;
     public PriestActor[] havePriestCharacter;           //가지고 있는 프리스트
     public List<BattleCharacter> EmployCharacter;      //섭외한 배틀 캐릭터
     PriestActor NowPriest;                      //현재 프리스트
@@ -25,9 +26,26 @@ public class PlayerManager : MonoBehaviour {
         PartyParent = transform.GetChild(0).gameObject;
         Party = new PlayerParty();
         Party.PartySet();
-        ChagePriest(0);
-        DontDestroyOnLoad(gameObject);
 
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
+    private void Start()
+    {
+        PriestDataSet();
+        ChagePriest(0);
+    }
+    private void PriestDataSet()
+    {
+        for(int i=0; i< havePriestCharacter.Length; ++i)
+        {
+            GameManager.instance.Data.PriestStatSet(havePriestCharacter[i].havePriest, i);
+            havePriestCharacter[i].transform.parent.gameObject.SetActive(false);
+        }
     }
     private void Update()
     {
@@ -150,6 +168,7 @@ public class PlayerManager : MonoBehaviour {
     {
         Score = 0;
     }
+
 }
 
 public class PlayerParty

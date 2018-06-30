@@ -29,7 +29,7 @@ public class UIPriestChageView : MonoBehaviour {
             {
                 Priestmagevalue[i] = parent.GetChild(i).GetComponent<UIPriesthaveField>();
             }
-            Priestmagevalue[i].Init();
+            Priestmagevalue[i].Init(i);
         }
     }
     public void CharacterUnlock(int _Index)
